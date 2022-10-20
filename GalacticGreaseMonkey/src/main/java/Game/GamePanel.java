@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Set player's default location
     int playerX = 100;
     int playerY = 100;
-    int playerSpeed = 5;
+    int playerSpeed = 5; // Set how fast player moves
 
     public GamePanel()
     {
@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             repaint(); // redraw screen with updated information
 
-            try {
+            try { // FPS Limiter
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime = remainingTime/1000000;
 
@@ -77,6 +77,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update()
     {
+        // Handle WASD movement
         if(keyH.upPressed) {
             playerY -= playerSpeed;
         }
