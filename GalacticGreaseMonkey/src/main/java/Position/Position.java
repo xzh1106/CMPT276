@@ -9,12 +9,14 @@ public class Position {
         setY(y);
         setSpeed(speed);
         this.direction = direction;
+        spriteAnimation = new SpriteAnimation();
     }
 
     private int x;
     private int y;
     private int speed;
     private String direction;
+    private SpriteAnimation spriteAnimation;
 
     public int getX() {
        return this.x;
@@ -46,5 +48,13 @@ public class Position {
 
     public void setDirection(String direction) {
         this.direction = direction;
+    }
+
+    public void setSpriteAnimation(SpriteAnimation spriteAnimation) {
+        this.spriteAnimation = spriteAnimation;
+    }
+
+    public SpriteAnimation getSpriteAnimation() {
+        return spriteAnimation;
     }
 }

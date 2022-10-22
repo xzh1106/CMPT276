@@ -67,15 +67,15 @@ public class Player extends Entity{
                 position.setX(updatedX);
             }
 
-            spriteCounter++;
-            if (spriteCounter > 10) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
+            position.getSpriteAnimation().spriteCounter++;
+            if (position.getSpriteAnimation().spriteCounter > 10) {
+                if (position.getSpriteAnimation().spriteNumber == 1) {
+                    position.getSpriteAnimation().spriteNumber = 2;
                 }
-                else if (spriteNum == 2) {
-                    spriteNum = 1;
+                else if (position.getSpriteAnimation().spriteNumber == 2) {
+                    position.getSpriteAnimation().spriteNumber = 1;
                 }
-                spriteCounter = 0;
+                position.getSpriteAnimation().spriteCounter = 0;
             }
         }
     }
@@ -85,34 +85,34 @@ public class Player extends Entity{
         BufferedImage image = null;
         switch(position.getDirection()) {
             case "up":
-                if (spriteNum == 1) {
+                if (position.getSpriteAnimation().spriteNumber == 1) {
                     image = up1;
                 }
-                else if (spriteNum == 2) {
+                else if (position.getSpriteAnimation().spriteNumber == 2) {
                     image = up2;
                 }
                 break;
             case "down":
-                if (spriteNum == 1) {
+                if (position.getSpriteAnimation().spriteNumber == 1) {
                     image = down1;
                 }
-                else if (spriteNum == 2) {
+                else if (position.getSpriteAnimation().spriteNumber == 2) {
                     image = down2;
                 }
                 break;
             case "left":
-                if (spriteNum == 1) {
+                if (position.getSpriteAnimation().spriteNumber == 1) {
                     image = left1;
                 }
-                else if (spriteNum == 2) {
+                else if (position.getSpriteAnimation().spriteNumber == 2) {
                     image = left2;
                 }
                 break;
             case "right":
-                if (spriteNum == 1) {
+                if (position.getSpriteAnimation().spriteNumber == 1) {
                     image = right1;
                 }
-                else if (spriteNum == 2) {
+                else if (position.getSpriteAnimation().spriteNumber == 2) {
                     image = right2;
                 }
                 break;
