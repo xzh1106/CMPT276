@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Player extends Entity{
 
@@ -25,14 +26,14 @@ public class Player extends Entity{
     //retrieve sprite images
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/monkeyUp1.png"));
-            up2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/monkeyUp2.png"));
-            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/monkeyDown1.png"));
-            down2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/monkeyDown2.png"));
-            right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/monkeyRight1.png"));
-            right2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/monkeyRight2.png"));
-            left1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/monkeyLeft1.png"));
-            left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/monkeyLeft2.png"));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyUp1.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyUp2.png")));
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyDown1.png")));
+            down2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyDown2.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyRight1.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyRight2.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyLeft1.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyLeft2.png")));
         } catch(IOException e) {
             e.printStackTrace();
         }
