@@ -20,6 +20,8 @@ public class Player extends Entity{
         this.keyH = keyH;
         this.position = new Position(100, 100, 5, "down");
 
+        hitBox = new Rectangle(8, 16, 32, 32);
+
         getPlayerImage();
     }
 
@@ -46,26 +48,50 @@ public class Player extends Entity{
         if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed) {
             if(keyH.upPressed) {
                 this.position.setDirection("up");
-                int updatedY = position.getY() - position.getSpeed();
-                position.setY(updatedY);
+//                int updatedY = position.getY() - position.getSpeed();
+//                position.setY(updatedY);
             }
 
             else if(keyH.downPressed) {
                 this.position.setDirection("down");
-                int updatedY = position.getY() + position.getSpeed();
-                position.setY(updatedY);
+//                int updatedY = position.getY() + position.getSpeed();
+//                position.setY(updatedY);
             }
 
             else if(keyH.leftPressed) {
                 this.position.setDirection("left");
-                int updatedX = position.getX() - position.getSpeed();
-                position.setX(updatedX);
+//                int updatedX = position.getX() - position.getSpeed();
+//                position.setX(updatedX);
             }
 
             else if(keyH.rightPressed) {
                 this.position.setDirection("right");
-                int updatedX = position.getX() + position.getSpeed();
-                position.setX(updatedX);
+//                int updatedX = position.getX() + position.getSpeed();
+//                position.setX(updatedX);
+            }
+
+            collsionDetected = false;
+            gp.collisionChecker.checkTile(this);
+
+            if (collsionDetected == false) {
+                switch (position.getDirection()) {
+                    case "up":
+                        int updatedY = position.getY() - position.getSpeed();
+                        position.setY(updatedY);
+                        break;
+                    case "down":
+                        int updatedY1 = position.getY() + position.getSpeed();
+                        position.setY(updatedY1);
+                        break;
+                    case "left":
+                        int updatedX = position.getX() - position.getSpeed();
+                        position.setX(updatedX);
+                        break;
+                    case "right":
+                        int updatedX1 = position.getX() + position.getSpeed();
+                        position.setX(updatedX1);
+                        break;
+                }
             }
 
             position.getSpriteAnimation().spriteCounter++;

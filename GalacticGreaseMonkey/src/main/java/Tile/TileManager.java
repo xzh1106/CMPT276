@@ -12,8 +12,8 @@ import java.util.Objects;
 
 public class TileManager {
     GamePanel gp;
-    Tile [] tiles;
-    int mapTiles[][];
+    public Tile [] tiles;
+    public int mapTiles[][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -30,6 +30,7 @@ public class TileManager {
 
             tiles[1] = new Tile();
             tiles[1].image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("tiles/wall.png")));
+            tiles[1].collision = true;
 
             tiles[2] = new Tile();
             tiles[2].image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("tiles/water.png")));
@@ -40,7 +41,7 @@ public class TileManager {
 
     public void loadMap() {
         try {
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("maps/map01.txt");
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("maps/map1.txt");
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             int col = 0;
             int row = 0;
