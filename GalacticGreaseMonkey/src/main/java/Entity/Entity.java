@@ -5,6 +5,9 @@ import Position.Position;
 import java.awt.image.BufferedImage;
 
 public class Entity {
+    public int x, y;
+    public int speed;
+
     protected int score = 0;
 
     protected Position position = new Position();

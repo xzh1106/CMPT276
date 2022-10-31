@@ -43,7 +43,7 @@ public class Player extends Entity{
     public void update() {
         // Handle WASD movement
 
-        if (keyH.upPressed == true || keyH.downPressed == true || keyH.rightPressed == true || keyH.leftPressed == true) {
+        if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed) {
             if(keyH.upPressed) {
                 this.position.setDirection("up");
                 int updatedY = position.getY() - position.getSpeed();
