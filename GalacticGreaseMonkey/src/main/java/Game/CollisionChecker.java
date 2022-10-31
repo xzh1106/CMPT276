@@ -25,37 +25,37 @@ public class CollisionChecker {
         switch (e.position.getDirection()) {
             case "up":
                 topRow = (topY - e.position.getSpeed())/gp.tileSize;
-                tileA = gp.tileManager.mapTiles[leftCol][topRow];
-                tileB = gp.tileManager.mapTiles[rightCol][topRow];
-                if(gp.tileManager.tiles[tileA].collision == true ||
-                        gp.tileManager.tiles[tileB].collision == true) {
+                tileA = gp.tileManager.mapTileNum[leftCol][topRow];
+                tileB = gp.tileManager.mapTileNum[rightCol][topRow];
+                if(gp.tileManager.tile[tileA].collision == true ||
+                        gp.tileManager.tile[tileB].collision == true) {
                     e.collsionDetected = true;
                 }
                 break;
             case "down":
                 bottomRow = (bottomY + e.position.getSpeed())/gp.tileSize;
-                tileA = gp.tileManager.mapTiles[leftCol][bottomRow];
-                tileB = gp.tileManager.mapTiles[rightCol][bottomRow];
-                if(gp.tileManager.tiles[tileA].collision == true ||
-                        gp.tileManager.tiles[tileB].collision == true) {
+                tileA = gp.tileManager.mapTileNum[leftCol][bottomRow];
+                tileB = gp.tileManager.mapTileNum[rightCol][bottomRow];
+                if(gp.tileManager.tile[tileA].collision == true ||
+                        gp.tileManager.tile[tileB].collision == true) {
                     e.collsionDetected = true;
                 }
                 break;
             case "left":
                 leftCol = (leftX - e.position.getSpeed())/gp.tileSize;
-                tileA = gp.tileManager.mapTiles[leftCol][topRow];
-                tileB = gp.tileManager.mapTiles[leftCol][bottomRow];
-                if(gp.tileManager.tiles[tileA].collision == true ||
-                        gp.tileManager.tiles[tileB].collision == true) {
+                tileA = gp.tileManager.mapTileNum[leftCol][topRow];
+                tileB = gp.tileManager.mapTileNum[leftCol][bottomRow];
+                if(gp.tileManager.tile[tileA].collision == true ||
+                        gp.tileManager.tile[tileB].collision == true) {
                     e.collsionDetected = true;
                 }
                 break;
             case "right":
                 rightCol = (rightX + e.position.getSpeed())/gp.tileSize;
-                tileA = gp.tileManager.mapTiles[rightCol][topRow];
-                tileB = gp.tileManager.mapTiles[rightCol][bottomRow];
-                if(gp.tileManager.tiles[tileA].collision == true ||
-                        gp.tileManager.tiles[tileB].collision == true) {
+                tileA = gp.tileManager.mapTileNum[rightCol][topRow];
+                tileB = gp.tileManager.mapTileNum[rightCol][bottomRow];
+                if(gp.tileManager.tile[tileA].collision == true ||
+                        gp.tileManager.tile[tileB].collision == true) {
                     e.collsionDetected = true;
                 }
                 break;
