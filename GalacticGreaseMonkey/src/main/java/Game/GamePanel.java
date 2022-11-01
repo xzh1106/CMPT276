@@ -3,6 +3,7 @@ package Game;
 import Entity.Player;
 import Position.Position;
 import Tile.TileManager;
+import Object.SuperObject;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;
@@ -26,12 +27,13 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     TileManager tileManager = new TileManager(this);
-
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-
+    public AssetSetter aSetter = new AssetSetter(this);
     Player player = new Player(this, keyH);
+    public SuperObject obj[] = new SuperObject[10]; // 10 slots for object allocation
+
 
     public GamePanel()
     {
@@ -41,6 +43,11 @@ public class GamePanel extends JPanel implements Runnable {
 
         this.addKeyListener(keyH); // takes keyboard input
         this.setFocusable(true);
+    }
+
+    public void setupGame() {
+        aSetter.setObject();
+
     }
 
     public void startGameThread()
@@ -91,7 +98,17 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D)g;
 
-        tileManager.draw(g2);
+        // Draw Tile
+        tileManager.draw(g2); // Draw tile before layer because of layers
+
+        // Draw object
+        for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
+
+        // Draw player
         player.draw(g2);
 
         g2.dispose(); // free up system resources
