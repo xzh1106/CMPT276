@@ -147,6 +147,7 @@ public class GamePanel extends JPanel implements Runnable {
         for(int i = 0; i < entityList.size(); i++){
             entityList.get(i).draw(g2);
         }
+        entityList.clear();
 
         //draw UI (includes only pause screen currently)
         userInterface.draw(g2);
