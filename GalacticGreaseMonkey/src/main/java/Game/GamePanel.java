@@ -27,13 +27,19 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     TileManager tileManager = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
+    public UserInterface userInterface = new UserInterface(this);
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10]; // 10 slots for object allocation
 
+
+    //Game state
+    public final int playingState = 1;
+    public final int pausedState = 2;
+    public int currentGameState;
 
     public GamePanel()
     {
@@ -47,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame() {
         aSetter.setObject();
+        currentGameState = playingState;
 
     }
 
@@ -88,8 +95,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update()
     {
-        // Handle WASD movement
-        player.update();
+        if (currentGameState == playingState) {
+            // Handle WASD movement
+            player.update();
+        }
     }
 
     public void paintComponent(Graphics g)
@@ -110,6 +119,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         // Draw player
         player.draw(g2);
+
+        //draw UI (includes only pause screen currently)
+        userInterface.draw(g2);
 
         g2.dispose(); // free up system resources
     }
