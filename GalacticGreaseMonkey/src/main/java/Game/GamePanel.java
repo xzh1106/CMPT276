@@ -29,7 +29,8 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     TileManager tileManager = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
+    public UserInterface userInterface = new UserInterface(this);
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
@@ -40,6 +41,10 @@ public class GamePanel extends JPanel implements Runnable {
     public Alien alien[] = new Alien[10];
     ArrayList<Entity> entityList = new ArrayList<>();
 
+    //Game state
+    public final int playingState = 1;
+    public final int pausedState = 2;
+    public int currentGameState;
 
     public GamePanel()
     {
@@ -53,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame() {
         aSetter.setObject();
-
+        currentGameState = playingState;
     }
 
     public void startGameThread()
@@ -95,10 +100,12 @@ public class GamePanel extends JPanel implements Runnable {
     public void update()
     {
         // Handle WASD movement
-        player.update();
-        for (int i = 0; i < alien.length; i++) {
-            if (alien[i] != null) {
-                alien[i].update();
+        if (currentGameState == playingState) {
+            player.update();
+            for (int i = 0; i < alien.length; i++) {
+                if (alien[i] != null) {
+                    alien[i].update();
+                }
             }
         }
     }
@@ -139,5 +146,8 @@ public class GamePanel extends JPanel implements Runnable {
         for(int i = 0; i < entityList.size(); i++){
             entityList.get(i).draw(g2);
         }
+
+        //draw UI (includes only pause screen currently)
+        userInterface.draw(g2);
     }
 }
