@@ -2,6 +2,7 @@ package Entity;
 
 import Game.GamePanel;
 import Game.KeyHandler;
+import Game.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -41,8 +42,30 @@ public class Player extends Entity{
         } catch(IOException e) {
             e.printStackTrace();
         }
+        up1 = setup("monkeyUp1");
+        up2 = setup("monkeyUp2");
+        down1 = setup("monkeyDown1");
+        down2 = setup("monkeyDown2");
+        right1 = setup("monkeyRight1");
+        right2 = setup("monkeyRight2");
+        left1 = setup("monkeyLeft1");
+        left2 = setup("monkeyLeft2");
+
     }
 
+    public BufferedImage setup(String imageName) {
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        try{
+            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/" + imageName + ".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
     //update player position on key press and animation every 10ms
     public void update() {
         // Handle WASD movement
