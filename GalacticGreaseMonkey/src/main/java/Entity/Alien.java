@@ -22,19 +22,14 @@ public class Alien extends Entity {
     }
 
     public void getPlayerImage() {
-        try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Monster/greenslime_down_1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Monster/greenslime_down_2.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Monster/greenslime_down_1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Monster/greenslime_down_2.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Monster/greenslime_down_1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Monster/greenslime_down_2.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Monster/greenslime_down_1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Monster/greenslime_down_2.png")));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        up1 = setup("/Monster/greenslime_down_1.png");
+        up2 = setup("/Monster/greenslime_down_2.png");
+        down1 = setup("/Monster/greenslime_down_1.png");
+        down2 = setup("/Monster/greenslime_down_2.png");
+        right1 = setup("/Monster/greenslime_down_1.png");
+        right2 = setup("/Monster/greenslime_down_2.png");
+        left1 = setup("/Monster/greenslime_down_1.png");
+        left2 = setup("/Monster/greenslime_down_2.png");
     }
 
     public void setAction() {

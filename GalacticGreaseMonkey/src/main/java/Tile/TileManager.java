@@ -40,7 +40,7 @@ public class TileManager {
 
         try {
             tile[index] = new Tile();
-            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imageName + ".png"));
+            tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/" + imageName + ".png")));
             tile[index].image = uTOol.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
 
@@ -72,8 +72,8 @@ public class TileManager {
                 }
             }
             bufferedReader.close();
-        } catch(Exception e) {
-
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -87,7 +87,7 @@ public class TileManager {
 
             int tileNum = mapTileNum[worldCol][worldRow];
 
-            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, null);
             worldCol++;
             x += gp.tileSize;
 

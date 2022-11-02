@@ -30,18 +30,6 @@ public class Player extends Entity{
 
     //retrieve sprite images
     public void getPlayerImage() {
-        try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyUp1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyUp2.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyDown1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyDown2.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyRight1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyRight2.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyLeft1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/monkeyLeft2.png")));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
         up1 = setup("monkeyUp1");
         up2 = setup("monkeyUp2");
         down1 = setup("monkeyDown1");
@@ -50,7 +38,6 @@ public class Player extends Entity{
         right2 = setup("monkeyRight2");
         left1 = setup("monkeyLeft1");
         left2 = setup("monkeyLeft2");
-
     }
 
     public BufferedImage setup(String imageName) {
@@ -58,7 +45,7 @@ public class Player extends Entity{
         BufferedImage image = null;
 
         try{
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/" + imageName + ".png"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/" + imageName + ".png")));
             image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
 
         }catch (IOException e) {
