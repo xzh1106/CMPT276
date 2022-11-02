@@ -10,8 +10,10 @@ public class UserInterface {
     //setting fonts
     public UserInterface(GamePanel gp) {
         this.gp = gp;
-        arial_40_Plain = new Font("Helvetica", Font.PLAIN, 40);
-        arial_80_Bold = new Font("Helvetica", Font.BOLD, 80);
+
+        //MacOs bug when "Times" font not installed (first pause message is slightly delayed)
+        arial_40_Plain = new Font("Ariel", Font.PLAIN, 60);
+        arial_80_Bold = new Font("Times New Roman", Font.BOLD, 80);
     }
 
     public void draw(Graphics2D g2) {
