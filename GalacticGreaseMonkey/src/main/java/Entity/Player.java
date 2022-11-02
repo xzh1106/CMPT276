@@ -25,7 +25,8 @@ public class Player extends Entity{
         this.keyH = keyH;
         worldX = 100;
         worldY = 100;
-
+        playerSolidAreaDefaultX = hitBox.x;
+        playerSolidAreaDefaultY = hitBox.y;
         getPlayerImage();
     }
 
@@ -75,9 +76,14 @@ public class Player extends Entity{
                 direction = "right";
             }
 
+            // Check tile collision
             collisionDetected = false;
             gp.collisionChecker.checkTile(this);
 
+            // Check object collision
+            int objIndex = gp.collisionChecker.checkObject(this, true);
+
+            // If false collion, player can move
             if (!collisionDetected) {
                 switch (direction) {
                     case "up" -> worldY -= speed;

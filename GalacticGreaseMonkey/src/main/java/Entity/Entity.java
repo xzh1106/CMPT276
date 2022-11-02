@@ -16,6 +16,11 @@ public class Entity {
     public Rectangle hitBox = new Rectangle(8,16, 32, 32);
     public boolean collisionDetected = false;
 
+    //Object
+    public Rectangle objectHitBox = new Rectangle(0 ,0 , 32, 32);
+    public int objectSolidAreaDefaultX = 0;
+    public int objectSolidAreaDefaultY = 0;
+
     public int actionLockCounter;
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -64,6 +69,8 @@ public class Entity {
         return image;
     }
 
+
+
     public Entity(GamePanel gp) {
         this.gp = gp;
     }
@@ -71,9 +78,11 @@ public class Entity {
     public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2;
     public String direction = "down";
 
+
     // Handles objects
     public BufferedImage image, image2, image3;
     public String name;
+    public int playerSolidAreaDefaultX, playerSolidAreaDefaultY;
     public boolean collision = false;
 
     public void draw(Graphics2D g2) {

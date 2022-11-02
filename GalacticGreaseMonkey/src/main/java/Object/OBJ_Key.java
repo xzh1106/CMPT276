@@ -10,5 +10,6 @@ public class OBJ_Key extends Entity {
 
         name = "Key";
         down1 = setup("/object/key");
+        collision = false;
     }
 }

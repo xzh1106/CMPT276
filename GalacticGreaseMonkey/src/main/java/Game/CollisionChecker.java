@@ -27,9 +27,9 @@ public class CollisionChecker {
 
         int tileA, tileB;
         switch (e.direction) {
-            case "up":
+            case "up" -> {
                 //"predict" which tile player will be in the next 60 frames when UP key is pressed
-                topRow = (topY - e.speed)/gp.tileSize;
+                topRow = (topY - e.speed) / gp.tileSize;
 
                 /*
                     if the tiles above player's top left OR top right hitbox coords
@@ -37,14 +37,14 @@ public class CollisionChecker {
                 */
                 tileA = gp.tileManager.mapTileNum[leftCol][topRow];
                 tileB = gp.tileManager.mapTileNum[rightCol][topRow];
-                if(gp.tileManager.tile[tileA].collision == true ||
-                        gp.tileManager.tile[tileB].collision == true) {
+                if (gp.tileManager.tile[tileA].collision ||
+                        gp.tileManager.tile[tileB].collision) {
                     e.collisionDetected = true;
                 }
-                break;
-            case "down":
+            }
+            case "down" -> {
                 //"predict" which tile player will be in the next 60 frames when DOWN key is pressed
-                bottomRow = (bottomY + e.speed)/gp.tileSize;
+                bottomRow = (bottomY + e.speed) / gp.tileSize;
 
                 /*
                     if the tiles below player's bottom left OR bottom right hitbox coords
@@ -52,14 +52,14 @@ public class CollisionChecker {
                 */
                 tileA = gp.tileManager.mapTileNum[leftCol][bottomRow];
                 tileB = gp.tileManager.mapTileNum[rightCol][bottomRow];
-                if(gp.tileManager.tile[tileA].collision == true ||
-                        gp.tileManager.tile[tileB].collision == true) {
+                if (gp.tileManager.tile[tileA].collision ||
+                        gp.tileManager.tile[tileB].collision) {
                     e.collisionDetected = true;
                 }
-                break;
-            case "left":
+            }
+            case "left" -> {
                 //"predict" which tile player will be in the next 60 frames when LEFT key is pressed
-                leftCol = (leftX - e.speed)/gp.tileSize;
+                leftCol = (leftX - e.speed) / gp.tileSize;
 
                 /*
                     if the tiles to the left of player's top left OR bottom left hitbox coords
@@ -67,14 +67,14 @@ public class CollisionChecker {
                 */
                 tileA = gp.tileManager.mapTileNum[leftCol][topRow];
                 tileB = gp.tileManager.mapTileNum[leftCol][bottomRow];
-                if(gp.tileManager.tile[tileA].collision == true ||
-                        gp.tileManager.tile[tileB].collision == true) {
+                if (gp.tileManager.tile[tileA].collision ||
+                        gp.tileManager.tile[tileB].collision) {
                     e.collisionDetected = true;
                 }
-                break;
-            case "right":
+            }
+            case "right" -> {
                 //"predict" which tile player will be in the next 60 frames when RIGHT key is pressed
-                rightCol = (rightX + e.speed)/gp.tileSize;
+                rightCol = (rightX + e.speed) / gp.tileSize;
 
                 /*
                     if the tiles to the right of player's top right OR bottom right hitbox coords
@@ -82,11 +82,80 @@ public class CollisionChecker {
                 */
                 tileA = gp.tileManager.mapTileNum[rightCol][topRow];
                 tileB = gp.tileManager.mapTileNum[rightCol][bottomRow];
-                if(gp.tileManager.tile[tileA].collision == true ||
-                        gp.tileManager.tile[tileB].collision == true) {
+                if (gp.tileManager.tile[tileA].collision ||
+                        gp.tileManager.tile[tileB].collision) {
                     e.collisionDetected = true;
                 }
-                break;
+            }
         }
+    }
+
+    public int checkObject(Entity entity, boolean player) {
+        int index = 999;
+
+        for (int i = 0; i  < gp.obj.length; i++) {
+            if(gp.obj[i] != null) {
+
+                // Get entity's solid area position
+                entity.hitBox.x = entity.worldX + entity.hitBox.x;
+                entity.hitBox.y = entity.worldY + entity.hitBox.y;
+
+                // Get object's solid area position
+                gp.obj[i].objectHitBox.x = gp.obj[i].worldX + gp.obj[i].objectHitBox.x;
+                gp.obj[i].objectHitBox.y = gp.obj[1].worldY + gp.obj[i].objectHitBox.y;
+
+                switch (entity.direction) {
+                    case "up" -> {
+                        entity.hitBox.y -= entity.speed;
+                        if (entity.hitBox.intersects(gp.obj[i].objectHitBox)) {
+                            if (gp.obj[i].collision == true) {
+                                entity.collisionDetected = true;
+                            }
+                            if (player) {
+                                index = i;
+                            }
+                        }
+                    }
+                    case "down" -> {
+                        entity.hitBox.y += entity.speed;
+                        if (entity.hitBox.intersects(gp.obj[i].objectHitBox)) {
+                            if (gp.obj[i].collision == true) {
+                                entity.collisionDetected = true;
+                            }
+                            if (player) {
+                                index = i;
+                            }
+                        }
+                    }
+                    case "left" -> {
+                        entity.hitBox.x -= entity.speed;
+                        if (entity.hitBox.intersects(gp.obj[i].objectHitBox)) {
+                            if (gp.obj[i].collision) {
+                                entity.collisionDetected = true;
+                            }
+                            if (player) {
+                                index = i;
+                            }
+                        }
+                    }
+                    case "right" -> {
+                        entity.hitBox.x += entity.speed;
+                        if (entity.hitBox.intersects(gp.obj[i].objectHitBox)) {
+                            if (gp.obj[i].collision == true) {
+                                entity.collisionDetected = true;
+                            }
+                            if (player) {
+                                index = i;
+                            }
+                        }
+                    }
+                }
+                entity.hitBox.x = entity.playerSolidAreaDefaultX;
+                entity.hitBox.y = entity.playerSolidAreaDefaultY;
+                gp.obj[i].objectHitBox.x = gp.obj[i].objectSolidAreaDefaultX;
+                gp.obj[i].objectHitBox.y = gp.obj[i].objectSolidAreaDefaultY;
+            }
+        }
+        return index;
     }
 }
