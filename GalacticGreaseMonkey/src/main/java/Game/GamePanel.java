@@ -3,7 +3,6 @@ package Game;
 import Entity.*;
 
 import Tile.TileManager;
-import Object.SuperObject;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;
@@ -11,6 +10,8 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -33,10 +34,11 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
 
-    ArrayList<Entity> entityList = new ArrayList<>();
-    Player player = new Player(this, keyH);
-    public SuperObject obj[] = new SuperObject[10]; // 10 slots for object allocation
+    // Entities
+    public Player player = new Player(this, keyH);
+    public Entity obj[] = new Entity[10]; // 10 slots for object allocation
     public Alien alien[] = new Alien[10];
+    ArrayList<Entity> entityList = new ArrayList<>();
 
 
     public GamePanel()
@@ -98,6 +100,44 @@ public class GamePanel extends JPanel implements Runnable {
             if (alien[i] != null) {
                 alien[i].update();
             }
+        }
+    }
+
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+
+        tileManager.draw(g2);
+
+        int playerY = player.worldY;
+
+        entityList.add(player);
+
+        for(int i = 0; i < obj.length; i++){
+            if(obj[i] != null){
+                entityList.add(obj[i]);
+            }
+        }
+
+        for(int i = 0; i < alien.length; i++){
+            if(alien[i] != null){
+                entityList.add(alien[i]);
+            }
+        }
+
+        // Sort entities by their Y coordinate
+        Collections.sort(entityList, new Comparator<Entity>() {
+            @Override
+            public int compare(Entity e1, Entity e2) {
+
+                int result = Integer.compare(e1.worldY, e2.worldY);
+                return 0;
+            }
+        });
+
+        // Draw Entities
+        for(int i = 0; i < entityList.size(); i++){
+            entityList.get(i).draw(g2);
         }
     }
 }

@@ -1,6 +1,5 @@
-package Monster;
+package Entity;
 
-import Entity.Entity;
 import Game.GamePanel;
 
 import javax.imageio.ImageIO;
@@ -8,9 +7,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class Monster_Green extends Entity {
+public class Alien extends Entity {
 
-    public Monster_Green(GamePanel gp) {
+    public Alien(GamePanel gp) {
         super(gp);
         score = 400;
         speed = 1;
