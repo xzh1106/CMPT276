@@ -2,7 +2,6 @@ package Entity;
 
 import Game.GamePanel;
 import Game.KeyHandler;
-import Position.Position;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -51,49 +50,29 @@ public class Player extends Entity{
         if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed) {
             if(keyH.upPressed) {
                 direction = "up";
-//                int updatedY = position.getY() - position.getSpeed();
-//                position.setY(updatedY);
             }
 
             else if(keyH.downPressed) {
                 direction = "down";
-//                int updatedY = position.getY() + position.getSpeed();
-//                position.setY(updatedY);
             }
 
             else if(keyH.leftPressed) {
                 direction = "left";
-//                int updatedX = position.getX() - position.getSpeed();
-//                position.setX(updatedX);
             }
 
             else if(keyH.rightPressed) {
                 direction = "right";
-//                int updatedX = position.getX() + position.getSpeed();
-//                position.setX(updatedX);
             }
 
             collisionDetected = false;
             gp.collisionChecker.checkTile(this);
 
-            if (collisionDetected == false) {
+            if (!collisionDetected) {
                 switch (direction) {
-                    case "up":
-                        int updatedY = worldY - speed;
-                        worldY = updatedY;
-                        break;
-                    case "down":
-                        int updatedY1 = worldY + speed;
-                        worldY = updatedY1;
-                        break;
-                    case "left":
-                        int updatedX = worldX - speed;
-                        worldX = updatedX;
-                        break;
-                    case "right":
-                        int updatedX1 = worldX + speed;
-                        worldX = updatedX1;
-                        break;
+                    case "up" -> worldY -= speed;
+                    case "down" -> worldY += speed;
+                    case "left" -> worldX -= speed;
+                    case "right" -> worldX += speed;
                 }
             }
 

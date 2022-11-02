@@ -1,7 +1,7 @@
 package Game;
 
 import Entity.Player;
-import Position.Position;
+
 import Tile.TileManager;
 import Object.SuperObject;
 

@@ -1,7 +1,6 @@
 package Entity;
 
 import Game.GamePanel;
-import Position.Position;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,9 +20,7 @@ public class Entity {
     public int speed;
     public int score = 0;
 
-    public Position position = new Position();
-
-    public void update() {};
+    public void update() {}
 
     public Entity(GamePanel gp) {
         this.gp = gp;
