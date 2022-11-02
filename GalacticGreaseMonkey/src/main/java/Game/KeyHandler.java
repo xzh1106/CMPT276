@@ -37,7 +37,7 @@ public class KeyHandler implements KeyListener {
             spacePressed = true;
         }
 
-        if(code == KeyEvent.VK_P) {
+        if(code == KeyEvent.VK_P || code == KeyEvent.VK_ESCAPE) {
             if (gp.currentGameState == gp.playingState) {
                 gp.currentGameState = gp.pausedState;
             }
