@@ -7,9 +7,6 @@ public class UserInterface {
     Graphics2D g2;
     Font arial_40_Plain, arial_80_Bold;
 
-    public boolean messageOn = false;
-    public String message = "";
-
     //setting fonts
     public UserInterface(GamePanel gp) {
         this.gp = gp;
@@ -22,15 +19,10 @@ public class UserInterface {
         g2.setFont(arial_40_Plain);
         g2.setColor(Color.white);
 
-        //if game is paused show paus screen
+        //if game is paused show pause screen
         if (gp.currentGameState == gp.pausedState) {
             showPauseScreen();
         }
-    }
-
-    public void showMessage(String message) {
-        this.message = message;
-        messageOn = true;
     }
 
     public void showPauseScreen() {
