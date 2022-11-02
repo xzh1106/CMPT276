@@ -35,6 +35,8 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
 
+    public HUD hud= new HUD(this);
+
     // Entities
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[10]; // 10 slots for object allocation
@@ -132,6 +134,9 @@ public class GamePanel extends JPanel implements Runnable {
                 entityList.add(alien[i]);
             }
         }
+
+        // HUD
+        hud.draw(g2);
 
         // Sort entities by their Y coordinate
         Collections.sort(entityList, new Comparator<Entity>() {
