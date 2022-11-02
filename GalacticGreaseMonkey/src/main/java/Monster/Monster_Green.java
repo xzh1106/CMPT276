@@ -9,10 +9,17 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Monster_Green extends Entity {
-    GamePanel gp;
 
     public Monster_Green(GamePanel gp) {
-        this.gp = gp;
+        super(gp);
+        score = 400;
+        speed = 1;
+
+        hitBox.x = 3;
+        hitBox.y = 18;
+        hitBox.width = 42;
+        hitBox.height = 30;
+
     }
 
     public void getPlayerImage() {
@@ -33,5 +40,15 @@ public class Monster_Green extends Entity {
 
     public void setAction() {
 
+        actionLockCounter++;
+
+        if(actionLockCounter == 120) {
+            Random random = new Random();
+            int i = random.nextInt(100)+1; // pick a number from 1-100
+
+            if (i <= 25) {
+                direction = "up";
+            }
+        }
     }
 }
