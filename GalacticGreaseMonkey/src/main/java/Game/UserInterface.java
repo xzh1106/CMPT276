@@ -10,8 +10,8 @@ public class UserInterface {
     //setting fonts
     public UserInterface(GamePanel gp) {
         this.gp = gp;
-        arial_40_Plain = new Font("Arial", Font.PLAIN, 40);
-        arial_80_Bold = new Font("Arial", Font.BOLD, 80);
+        arial_40_Plain = new Font("Helvetica", Font.PLAIN, 40);
+        arial_80_Bold = new Font("Helvetica", Font.BOLD, 80);
     }
 
     public void draw(Graphics2D g2) {
