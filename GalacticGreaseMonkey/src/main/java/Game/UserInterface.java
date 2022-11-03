@@ -25,10 +25,27 @@ public class UserInterface {
         if (gp.currentGameState == gp.pausedState) {
             showPauseScreen();
         }
+
+        if (gp.currentGameState == gp.loseState) {
+            showLostScreen();
+        }
     }
 
     public void showPauseScreen() {
         String message = "PAUSED";
+        //find centre of the message
+        int messageCentre = (int)g2.getFontMetrics().getStringBounds(message, g2).getWidth();
+
+        //determine where message should go
+        int x = gp.screenWidth/2 - messageCentre/2;
+        int y = gp.screenHeight/2;
+
+        //draw message
+        g2.drawString(message, x, y);
+    }
+
+    public void showLostScreen() {
+        String message = "GAME OVER";
         //find centre of the message
         int messageCentre = (int)g2.getFontMetrics().getStringBounds(message, g2).getWidth();
 

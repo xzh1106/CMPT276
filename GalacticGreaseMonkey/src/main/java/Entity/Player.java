@@ -90,7 +90,7 @@ public class Player extends Entity{
             // Check alien collision
             int monsterIndex = gp.collisionChecker.checkEntity(this, gp.alien);
             if (monsterIndex != 999) {
-                score = 0;
+                score = -1;
             }
 
             // If false collision, player can move
@@ -112,6 +112,10 @@ public class Player extends Entity{
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+
+            if (score < 0){
+                gp.currentGameState = gp.loseState;
             }
         }
     }
