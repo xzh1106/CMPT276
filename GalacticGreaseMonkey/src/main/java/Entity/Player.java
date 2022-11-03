@@ -21,11 +21,11 @@ public class Player extends Entity{
         super(gp);
         speed = 5;
         direction = "down";
-        hitBox = new Rectangle(8,16, 32, 32);
+        hitBox = new Rectangle(8,14, 30, 30);
         this.gp = gp;
         this.keyH = keyH;
-        worldX = 100;
-        worldY = 100;
+        worldX = 48;
+        worldY = 48;
         solidAreaDefaultX = hitBox.x;
         solidAreaDefaultY = hitBox.y;
         getPlayerImage();
