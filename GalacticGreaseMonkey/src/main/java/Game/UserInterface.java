@@ -41,6 +41,9 @@ public class UserInterface {
         int y = gp.screenHeight/2;
 
         //draw message
+        g2.setColor(Color.gray);
+        g2.drawString(message, x+5, y+5);
+        g2.setColor(Color.white);
         g2.drawString(message, x, y);
     }
 
@@ -54,6 +57,9 @@ public class UserInterface {
         int y = gp.screenHeight/2;
 
         //draw message
+        g2.setColor(Color.black);
+        g2.drawString(message, x+5, y+5);
+        g2.setColor(Color.white);
         g2.drawString(message, x, y);
     }
 }

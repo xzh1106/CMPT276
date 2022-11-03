@@ -15,6 +15,8 @@ public class HUD {
     public void draw(Graphics2D g2){
         this.gp = gp;
         g2.setFont(arial_40);
+        g2.setColor(Color.BLACK);
+        g2.drawString("Score" + "=" + gp.player.score, 23, 43);
         g2.setColor(Color.WHITE);
         g2.drawString("Score" + "=" + gp.player.score, 20, 40);
 
