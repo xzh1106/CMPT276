@@ -41,11 +41,13 @@ public class GamePanel extends JPanel implements Runnable {
     // Entities
     public Player player = new Player(this, keyH);
     public Entity spaceshipPart[] = new Entity[10]; // 10 slots for object allocation
-    public Entity diamond[] = new Entity[10];
+    public ArrayList<Entity> diamond = new ArrayList<>();
     public Alien alien[] = new Alien[10];
     public Entity blackhole[] = new Entity[10]; // 10 slots for object allocation
     //public Entity rocks[] = new Entity[150];
     ArrayList<Entity> entityList = new ArrayList<>();
+
+    public int diamondTimer = 0;
 
     //Game state
     public final int playingState = 1;
@@ -121,6 +123,13 @@ public class GamePanel extends JPanel implements Runnable {
                     alien[i].update();
                 }
             }
+
+
+//            diamondTimer++;
+//            if (diamondTimer > 120) {
+//                diamond.add(new OBJ_Diamond());
+//                diamondTimer = 0;
+//            }
         }
     }
 
@@ -141,9 +150,9 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        for(int i = 0; i < diamond.length; i++){
-            if(diamond[i] != null){
-                entityList.add(diamond[i]);
+        for(int i = 0; i < diamond.size(); i++){
+            if(diamond.get(i) != null){
+                entityList.add(diamond.get(i));
             }
         }
 

@@ -131,16 +131,16 @@ public class CollisionChecker {
     public int checkDiamond(Entity entity, boolean player) {
         int index = 999;
 
-        for (int i = 0; i  < gp.diamond.length; i++) {
-            if(gp.diamond[i] != null) {
+        for (int i = 0; i  < gp.diamond.size(); i++) {
+            if(gp.diamond.get(i) != null) {
 
                 // Get entity's solid area position
                 entity.hitBox.x = entity.worldX + entity.hitBox.x;
                 entity.hitBox.y = entity.worldY + entity.hitBox.y;
 
                 // Get object's solid area position
-                gp.diamond[i].hitBox.x = gp.diamond[i].worldX + gp.diamond[i].hitBox.x;
-                gp.diamond[i].hitBox.y = gp.diamond[i].worldY + gp.diamond[i].hitBox.y;
+                gp.diamond.get(i).hitBox.x = gp.diamond.get(i).worldX + gp.diamond.get(i).hitBox.x;
+                gp.diamond.get(i).hitBox.y = gp.diamond.get(i).worldY + gp.diamond.get(i).hitBox.y;
 
                 switch (entity.direction) {
                     case "up" -> entity.hitBox.y -= entity.speed;
@@ -148,8 +148,8 @@ public class CollisionChecker {
                     case "left" -> entity.hitBox.x -= entity.speed;
                     case "right" -> entity.hitBox.x += entity.speed;
                 }
-                if (entity.hitBox.intersects(gp.diamond[i].hitBox)) {
-                    if (gp.diamond[i].collision) {
+                if (entity.hitBox.intersects(gp.diamond.get(i).hitBox)) {
+                    if (gp.diamond.get(i).collision) {
                         entity.collisionDetected = true;
                     }
                     if (player) {
@@ -159,8 +159,8 @@ public class CollisionChecker {
 
                 entity.hitBox.x = entity.solidAreaDefaultX;
                 entity.hitBox.y = entity.solidAreaDefaultY;
-                gp.diamond[i].hitBox.x = gp.diamond[i].solidAreaDefaultX;
-                gp.diamond[i].hitBox.y = gp.diamond[i].solidAreaDefaultY;
+                gp.diamond.get(i).hitBox.x = gp.diamond.get(i).solidAreaDefaultX;
+                gp.diamond.get(i).hitBox.y = gp.diamond.get(i).solidAreaDefaultY;
             }
         }
         return index;

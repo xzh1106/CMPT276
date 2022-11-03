@@ -18,9 +18,15 @@ public class AssetSetter {
 
     public void setDiamond() {
 
-        gp.diamond[0] = new OBJ_Diamond(gp); // Make a key object and save into obj array
-        gp.diamond[0].worldX = 20 * gp.tileSize; // Set location for obj on map
-        gp.diamond[0].worldY = 4 * gp.tileSize;
+        Entity diamond = new OBJ_Diamond(gp);
+        gp.diamond.add(new OBJ_Diamond(gp));
+        gp.diamond.get(gp.diamond.size()-1).worldX = 20 * gp.tileSize;
+        gp.diamond.get(gp.diamond.size()-1).worldY = 4 * gp.tileSize;
+
+
+//        gp.diamond[1] = new OBJ_Diamond(gp); // Make a key object and save into obj array
+//        gp.diamond[1].worldX = 20 * gp.tileSize; // Set location for obj on map
+//        gp.diamond[1].worldY = 7 * gp.tileSize;
 
     }
 
