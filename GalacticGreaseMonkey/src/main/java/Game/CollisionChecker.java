@@ -128,6 +128,44 @@ public class CollisionChecker {
         return index;
     }
 
+    public int checkDiamond(Entity entity, boolean player) {
+        int index = 999;
+
+        for (int i = 0; i  < gp.diamond.length; i++) {
+            if(gp.diamond[i] != null) {
+
+                // Get entity's solid area position
+                entity.hitBox.x = entity.worldX + entity.hitBox.x;
+                entity.hitBox.y = entity.worldY + entity.hitBox.y;
+
+                // Get object's solid area position
+                gp.diamond[i].hitBox.x = gp.diamond[i].worldX + gp.diamond[i].hitBox.x;
+                gp.diamond[i].hitBox.y = gp.diamond[i].worldY + gp.diamond[i].hitBox.y;
+
+                switch (entity.direction) {
+                    case "up" -> entity.hitBox.y -= entity.speed;
+                    case "down" -> entity.hitBox.y += entity.speed;
+                    case "left" -> entity.hitBox.x -= entity.speed;
+                    case "right" -> entity.hitBox.x += entity.speed;
+                }
+                if (entity.hitBox.intersects(gp.diamond[i].hitBox)) {
+                    if (gp.diamond[i].collision) {
+                        entity.collisionDetected = true;
+                    }
+                    if (player) {
+                        index = i;
+                    }
+                }
+
+                entity.hitBox.x = entity.solidAreaDefaultX;
+                entity.hitBox.y = entity.solidAreaDefaultY;
+                gp.diamond[i].hitBox.x = gp.diamond[i].solidAreaDefaultX;
+                gp.diamond[i].hitBox.y = gp.diamond[i].solidAreaDefaultY;
+            }
+        }
+        return index;
+    }
+
     public int checkBlackhole(Entity entity, boolean player) {
         int index = 999;
 

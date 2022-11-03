@@ -41,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Entities
     public Player player = new Player(this, keyH);
     public Entity spaceshipPart[] = new Entity[10]; // 10 slots for object allocation
+    public Entity diamond[] = new Entity[10];
     public Alien alien[] = new Alien[10];
     public Entity blackhole[] = new Entity[10]; // 10 slots for object allocation
     //public Entity rocks[] = new Entity[150];
@@ -66,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setSpaceshipPart();
         aSetter.setAlien();
         aSetter.setBlackhole();
+        aSetter.setDiamond();
         //aSetter.setRocks();
         currentGameState = playingState;
     }
@@ -136,6 +138,12 @@ public class GamePanel extends JPanel implements Runnable {
         for(int i = 0; i < spaceshipPart.length; i++){
             if(spaceshipPart[i] != null){
                 entityList.add(spaceshipPart[i]);
+            }
+        }
+
+        for(int i = 0; i < diamond.length; i++){
+            if(diamond[i] != null){
+                entityList.add(diamond[i]);
             }
         }
 

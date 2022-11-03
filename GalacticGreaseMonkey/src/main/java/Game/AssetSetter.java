@@ -16,6 +16,14 @@ public class AssetSetter {
 
     }
 
+    public void setDiamond() {
+
+        gp.diamond[0] = new OBJ_Diamond(gp); // Make a key object and save into obj array
+        gp.diamond[0].worldX = 20 * gp.tileSize; // Set location for obj on map
+        gp.diamond[0].worldY = 4 * gp.tileSize;
+
+    }
+
     public void setBlackhole() {
 
         gp.blackhole[0] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
