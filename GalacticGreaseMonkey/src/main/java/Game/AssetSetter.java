@@ -16,7 +16,7 @@ public class AssetSetter {
 
         gp.obj[1] = new OBJ_Key(gp);
         gp.obj[1].worldX = 8 * gp.tileSize;
-        gp.obj[1].worldY = 11 * gp.tileSize;
+        gp.obj[1].worldY = 13 * gp.tileSize;
     }
 
     public void setAlien() {

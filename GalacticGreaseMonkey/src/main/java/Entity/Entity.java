@@ -12,14 +12,15 @@ public class Entity {
 
     GamePanel gp;
 
+    // For Player?
     public int worldX, worldY;
     public Rectangle hitBox = new Rectangle(8,16, 32, 32);
     public boolean collisionDetected = false;
+    public int playerSolidAreaDefaultX, playerSolidAreaDefaultY;
+
 
     //Object
-    public Rectangle objectHitBox = new Rectangle(0 ,0 , 32, 32);
-    public int objectSolidAreaDefaultX = 0;
-    public int objectSolidAreaDefaultY = 0;
+
 
     public int actionLockCounter;
     public int spriteCounter = 0;
@@ -80,9 +81,13 @@ public class Entity {
 
 
     // Handles objects
+
+    public Rectangle objectHitBox = new Rectangle(0 ,0 , 32, 32);
+    public int objectSolidAreaDefaultX = 0;
+
+    public int objectSolidAreaDefaultY = 0;
     public BufferedImage image, image2, image3;
     public String name;
-    public int playerSolidAreaDefaultX, playerSolidAreaDefaultY;
     public boolean collision = false;
 
     public void draw(Graphics2D g2) {
