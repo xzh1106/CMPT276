@@ -24,6 +24,21 @@ public class AssetSetter {
 
     }
 
+//    public void setRocks() {
+//        for (int i = 1; i < 2* gp.maxScreenCol; i++){
+//            if(i < gp.maxScreenCol){
+//                gp.rocks[i] = new OBJ_Rock(gp);
+//                gp.rocks[i].worldX = i;
+//                gp.rocks[i].worldY = 0;
+//            }
+//            else if(i >= gp.maxScreenCol) {
+//                gp.rocks[i] = new OBJ_Rock(gp);
+//                gp.rocks[i].worldX = i - gp.maxScreenCol;
+//                gp.rocks[i].worldY = gp.maxScreenRow - 1;
+//            }
+//        }
+//    }
+
     public void setAlien() {
         gp.alien[0] = new Alien(gp); // Make a key object and save into obj array
         gp.alien[0].worldX = 20 * gp.tileSize; // Set location for obj on map

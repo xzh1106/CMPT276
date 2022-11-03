@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
     // FPS
     int FPS = 60;
 
-    TileManager tileManager = new TileManager(this);
+    public TileManager tileManager = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
     public UserInterface userInterface = new UserInterface(this);
     Thread gameThread;
@@ -43,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Entity obj[] = new Entity[10]; // 10 slots for object allocation
     public Alien alien[] = new Alien[10];
     public Entity blackhole[] = new Entity[10]; // 10 slots for object allocation
+    //public Entity rocks[] = new Entity[150];
     ArrayList<Entity> entityList = new ArrayList<>();
 
     //Game state
@@ -54,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel()
     {
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
-        this.setBackground(Color.white);
+        this.setBackground(Color.black);
         this.setDoubleBuffered(true); // improves rendering performance
 
         this.addKeyListener(keyH); // takes keyboard input
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setObject();
         aSetter.setAlien();
         aSetter.setBlackhole();
+        //aSetter.setRocks();
         currentGameState = playingState;
     }
 
@@ -136,6 +138,12 @@ public class GamePanel extends JPanel implements Runnable {
                 entityList.add(obj[i]);
             }
         }
+
+//        for(int i = 0; i < rocks.length; i++){
+//            if(rocks[i] != null){
+//                entityList.add(rocks[i]);
+//            }
+//        }
 
         for(int i = 0; i < blackhole.length; i++){
             if(blackhole[i] != null){

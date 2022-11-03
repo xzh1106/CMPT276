@@ -9,7 +9,7 @@ public class OBJ_Blackhole extends Entity {
         super(gp);
 
         name = "Blackhole";
-        down1 = setup("/blackhole/blackhole");
+        down1 = setup("/object/blackhole");
         collision = false;
     }
 }
