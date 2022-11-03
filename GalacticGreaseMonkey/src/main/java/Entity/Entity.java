@@ -37,7 +37,7 @@ public class Entity {
     public void checkCollision(){
         collisionDetected = false;
         gp.collisionChecker.checkTile(this);
-        gp.collisionChecker.checkObject(this, false);
+        gp.collisionChecker.checkSpaceshipPart(this, false);
         gp.collisionChecker.checkEntity(this, gp.alien);
         gp.collisionChecker.checkPlayer(this);
 

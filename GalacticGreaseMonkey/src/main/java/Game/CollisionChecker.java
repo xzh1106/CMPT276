@@ -90,19 +90,19 @@ public class CollisionChecker {
         }
     }
 
-    public int checkObject(Entity entity, boolean player) {
+    public int checkSpaceshipPart(Entity entity, boolean player) {
         int index = 999;
 
-        for (int i = 0; i  < gp.obj.length; i++) {
-            if(gp.obj[i] != null) {
+        for (int i = 0; i  < gp.spaceshipPart.length; i++) {
+            if(gp.spaceshipPart[i] != null) {
 
                 // Get entity's solid area position
                 entity.hitBox.x = entity.worldX + entity.hitBox.x;
                 entity.hitBox.y = entity.worldY + entity.hitBox.y;
 
                 // Get object's solid area position
-                gp.obj[i].hitBox.x = gp.obj[i].worldX + gp.obj[i].hitBox.x;
-                gp.obj[i].hitBox.y = gp.obj[i].worldY + gp.obj[i].hitBox.y;
+                gp.spaceshipPart[i].hitBox.x = gp.spaceshipPart[i].worldX + gp.spaceshipPart[i].hitBox.x;
+                gp.spaceshipPart[i].hitBox.y = gp.spaceshipPart[i].worldY + gp.spaceshipPart[i].hitBox.y;
 
                 switch (entity.direction) {
                     case "up" -> entity.hitBox.y -= entity.speed;
@@ -110,8 +110,8 @@ public class CollisionChecker {
                     case "left" -> entity.hitBox.x -= entity.speed;
                     case "right" -> entity.hitBox.x += entity.speed;
                 }
-                if (entity.hitBox.intersects(gp.obj[i].hitBox)) {
-                    if (gp.obj[i].collision) {
+                if (entity.hitBox.intersects(gp.spaceshipPart[i].hitBox)) {
+                    if (gp.spaceshipPart[i].collision) {
                         entity.collisionDetected = true;
                     }
                     if (player) {
@@ -121,8 +121,8 @@ public class CollisionChecker {
 
                 entity.hitBox.x = entity.solidAreaDefaultX;
                 entity.hitBox.y = entity.solidAreaDefaultY;
-                gp.obj[i].hitBox.x = gp.obj[i].solidAreaDefaultX;
-                gp.obj[i].hitBox.y = gp.obj[i].solidAreaDefaultY;
+                gp.spaceshipPart[i].hitBox.x = gp.spaceshipPart[i].solidAreaDefaultX;
+                gp.spaceshipPart[i].hitBox.y = gp.spaceshipPart[i].solidAreaDefaultY;
             }
         }
         return index;

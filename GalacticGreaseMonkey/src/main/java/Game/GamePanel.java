@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Entities
     public Player player = new Player(this, keyH);
-    public Entity obj[] = new Entity[10]; // 10 slots for object allocation
+    public Entity spaceshipPart[] = new Entity[10]; // 10 slots for object allocation
     public Alien alien[] = new Alien[10];
     public Entity blackhole[] = new Entity[10]; // 10 slots for object allocation
     //public Entity rocks[] = new Entity[150];
@@ -63,7 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame() {
-        aSetter.setObject();
+        aSetter.setSpaceshipPart();
         aSetter.setAlien();
         aSetter.setBlackhole();
         //aSetter.setRocks();
@@ -133,9 +133,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         entityList.add(player);
 
-        for(int i = 0; i < obj.length; i++){
-            if(obj[i] != null){
-                entityList.add(obj[i]);
+        for(int i = 0; i < spaceshipPart.length; i++){
+            if(spaceshipPart[i] != null){
+                entityList.add(spaceshipPart[i]);
             }
         }
 

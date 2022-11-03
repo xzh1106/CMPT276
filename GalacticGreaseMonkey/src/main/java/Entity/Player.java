@@ -82,8 +82,8 @@ public class Player extends Entity{
             gp.collisionChecker.checkTile(this);
 
             // Check object collision
-            int objIndex = gp.collisionChecker.checkObject(this, true);
-            pickUpObject(objIndex);
+            int objIndex = gp.collisionChecker.checkSpaceshipPart(this, true);
+            pickUpSpaceshipPart(objIndex);
 
             int blackholeIndex = gp.collisionChecker.checkBlackhole(this, true);
             collideBlackhole(blackholeIndex);
@@ -126,12 +126,12 @@ public class Player extends Entity{
         }
     }
 
-    public void pickUpObject(int index) {
+    public void pickUpSpaceshipPart(int index) {
 
         // If index is 999, character haven't collided with any object
         if (index != 999) {
             score += 300;
-            gp.obj[index] = null;
+            gp.spaceshipPart[index] = null;
         }
     }
 
