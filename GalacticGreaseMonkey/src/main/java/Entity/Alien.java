@@ -22,14 +22,26 @@ public class Alien extends Entity {
     }
 
     public void getImage() {
-        up1 = setup("/monster/greenslime_down_1");
-        up2 = setup("/monster/greenslime_down_2");
-        down1 = setup("/monster/greenslime_down_1");
-        down2 = setup("/monster/greenslime_down_2");
-        right1 = setup("/monster/greenslime_down_1");
-        right2 = setup("/monster/greenslime_down_2");
-        left1 = setup("/monster/greenslime_down_1");
-        left2 = setup("/monster/greenslime_down_2");
+        if (!onPath){
+            up1 = setup("/monster/greenslime_down_1");
+            up2 = setup("/monster/greenslime_down_2");
+            down1 = setup("/monster/greenslime_down_1");
+            down2 = setup("/monster/greenslime_down_2");
+            right1 = setup("/monster/greenslime_down_1");
+            right2 = setup("/monster/greenslime_down_2");
+            left1 = setup("/monster/greenslime_down_1");
+            left2 = setup("/monster/greenslime_down_2");
+        }
+        else{
+            up1 = setup("/monster/redslime_down_1");
+            up2 = setup("/monster/redslime_down_2");
+            down1 = setup("/monster/redslime_down_1");
+            down2 = setup("/monster/redslime_down_2");
+            right1 = setup("/monster/redslime_down_1");
+            right2 = setup("/monster/redslime_down_2");
+            left1 = setup("/monster/redslime_down_1");
+            left2 = setup("/monster/redslime_down_2");
+        }
     }
 
     public void update() {
@@ -47,6 +59,7 @@ public class Alien extends Entity {
     public void setAction() {
 
         if(onPath) {
+            getImage();
             int goalCol = (gp.player.worldX + gp.player.hitBox.x)/gp.tileSize;
             int goalRow = (gp.player.worldY + gp.player.hitBox.y)/gp.tileSize;
 
