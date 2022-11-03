@@ -104,7 +104,10 @@ public class GamePanel extends JPanel implements Runnable {
     {
         // Handle WASD movement
         if (currentGameState == playingState) {
+            // Player
             player.update();
+
+            // Alien
             for (int i = 0; i < alien.length; i++) {
                 if (alien[i] != null) {
                     alien[i].update();
