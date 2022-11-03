@@ -32,28 +32,48 @@ public class Alien extends Entity {
         left2 = setup("/monster/greenslime_down_2");
     }
 
+    public void update() {
+        super.update();
+
+        int xDistance = Math.abs(worldX - gp.player.worldX);
+        int yDistance = Math.abs(worldY - gp.player.worldY);
+        int tileDistance = (xDistance + yDistance)/gp.tileSize;
+
+        if(!onPath && tileDistance < 5){
+            onPath = true;
+        }
+    }
+
     public void setAction() {
 
-        actionLockCounter++;
+        if(onPath) {
+            int goalCol = (gp.player.worldX + gp.player.hitBox.x)/gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.hitBox.y)/gp.tileSize;
 
-        if(actionLockCounter == 120) {
-            Random random = new Random();
-            int i = random.nextInt(100)+1; // pick a number from 1-100
+            searchPath(goalCol,goalRow);
+        }
+        else {
+            actionLockCounter++;
 
-            if (i <= 25) {
-                direction = "up";
-            }
-            if (i > 25 && i <= 50) {
-                direction = "down";
-            }
-            if (i > 50 && i <= 75) {
-                direction = "left";
-            }
-            if (i > 75) {
-                direction = "right";
-            }
+            if(actionLockCounter == 120) {
+                Random random = new Random();
+                int i = random.nextInt(100) + 1; // pick a number from 1-100
 
-            actionLockCounter = 0;
+                if (i <= 25) {
+                    direction = "up";
+                }
+                if (i > 25 && i <= 50) {
+                    direction = "down";
+                }
+                if (i > 50 && i <= 75) {
+                    direction = "left";
+                }
+                if (i > 75) {
+                    direction = "right";
+                }
+
+                actionLockCounter = 0;
+            }
         }
     }
 }

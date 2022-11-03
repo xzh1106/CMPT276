@@ -1,7 +1,7 @@
 package Game;
 
+import AI.Pathfinder;
 import Entity.*;
-import Object.*;
 
 import Tile.TileManager;
 
@@ -11,7 +11,6 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -35,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
+    public Pathfinder pFinder = new Pathfinder(this);
 
     public HUD hud= new HUD(this);
 

@@ -2,7 +2,6 @@ package AI;
 
 import Game.GamePanel;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Pathfinder {
@@ -27,6 +26,7 @@ public class Pathfinder {
         int row = 0;
 
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
+            node[col][row] = new Node(col,row);
             col++;
             if(col == gp.maxScreenCol) {
                 col = 0;
@@ -77,7 +77,7 @@ public class Pathfinder {
             // SET SOLID NODE
             // CHECK TILES
             int tileNum = gp.tileManager.mapTileNum[col][row];
-            if(gp.tileManager.tile[tileNum].collision == true) {
+            if(gp.tileManager.tile[tileNum].collision) {
                 node[col][row].solid = true;
             }
 
@@ -109,7 +109,7 @@ public class Pathfinder {
     }
 
     public boolean search() {
-        while (goalReached == false && step < 500){
+        while (!goalReached && step < 500){
             int col = currentNode.col;
             int row = currentNode.row;
 
@@ -175,7 +175,7 @@ public class Pathfinder {
     }
 
     public void openNode (Node node){
-        if (node.open == false && node.checked == false && node.solid == false){
+        if (!node.open && !node.checked && !node.solid){
             node.open = true;
             node.parent = currentNode;
             openList.add(node);
