@@ -82,6 +82,7 @@ public class Player extends Entity{
 
             // Check object collision
             int objIndex = gp.collisionChecker.checkObject(this, true);
+            pickUpObject(objIndex);
 
             // If false collion, player can move
             if (!collisionDetected) {
@@ -106,6 +107,14 @@ public class Player extends Entity{
         }
     }
 
+    public void pickUpObject(int index) {
+
+        // If index is 999, character haven't collided with any object
+        if (index != 999) {
+            gp.obj[index] = null;
+
+        }
+    }
     //Display corresponding image based on key press
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
