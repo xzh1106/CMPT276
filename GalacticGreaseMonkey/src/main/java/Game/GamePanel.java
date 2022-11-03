@@ -16,8 +16,8 @@ import java.util.Comparator;
 public class GamePanel extends JPanel implements Runnable {
 
     // Screen Settings
-    final int originalTileSize = 24; // 24x24 tile
-    final int scale = 2;
+    final int originalTileSize = 16; // 24x24 tile
+    final int scale = 3;
 
     public final int tileSize = originalTileSize * scale; // 48x48
     public final int maxScreenCol = 32;
@@ -121,9 +121,10 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
+        // TILE
         tileManager.draw(g2);
-
-        int playerY = player.worldY;
+        // HUD
+        hud.draw(g2);
 
         entityList.add(player);
 
@@ -139,11 +140,10 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        // HUD
-        hud.draw(g2);
+
 
         // Sort entities by their Y coordinate
-        Collections.sort(entityList, new Comparator<Entity>() {
+        entityList.sort(new Comparator<>() {
             @Override
             public int compare(Entity e1, Entity e2) {
 

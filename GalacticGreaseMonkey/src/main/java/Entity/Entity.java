@@ -7,19 +7,21 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Entity {
 
     GamePanel gp;
 
-    // For Player?
+    // Hitbox and collision
     public int worldX, worldY;
-    public Rectangle hitBox = new Rectangle(8,16, 32, 32);
+    public Rectangle hitBox = new Rectangle(0,0, 48, 48);
+    public int solidAreaDefaultX = 0;
+    public int solidAreaDefaultY = 0;
     public boolean collisionDetected = false;
-    public int playerSolidAreaDefaultX, playerSolidAreaDefaultY;
 
 
-    //Object
+    // Entities
     public int actionLockCounter;
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -63,7 +65,7 @@ public class Entity {
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
             image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         }catch(IOException e) {
             e.printStackTrace();
@@ -76,6 +78,7 @@ public class Entity {
     public Entity(GamePanel gp) {
         this.gp = gp;
     }
+
     //Sprite animations stored in these variables
     public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2;
     public String direction = "down";
@@ -83,11 +86,6 @@ public class Entity {
 
     // Handles objects
 
-    public Rectangle objectHitBox = new Rectangle(0 ,0 , 32, 32);
-    public int objectSolidAreaDefaultX = 0;
-
-    public int objectSolidAreaDefaultY = 0;
-    public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
 

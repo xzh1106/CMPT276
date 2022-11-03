@@ -101,25 +101,17 @@ public class CollisionChecker {
                 entity.hitBox.y = entity.worldY + entity.hitBox.y;
 
                 // Get object's solid area position
-                gp.obj[i].objectHitBox.x = gp.obj[i].worldX + gp.obj[i].objectHitBox.x;
-                gp.obj[i].objectHitBox.y = gp.obj[1].worldY + gp.obj[i].objectHitBox.y;
+                gp.obj[i].hitBox.x = gp.obj[i].worldX + gp.obj[i].hitBox.x;
+                gp.obj[i].hitBox.y = gp.obj[i].worldY + gp.obj[i].hitBox.y;
 
                 switch (entity.direction) {
-                    case "up":
-                        entity.hitBox.y -= entity.speed;
-                        break;
-                    case "down":
-                        entity.hitBox.y += entity.speed;
-                        break;
-                    case "left":
-                        entity.hitBox.x -= entity.speed;
-                        break;
-                    case "right":
-                        entity.hitBox.x += entity.speed;
-                        break;
+                    case "up" -> entity.hitBox.y -= entity.speed;
+                    case "down" -> entity.hitBox.y += entity.speed;
+                    case "left" -> entity.hitBox.x -= entity.speed;
+                    case "right" -> entity.hitBox.x += entity.speed;
                 }
-                if (entity.hitBox.intersects(gp.obj[i].objectHitBox)) {
-                    if (gp.obj[i].collision == true) {
+                if (entity.hitBox.intersects(gp.obj[i].hitBox)) {
+                    if (gp.obj[i].collision) {
                         entity.collisionDetected = true;
                     }
                     if (player) {
@@ -127,10 +119,10 @@ public class CollisionChecker {
                     }
                 }
 
-                entity.hitBox.x = entity.playerSolidAreaDefaultX;
-                entity.hitBox.y = entity.playerSolidAreaDefaultY;
-                gp.obj[i].objectHitBox.x = gp.obj[i].objectSolidAreaDefaultX;
-                gp.obj[i].objectHitBox.y = gp.obj[i].objectSolidAreaDefaultY;
+                entity.hitBox.x = entity.solidAreaDefaultX;
+                entity.hitBox.y = entity.solidAreaDefaultY;
+                gp.obj[i].hitBox.x = gp.obj[i].solidAreaDefaultX;
+                gp.obj[i].hitBox.y = gp.obj[i].solidAreaDefaultY;
             }
         }
         return index;
@@ -148,33 +140,25 @@ public class CollisionChecker {
                 entity.hitBox.y = entity.worldY + entity.hitBox.y;
 
                 // Get object's solid area position
-                target[i].objectHitBox.x = target[i].worldX + target[i].objectHitBox.x;
-                target[i].objectHitBox.y = target[1].worldY + target[i].objectHitBox.y;
+                target[i].hitBox.x = target[i].worldX + target[i].hitBox.x;
+                target[i].hitBox.y = target[i].worldY + target[i].hitBox.y;
 
                 switch (entity.direction) {
-                    case "up" -> {
-                        entity.hitBox.y -= entity.speed;
-                    }
-                    case "down" -> {
-                        entity.hitBox.y += entity.speed;
-                    }
-                    case "left" -> {
-                        entity.hitBox.x -= entity.speed;
-                    }
-                    case "right" -> {
-                        entity.hitBox.x += entity.speed;
-                    }
+                    case "up" -> entity.hitBox.y -= entity.speed;
+                    case "down" -> entity.hitBox.y += entity.speed;
+                    case "left" -> entity.hitBox.x -= entity.speed;
+                    case "right" -> entity.hitBox.x += entity.speed;
                 }
-                if (entity.hitBox.intersects(target[i].objectHitBox)) {
+                if (entity.hitBox.intersects(target[i].hitBox)) {
                     if (target[i] != entity) {
                         entity.collisionDetected = true;
                         index = i;
                     }
                 }
-                entity.hitBox.x = entity.playerSolidAreaDefaultX;
-                entity.hitBox.y = entity.playerSolidAreaDefaultY;
-                target[i].objectHitBox.x = target[i].objectSolidAreaDefaultX;
-                target[i].objectHitBox.y = target[i].objectSolidAreaDefaultY;
+                entity.hitBox.x = entity.solidAreaDefaultX;
+                entity.hitBox.y = entity.solidAreaDefaultY;
+                target[i].hitBox.x = target[i].solidAreaDefaultX;
+                target[i].hitBox.y = target[i].solidAreaDefaultY;
             }
         }
         return index;
@@ -186,31 +170,23 @@ public class CollisionChecker {
         entity.hitBox.y = entity.worldY + entity.hitBox.y;
 
         // Get object's solid area position
-        gp.player.objectHitBox.x = gp.player.worldX + gp.player.objectHitBox.x;
-        gp.player.objectHitBox.y = gp.player.worldY + gp.player.objectHitBox.y;
+        gp.player.hitBox.x = gp.player.worldX + gp.player.hitBox.x;
+        gp.player.hitBox.y = gp.player.worldY + gp.player.hitBox.y;
 
         switch (entity.direction) {
-            case "up" -> {
-                entity.hitBox.y -= entity.speed;
-            }
-            case "down" -> {
-                entity.hitBox.y += entity.speed;
-            }
-            case "left" -> {
-                entity.hitBox.x -= entity.speed;
-            }
-            case "right" -> {
-                entity.hitBox.x += entity.speed;
-            }
+            case "up" -> entity.hitBox.y -= entity.speed;
+            case "down" -> entity.hitBox.y += entity.speed;
+            case "left" -> entity.hitBox.x -= entity.speed;
+            case "right" -> entity.hitBox.x += entity.speed;
         }
-        if (entity.hitBox.intersects(gp.player.objectHitBox)) {
+        if (entity.hitBox.intersects(gp.player.hitBox)) {
             if (gp.player != entity) {
                 entity.collisionDetected = true;
             }
         }
-        entity.hitBox.x = entity.playerSolidAreaDefaultX;
-        entity.hitBox.y = entity.playerSolidAreaDefaultY;
-        gp.player.objectHitBox.x = gp.player.objectSolidAreaDefaultX;
-        gp.player.objectHitBox.y = gp.player.objectSolidAreaDefaultY;
+        entity.hitBox.x = entity.solidAreaDefaultX;
+        entity.hitBox.y = entity.solidAreaDefaultY;
+        gp.player.hitBox.x = gp.player.solidAreaDefaultX;
+        gp.player.hitBox.y = gp.player.solidAreaDefaultY;
     }
 }

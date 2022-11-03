@@ -14,19 +14,20 @@ public class Player extends Entity{
 
     GamePanel gp;
     KeyHandler keyH;
-    public int hasKey = 0;
+    public int partsCollected = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
         super(gp);
         speed = 5;
         direction = "down";
+        hitBox = new Rectangle(8,16, 32, 32);
         this.gp = gp;
         this.keyH = keyH;
         worldX = 100;
         worldY = 100;
-        playerSolidAreaDefaultX = hitBox.x;
-        playerSolidAreaDefaultY = hitBox.y;
+        solidAreaDefaultX = hitBox.x;
+        solidAreaDefaultY = hitBox.y;
         getPlayerImage();
     }
 

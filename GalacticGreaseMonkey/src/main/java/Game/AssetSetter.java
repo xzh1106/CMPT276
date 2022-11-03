@@ -14,9 +14,6 @@ public class AssetSetter {
         gp.obj[0].worldX = 7 * gp.tileSize; // Set location for obj on map
         gp.obj[0].worldY = 10 * gp.tileSize;
 
-        gp.obj[1] = new OBJ_Key(gp);
-        gp.obj[1].worldX = 8 * gp.tileSize;
-        gp.obj[1].worldY = 13 * gp.tileSize;
     }
 
     public void setAlien() {

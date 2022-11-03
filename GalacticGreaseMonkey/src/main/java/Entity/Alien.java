@@ -2,9 +2,6 @@ package Entity;
 
 import Game.GamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
 import java.util.Random;
 
 public class Alien extends Entity {
@@ -18,8 +15,8 @@ public class Alien extends Entity {
         hitBox.y = 18;
         hitBox.width = 42;
         hitBox.height = 30;
-        objectSolidAreaDefaultX = hitBox.x;
-        objectSolidAreaDefaultY = hitBox.y;
+        solidAreaDefaultX = hitBox.x;
+        solidAreaDefaultY = hitBox.y;
         getImage();
 
     }
@@ -52,7 +49,7 @@ public class Alien extends Entity {
             if (i > 50 && i <= 75) {
                 direction = "left";
             }
-            if (i > 75 && i <= 100) {
+            if (i > 75) {
                 direction = "right";
             }
 
