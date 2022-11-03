@@ -1,6 +1,7 @@
 package Game;
 
 import Entity.*;
+import Object.*;
 
 import Tile.TileManager;
 
@@ -41,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[10]; // 10 slots for object allocation
     public Alien alien[] = new Alien[10];
+    public Entity blackhole[] = new Entity[10]; // 10 slots for object allocation
     ArrayList<Entity> entityList = new ArrayList<>();
 
     //Game state
@@ -62,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         aSetter.setObject();
         aSetter.setAlien();
+        aSetter.setBlackhole();
         currentGameState = playingState;
     }
 
@@ -131,6 +134,12 @@ public class GamePanel extends JPanel implements Runnable {
         for(int i = 0; i < obj.length; i++){
             if(obj[i] != null){
                 entityList.add(obj[i]);
+            }
+        }
+
+        for(int i = 0; i < blackhole.length; i++){
+            if(blackhole[i] != null){
+                entityList.add(blackhole[i]);
             }
         }
 

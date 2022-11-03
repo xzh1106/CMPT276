@@ -83,10 +83,10 @@ public class Player extends Entity{
 
             // Check object collision
             int objIndex = gp.collisionChecker.checkObject(this, true);
-            if (objIndex != 999) {
-                score += 300;
-            }
             pickUpObject(objIndex);
+
+            int blackholeIndex = gp.collisionChecker.checkBlackhole(this, true);
+            collideBlackhole(blackholeIndex);
 
             // Check alien collision
             int monsterIndex = gp.collisionChecker.checkEntity(this, gp.alien);
@@ -119,14 +119,29 @@ public class Player extends Entity{
                 gp.currentGameState = gp.loseState;
             }
         }
+
+        // Cooldown for player getting hit
+        if (invincible){
+            invincibleCounter++;
+        }
     }
 
     public void pickUpObject(int index) {
 
         // If index is 999, character haven't collided with any object
         if (index != 999) {
+            score += 300;
             gp.obj[index] = null;
+        }
+    }
 
+    public void collideBlackhole(int index) {
+        if (index != 999) {
+            if (!invincible){
+                invincible = true;
+            }
+            score -= 500;
+            gp.blackhole[index] = null;
         }
     }
     //Display corresponding image based on key press

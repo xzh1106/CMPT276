@@ -19,6 +19,8 @@ public class Entity {
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
     public boolean collisionDetected = false;
+    public boolean invincible = false;
+    public int invincibleCounter;
 
 
     // Entities

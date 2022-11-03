@@ -1,5 +1,5 @@
 package Game;
-import Object.OBJ_Key;
+import Object.*;
 import Entity.*;
 public class AssetSetter {
 
@@ -13,6 +13,14 @@ public class AssetSetter {
         gp.obj[0] = new OBJ_Key(gp); // Make a key object and save into obj array
         gp.obj[0].worldX = 7 * gp.tileSize; // Set location for obj on map
         gp.obj[0].worldY = 10 * gp.tileSize;
+
+    }
+
+    public void setBlackhole() {
+
+        gp.blackhole[0] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
+        gp.blackhole[0].worldX = 20 * gp.tileSize; // Set location for obj on map
+        gp.blackhole[0].worldY = 5 * gp.tileSize;
 
     }
 

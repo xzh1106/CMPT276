@@ -128,6 +128,44 @@ public class CollisionChecker {
         return index;
     }
 
+    public int checkBlackhole(Entity entity, boolean player) {
+        int index = 999;
+
+        for (int i = 0; i  < gp.blackhole.length; i++) {
+            if(gp.blackhole[i] != null) {
+
+                // Get entity's solid area position
+                entity.hitBox.x = entity.worldX + entity.hitBox.x;
+                entity.hitBox.y = entity.worldY + entity.hitBox.y;
+
+                // Get object's solid area position
+                gp.blackhole[i].hitBox.x = gp.blackhole[i].worldX + gp.blackhole[i].hitBox.x;
+                gp.blackhole[i].hitBox.y = gp.blackhole[i].worldY + gp.blackhole[i].hitBox.y;
+
+                switch (entity.direction) {
+                    case "up" -> entity.hitBox.y -= entity.speed;
+                    case "down" -> entity.hitBox.y += entity.speed;
+                    case "left" -> entity.hitBox.x -= entity.speed;
+                    case "right" -> entity.hitBox.x += entity.speed;
+                }
+                if (entity.hitBox.intersects(gp.blackhole[i].hitBox)) {
+                    if (gp.blackhole[i].collision) {
+                        entity.collisionDetected = true;
+                    }
+                    if (player) {
+                        index = i;
+                    }
+                }
+
+                entity.hitBox.x = entity.solidAreaDefaultX;
+                entity.hitBox.y = entity.solidAreaDefaultY;
+                gp.blackhole[i].hitBox.x = gp.blackhole[i].solidAreaDefaultX;
+                gp.blackhole[i].hitBox.y = gp.blackhole[i].solidAreaDefaultY;
+            }
+        }
+        return index;
+    }
+
     // Entity collision
     public int checkEntity(Entity entity, Entity[] target) {
         int index = 999;
