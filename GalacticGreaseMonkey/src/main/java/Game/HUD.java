@@ -16,7 +16,7 @@ public class HUD {
         this.gp = gp;
         g2.setFont(arial_40);
         g2.setColor(Color.WHITE);
-        g2.drawString("Score" + "=" + gp.player.hasKey, 20, 40);
+        g2.drawString("Score" + "=" + gp.player.score, 20, 40);
 
     }
 }
