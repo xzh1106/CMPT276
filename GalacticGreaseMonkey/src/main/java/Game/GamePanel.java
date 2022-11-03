@@ -124,12 +124,13 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
-
-//            diamondTimer++;
-//            if (diamondTimer > 120) {
-//                diamond.add(new OBJ_Diamond());
-//                diamondTimer = 0;
-//            }
+            for (int i=0; i<diamond.size(); i++) {
+                diamond.get(i).timeSinceCreated++;
+                if (diamond.get(i).timeSinceCreated > 240) {
+                    diamond.get(i).timeSinceCreated = 0;
+                    diamond.remove(i);
+                }
+            }
         }
     }
 

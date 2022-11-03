@@ -22,6 +22,7 @@ public class Entity {
     public boolean invincible = false;
     public int invincibleCounter;
     public boolean onPath = false;
+    public int timeSinceCreated = 0;
 
 
     // Entities
@@ -137,20 +138,6 @@ public class Entity {
         }
         g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
     }
-
-//    public void spawnDiamond() {
-//        gp.diamondTimer++;
-//        if (gp.diamondTimer >= 10) {
-//
-//            double chance = Math.random();
-//            if (chance < 0.7) {
-//
-//            }
-//
-//            gp.diamondTimer = 0;
-//        }
-//    }
-
 
     public void searchPath(int goalCol, int goalRow){
         int startCol = (worldX + hitBox.x)/gp.tileSize;
