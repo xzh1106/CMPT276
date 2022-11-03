@@ -20,14 +20,12 @@ public class Entity {
 
 
     //Object
-
-
     public int actionLockCounter;
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
     public int speed;
-    public int score = 0;
+    public int score = 100;
 
     public void setAction() {}
     public void update() {
@@ -35,6 +33,9 @@ public class Entity {
 
         collisionDetected = false;
         gp.collisionChecker.checkTile(this);
+        gp.collisionChecker.checkObject(this, false);
+        gp.collisionChecker.checkEntity(this, gp.alien);
+        gp.collisionChecker.checkPlayer(this);
 
         if (!collisionDetected) {
             switch (direction) {

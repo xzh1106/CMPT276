@@ -84,7 +84,10 @@ public class Player extends Entity{
             int objIndex = gp.collisionChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
-            // If false collion, player can move
+            // Check alien collision
+            int monsterIndex = gp.collisionChecker.checkEntity(this, gp.alien);
+
+            // If false collision, player can move
             if (!collisionDetected) {
                 switch (direction) {
                     case "up" -> worldY -= speed;
