@@ -5,6 +5,7 @@ import Game.GamePanel;
 import java.util.Random;
 
 public class Alien extends Entity {
+    boolean aggressive = false;
 
     public Alien(GamePanel gp) {
         super(gp);
@@ -63,7 +64,10 @@ public class Alien extends Entity {
     public void setAction() {
 
         if(onPath) {
-            getImage();
+            if(!aggressive){
+                aggressive = true;
+                getImage();
+            }
             int goalCol = (gp.player.worldX + gp.player.hitBox.x)/gp.tileSize;
             int goalRow = (gp.player.worldY + gp.player.hitBox.y)/gp.tileSize;
 
