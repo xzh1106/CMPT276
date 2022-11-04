@@ -3,9 +3,9 @@ package Object;
 import Entity.Entity;
 import Game.GamePanel;
 
-public class OBJ_Key extends Entity {
+public class OBJ_SpaceshipPart extends Entity {
 
-    public OBJ_Key(GamePanel gp) {
+    public OBJ_SpaceshipPart(GamePanel gp) {
         super(gp);
 
         name = "Key";

@@ -31,7 +31,7 @@ public class Entity {
     public int spriteNum = 1;
 
     public int speed;
-    public int score = 0;
+    public double score = 0;
 
     public void setAction() {}
 

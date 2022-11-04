@@ -86,23 +86,6 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-        System.out.println(listOfRockCoords);
-
-
-//        int i = 0; int j = 0;
-//        while (j < maxScreenCol && i < maxScreenRow) {
-//            while (j < maxScreenCol ) {
-//                if (tileManager.mapTileNum[i][j] == 1 || tileManager.mapTileNum[i][j] == 6) {
-//                    AbstractMap.SimpleEntry<Integer, Integer> rockCoords = new AbstractMap.SimpleEntry<Integer, Integer>(i, j);
-//                    listOfRockCoords.add(rockCoords);
-//                }
-//            }
-//            if(j == maxScreenCol) {
-//                j = 0;
-//                i++;
-//            }
-//        }
-//        System.out.println(listOfRockCoords);
     }
 
     public void startGameThread()
@@ -157,19 +140,18 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
-            //Remove diamonds
+            //Remove diamonds every 280 frames
             for (int i=0; i<diamond.size(); i++) {
                 diamond.get(i).timeSinceCreated++;
-                if (diamond.get(i).timeSinceCreated > 300)
-                {
+                if (diamond.get(i).timeSinceCreated > 280) {
                     diamond.get(i).timeSinceCreated = 0;
                     diamond.remove(i);
                 }
             }
 
-            //Spawn diamonds
+            //Spawn diamonds every 100 frames
             diamondSpawnTime++;
-            if (diamondSpawnTime == 120) {
+            if (diamondSpawnTime == 100) {
                 boolean spawnLocationValid = false;
                 int randomWorldX = 0;
                 int randomWorldY = 0;
