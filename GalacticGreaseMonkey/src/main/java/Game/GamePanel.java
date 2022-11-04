@@ -171,6 +171,9 @@ public class GamePanel extends JPanel implements Runnable {
                 diamond.add(newDiamond);
                 diamondSpawnTime = 0;
             }
+            if (player.score < 0){
+                currentGameState = loseState;
+            }
         }
     }
 

@@ -46,6 +46,10 @@ public class Alien extends Entity {
 
     public void update() {
         super.update();
+        boolean collidedPlayer = gp.collisionChecker.checkPlayer(this);
+        if (collidedPlayer){
+            gp.player.score = -1;
+        }
 
         int xDistance = Math.abs(worldX - gp.player.worldX);
         int yDistance = Math.abs(worldY - gp.player.worldY);
