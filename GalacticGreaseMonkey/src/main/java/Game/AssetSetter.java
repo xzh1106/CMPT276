@@ -38,6 +38,14 @@ public class AssetSetter {
         gp.blackhole[0].worldX = 20 * gp.tileSize; // Set location for obj on map
         gp.blackhole[0].worldY = 5 * gp.tileSize;
 
+        gp.blackhole[1] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
+        gp.blackhole[1].worldX = 8 * gp.tileSize; // Set location for obj on map
+        gp.blackhole[1].worldY = 7 * gp.tileSize;
+
+        gp.blackhole[2] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
+        gp.blackhole[2].worldX = 27 * gp.tileSize; // Set location for obj on map
+        gp.blackhole[2].worldY = 9 * gp.tileSize;
+
     }
 
     public void setAlien() {
@@ -52,5 +60,9 @@ public class AssetSetter {
         gp.alien[2] = new Alien(gp);
         gp.alien[2].worldX = 11 * gp.tileSize;
         gp.alien[2].worldY = 6 * gp.tileSize;
+
+        gp.alien[3] = new Alien(gp);
+        gp.alien[3].worldX = 21 * gp.tileSize;
+        gp.alien[3].worldY = 1 * gp.tileSize;
     }
 }
