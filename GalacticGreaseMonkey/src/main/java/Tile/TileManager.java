@@ -27,13 +27,9 @@ public class TileManager {
 
     public void getTileImage() {
         // Collision handling for tiles
-        setup(0,"grass",false);
-        setup(1,"wall",true);
-        setup(2,"water",true);
-        setup(3,"earth",false);
-        setup(4,"tree",true);
-        setup(5,"sand",false);
-        setup(6,"rock2",true);
+        setup(0,"space3",false);
+        setup(1,"spaceRock",true);
+        setup(6,"satellite",true);
     }
 
     public void setup(int index, String imageName, boolean collision) {

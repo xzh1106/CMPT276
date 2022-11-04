@@ -48,5 +48,9 @@ public class AssetSetter {
         gp.alien[1] = new Alien(gp);
         gp.alien[1].worldX = 12 * gp.tileSize;
         gp.alien[1].worldY = 13 * gp.tileSize;
+
+        gp.alien[2] = new Alien(gp);
+        gp.alien[2].worldX = 11 * gp.tileSize;
+        gp.alien[2].worldY = 6 * gp.tileSize;
     }
 }

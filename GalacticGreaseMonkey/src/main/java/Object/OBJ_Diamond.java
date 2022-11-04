@@ -10,7 +10,7 @@ public class OBJ_Diamond extends Entity {
         super(gp);
 //        gp = this.gp;
         name = "Diamond";
-        down1 = setup("/object/coin_bronze");
+        down1 = setup("/object/diamond");
         collision = false;
     }
 }
