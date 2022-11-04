@@ -22,6 +22,7 @@ public class Entity {
     public boolean invincible = false;
     public int invincibleCounter;
     public boolean onPath = false;
+    public int timeSinceCreated = 0;
 
 
     // Entities
@@ -30,14 +31,14 @@ public class Entity {
     public int spriteNum = 1;
 
     public int speed;
-    public int score = 0;
+    public double score = 0;
 
     public void setAction() {}
 
     public void checkCollision(){
         collisionDetected = false;
         gp.collisionChecker.checkTile(this);
-        gp.collisionChecker.checkObject(this, false);
+        gp.collisionChecker.checkSpaceshipPart(this, false);
         gp.collisionChecker.checkEntity(this, gp.alien);
         gp.collisionChecker.checkPlayer(this);
 
@@ -137,7 +138,6 @@ public class Entity {
         }
         g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
     }
-
 
     public void searchPath(int goalCol, int goalRow){
         int startCol = (worldX + hitBox.x)/gp.tileSize;

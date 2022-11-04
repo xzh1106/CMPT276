@@ -81,9 +81,12 @@ public class Player extends Entity{
             collisionDetected = false;
             gp.collisionChecker.checkTile(this);
 
-            // Check object collision
-            int objIndex = gp.collisionChecker.checkObject(this, true);
-            pickUpObject(objIndex);
+            // Check spaceship part collision
+            int spaceshipPartIndex = gp.collisionChecker.checkSpaceshipPart(this, true);
+            pickUpSpaceshipPart(spaceshipPartIndex);
+
+            int diamondIndex = gp.collisionChecker.checkDiamond(this, true);
+            pickUpDiamond(diamondIndex);
 
             int blackholeIndex = gp.collisionChecker.checkBlackhole(this, true);
             collideBlackhole(blackholeIndex);
@@ -126,12 +129,21 @@ public class Player extends Entity{
         }
     }
 
-    public void pickUpObject(int index) {
+    public void pickUpSpaceshipPart(int index) {
 
         // If index is 999, character haven't collided with any object
         if (index != 999) {
             score += 300;
-            gp.obj[index] = null;
+            gp.spaceshipPart[index] = null;
+        }
+    }
+
+    public void pickUpDiamond(int index) {
+
+        // If index is 999, character haven't collided with any object
+        if (index != 999) {
+            score += 500;
+            gp.diamond.remove(index);
         }
     }
 
@@ -140,7 +152,7 @@ public class Player extends Entity{
             if (!invincible){
                 invincible = true;
             }
-            score -= 500;
+            score -= 300;
             gp.blackhole[index] = null;
         }
     }

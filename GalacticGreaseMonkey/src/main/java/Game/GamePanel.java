@@ -1,4 +1,5 @@
 package Game;
+import Object.OBJ_Diamond;
 
 import AI.Pathfinder;
 import Entity.*;
@@ -10,8 +11,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -40,11 +44,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Entities
     public Player player = new Player(this, keyH);
-    public Entity obj[] = new Entity[10]; // 10 slots for object allocation
+    public Entity spaceshipPart[] = new Entity[10]; // 10 slots for object allocation
+    public ArrayList<OBJ_Diamond> diamond = new ArrayList<>();
     public Alien alien[] = new Alien[10];
     public Entity blackhole[] = new Entity[10]; // 10 slots for object allocation
-    //public Entity rocks[] = new Entity[150];
     ArrayList<Entity> entityList = new ArrayList<>();
+
+    List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<AbstractMap.SimpleEntry<Integer, Integer>>();
+    public int diamondSpawnTime = 0;
 
     //Game state
     public final int playingState = 1;
@@ -63,11 +70,22 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame() {
-        aSetter.setObject();
+        aSetter.setSpaceshipPart();
         aSetter.setAlien();
         aSetter.setBlackhole();
+        aSetter.setDiamond();
         //aSetter.setRocks();
         currentGameState = playingState;
+
+        //find all tiles that are walls or rocks
+        for (int i=0; i<maxScreenCol; i++) {
+            for (int j=0; j<maxScreenRow; j++) {
+                if (tileManager.mapTileNum[i][j] == 1 || tileManager.mapTileNum[i][j] == 6) {
+                    AbstractMap.SimpleEntry<Integer, Integer> rockCoords = new AbstractMap.SimpleEntry<Integer, Integer>(i, j);
+                    listOfRockCoords.add(rockCoords);
+                }
+            }
+        }
     }
 
     public void startGameThread()
@@ -108,6 +126,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update()
     {
+
+//        gameTime++;
         // Handle WASD movement
         if (currentGameState == playingState) {
             // Player
@@ -119,6 +139,38 @@ public class GamePanel extends JPanel implements Runnable {
                     alien[i].update();
                 }
             }
+
+            //Remove diamonds every 280 frames
+            for (int i=0; i<diamond.size(); i++) {
+                diamond.get(i).timeSinceCreated++;
+                if (diamond.get(i).timeSinceCreated > 280) {
+                    diamond.get(i).timeSinceCreated = 0;
+                    diamond.remove(i);
+                }
+            }
+
+            //Spawn diamonds every 100 frames
+            diamondSpawnTime++;
+            if (diamondSpawnTime == 100) {
+                boolean spawnLocationValid = false;
+                int randomWorldX = 0;
+                int randomWorldY = 0;
+                while (spawnLocationValid == false) {
+                    randomWorldX = ThreadLocalRandom.current().nextInt(0, 32 + 1);
+                    randomWorldY = ThreadLocalRandom.current().nextInt(0, 16 + 1);
+                    AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<Integer, Integer>(randomWorldX, randomWorldY);
+                    if( !listOfRockCoords.contains(newCoords)) {
+                        spawnLocationValid = true;
+                    }
+                }
+
+                OBJ_Diamond newDiamond = new OBJ_Diamond(this);
+                newDiamond.worldX = randomWorldX * tileSize;
+                newDiamond.worldY = randomWorldY * tileSize;
+
+                diamond.add(newDiamond);
+                diamondSpawnTime = 0;
+            }
         }
     }
 
@@ -128,14 +180,21 @@ public class GamePanel extends JPanel implements Runnable {
 
         // TILE
         tileManager.draw(g2);
+
         // HUD
         hud.draw(g2);
 
         entityList.add(player);
 
-        for(int i = 0; i < obj.length; i++){
-            if(obj[i] != null){
-                entityList.add(obj[i]);
+        for(int i = 0; i < spaceshipPart.length; i++){
+            if(spaceshipPart[i] != null){
+                entityList.add(spaceshipPart[i]);
+            }
+        }
+
+        for(int i = 0; i < diamond.size(); i++){
+            if(diamond.get(i) != null){
+                entityList.add(diamond.get(i));
             }
         }
 

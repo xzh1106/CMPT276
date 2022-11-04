@@ -8,11 +8,23 @@ public class AssetSetter {
         this.gp = gp;
     }
 
-    public void setObject() {
+    public void setSpaceshipPart() {
 
-        gp.obj[0] = new OBJ_Key(gp); // Make a key object and save into obj array
-        gp.obj[0].worldX = 7 * gp.tileSize; // Set location for obj on map
-        gp.obj[0].worldY = 10 * gp.tileSize;
+        gp.spaceshipPart[0] = new OBJ_SpaceshipPart(gp); // Make a key object and save into obj array
+        gp.spaceshipPart[0].worldX = 7 * gp.tileSize; // Set location for obj on map
+        gp.spaceshipPart[0].worldY = 10 * gp.tileSize;
+
+    }
+
+    public void setDiamond() {
+
+        gp.diamond.add(new OBJ_Diamond(gp));
+        gp.diamond.get(gp.diamond.size()-1).worldX = 20 * gp.tileSize;
+        gp.diamond.get(gp.diamond.size()-1).worldY = 4 * gp.tileSize;
+
+        gp.diamond.add(new OBJ_Diamond(gp));
+        gp.diamond.get(gp.diamond.size()-1).worldX = 7 * gp.tileSize;
+        gp.diamond.get(gp.diamond.size()-1).worldY = 5 * gp.tileSize;
 
     }
 
