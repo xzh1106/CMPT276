@@ -167,9 +167,10 @@ public class Player extends Entity{
             if(!gp.alien[i].invincible) {
                 gp.alien[i].score -= 1;
                 gp.alien[i].invincible = true;
+                gp.alien[i].damageReaction();
 
                 if(gp.alien[i].score < 0) {
-                    gp.alien[i] = null;
+                    gp.alien[i].dying = true;
                 }
             }
         }

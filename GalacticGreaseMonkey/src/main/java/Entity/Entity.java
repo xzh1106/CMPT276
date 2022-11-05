@@ -19,12 +19,15 @@ public class Entity {
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
     public boolean collisionDetected = false;
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
+
+    // State
     public boolean invincible = false;
     public int invincibleCounter;
     public boolean onPath = false;
-    public int timeSinceCreated = 0;
-    public Rectangle attackArea = new Rectangle(0,0,0,0);
-
+    public boolean alive = true;
+    public boolean dying = false;
+    int dyingCounter = 0;
 
     // Entities
     public int actionLockCounter;
@@ -32,9 +35,15 @@ public class Entity {
     public int spriteNum = 1;
 
     public int speed;
+    public int maxLife = 2; // for alien healthbar
     public int score = 0;
+    public int type; // 0 = player, 1 = alien
+    boolean hpBarOn = false;
+    int hpBarCounter = 0;
 
     public void setAction() {}
+
+    public void damageReaction() {}
 
     public void checkCollision(){
         collisionDetected = false;
@@ -82,8 +91,6 @@ public class Entity {
         }
         return image;
     }
-
-
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -137,7 +144,60 @@ public class Entity {
                 }
                 break;
         }
+
+        // HP Bar
+        if(type == 1 && hpBarOn) {
+            double oneScale = (double)gp.tileSize/maxLife;
+            double hpBarValue = oneScale*score;
+
+            g2.setColor(new Color(35,35,35));
+            g2.fillRect(worldX-1, worldY - 6, gp.tileSize+2, 12);
+
+            g2.setColor(new Color(255,0,30));
+            g2.fillRect(worldX, worldY - 5, (int)hpBarValue, 10);
+
+            hpBarCounter++;
+
+            if(hpBarCounter > 600) {
+                hpBarCounter = 0;
+                hpBarOn = false;
+            }
+        }
+
+        if(invincible) { // Makes player transparent when they are invincible
+            hpBarOn = true;
+            hpBarCounter = 0;
+            changeAlpha(g2,0.5f);
+        }
+
+        if(dying) {
+            dyingAnimation(g2);
+        }
+
         g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
+
+        changeAlpha(g2,1f);
+    }
+
+    public void dyingAnimation(Graphics2D g2) {
+        dyingCounter++;
+
+        if(dyingCounter <= 10) {changeAlpha(g2,0f);}
+        if(dyingCounter > 10 && dyingCounter <= 20) {changeAlpha(g2,0f);}
+        if(dyingCounter > 20 && dyingCounter <= 30) {changeAlpha(g2,1f);}
+        if(dyingCounter > 30 && dyingCounter <= 40) {changeAlpha(g2,0f);}
+        if(dyingCounter > 40 && dyingCounter <= 50) {changeAlpha(g2,1f);}
+        if(dyingCounter > 50 && dyingCounter <= 60) {changeAlpha(g2,0f);}
+        if(dyingCounter > 60 && dyingCounter <= 70) {changeAlpha(g2,1f);}
+        if(dyingCounter > 70 && dyingCounter <= 80) {changeAlpha(g2,1f);}
+        if(dyingCounter > 80){
+            dying = false;
+            alive = false;
+        }
+    }
+
+    public void changeAlpha(Graphics2D g2, float alphaValue) {
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 
     public void searchPath(int goalCol, int goalRow){
