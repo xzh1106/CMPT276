@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GameObject[] spaceshipPart = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<OBJ_Diamond> diamond = new ArrayList<>();
-    public Alien[] alien = new Alien[10];
+    public Alien[] alien = new Alien[5];
     public GameObject[] blackhole = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<Entity> projectileList = new ArrayList<>();
 
@@ -155,12 +155,38 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             if(alienSpawnTime > 100){
+                boolean canSpawn1 = true;
+                boolean canSpawn2 = true;
                 int i = 0;
-                while(alien[i] != null && i < 4){
+                while(alien[i] != null && i < alien.length-1){
                     i++;
                 }
-                aSetter.newAlien(i);
-                alienSpawnTime = 0;
+
+                for(int j = 0; j < alien.length; j++){
+                    if (alien[j] != null){
+                        if (alien[j].worldX >= 28*tileSize && alien[j].worldX <= 31*tileSize &&
+                                alien[j].worldY >= 13*tileSize && alien[j].worldY <= 16*tileSize){
+                            canSpawn1 = false;
+                        }
+                    }
+                }
+                for(int j = 0; j < alien.length; j++){
+                    if (alien[j] != null){
+                        if (alien[j].worldX >= 18*tileSize && alien[j].worldX <= 22*tileSize &&
+                                alien[j].worldY >= 13*tileSize && alien[j].worldY <= 16*tileSize){
+                            canSpawn2 = false;
+                        }
+                    }
+                }
+
+                if(canSpawn1 && alien[i] == null || i != alien.length-1){
+                    aSetter.newAlien(i);
+                    alienSpawnTime = 0;
+                }
+                else if (canSpawn2 && alien[i] == null || i != alien.length-1) {
+                    aSetter.newAlien2(i);
+                    alienSpawnTime = 0;
+                }
             }
             alienSpawnTime++;
 

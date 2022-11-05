@@ -53,7 +53,12 @@ public class Entity {
         gp.collisionChecker.checkTile(this);
         gp.collisionChecker.checkSpaceshipPart(this, false);
         gp.collisionChecker.checkEntity(this, gp.alien);
-        gp.collisionChecker.checkPlayer(this);
+        boolean playerCollision = gp.collisionChecker.checkPlayer(this);
+        if(type == 2){
+            if(!playerCollision){
+                collisionDetected = false;
+            }
+        }
 
         if (!collisionDetected) {
             switch (direction) {
