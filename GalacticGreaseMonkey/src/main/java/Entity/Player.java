@@ -101,6 +101,10 @@ public class Player extends Entity{
             int blackholeIndex = gp.collisionChecker.checkBlackhole(this, true);
             collideBlackhole(blackholeIndex);
 
+            //Check Door collision
+            int doorIndex = gp.collisionChecker.checkWinningDoor(this, true);
+            collideDoor(doorIndex);
+
             // If false collision, player can move
             if (!collisionDetected) {
                 switch (direction) {
@@ -174,6 +178,14 @@ public class Player extends Entity{
             }
             score -= 300;
             gp.blackhole[index] = null;
+        }
+    }
+
+    public void collideDoor(int index) {
+        if (index != 999) {
+            if (partsCollected == 2) {
+                score = 999999;
+            }
         }
     }
 
