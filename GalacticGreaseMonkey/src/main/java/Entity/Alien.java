@@ -10,7 +10,7 @@ public class Alien extends Entity {
     public Alien(GamePanel gp) {
         super(gp);
         score = 400;
-        speed = 2;
+        speed = 1;
 
         hitBox.x = 3;
         hitBox.y = 18;
