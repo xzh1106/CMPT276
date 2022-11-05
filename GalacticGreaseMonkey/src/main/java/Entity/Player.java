@@ -91,12 +91,6 @@ public class Player extends Entity{
             int blackholeIndex = gp.collisionChecker.checkBlackhole(this, true);
             collideBlackhole(blackholeIndex);
 
-            // Check alien collision
-            int monsterIndex = gp.collisionChecker.checkEntity(this, gp.alien);
-            if (monsterIndex != 999) {
-                score = -1;
-            }
-
             // If false collision, player can move
             if (!collisionDetected) {
                 switch (direction) {
@@ -126,6 +120,10 @@ public class Player extends Entity{
         // Cooldown for player getting hit
         if (invincible){
             invincibleCounter++;
+            if(invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
         }
     }
 
@@ -194,7 +192,13 @@ public class Player extends Entity{
                 break;
         }
 
+        if(invincible) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+
         g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
+
+        g2.setComposite((AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)));
     }
 
 }

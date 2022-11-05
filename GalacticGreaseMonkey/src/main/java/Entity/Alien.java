@@ -49,7 +49,9 @@ public class Alien extends Entity {
         super.update();
         boolean collidedPlayer = gp.collisionChecker.checkPlayer(this);
         if (collidedPlayer){
-            gp.player.score = -1;
+            if (!gp.player.invincible) {
+                gp.player.score = -1;
+            }
         }
 
         int xDistance = Math.abs(worldX - gp.player.worldX);
