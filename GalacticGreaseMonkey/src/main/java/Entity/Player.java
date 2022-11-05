@@ -130,7 +130,7 @@ public class Player extends Entity{
         if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 90) {
             projectileCounter = 0;
             // Set default coordinates, direction, and user
-            projectile.set(worldX+6, worldY+10, direction, true, this);
+            projectile.set(worldX, worldY, direction, true, this);
 
             // Add it to the list
             gp.projectileList.add(projectile);
