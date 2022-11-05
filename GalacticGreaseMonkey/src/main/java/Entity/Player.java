@@ -103,7 +103,7 @@ public class Player extends Entity{
 
             //Check Door collision
             int doorIndex = gp.collisionChecker.checkWinningDoor(this, true);
-            collideDoor(doorIndex);
+            collideOpenedDoor(doorIndex);
 
             // If false collision, player can move
             if (!collisionDetected) {
@@ -159,6 +159,9 @@ public class Player extends Entity{
             score += 300;
             partsCollected++;
             gp.spaceshipPart[index] = null;
+            if (partsCollected == 2) {
+                gp.closedDoor[0] = null;
+            }
         }
     }
 
@@ -181,7 +184,7 @@ public class Player extends Entity{
         }
     }
 
-    public void collideDoor(int index) {
+    public void collideOpenedDoor(int index) {
         if (index != 999) {
             if (partsCollected == 2) {
                 score = 999999;

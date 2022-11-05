@@ -206,14 +206,14 @@ public class CollisionChecker {
 
     public int checkWinningDoor(Entity entity, boolean player) {
         int index = 999;
-        for (int i = 0; i < gp.closedDoor.length; i++) {
-            if (gp.closedDoor[i] != null) {
+        for (int i = 0; i < gp.openedDoor.length; i++) {
+            if (gp.openedDoor[i] != null) {
 
                 entity.hitBox.x = entity.worldX + entity.hitBox.x;
                 entity.hitBox.y = entity.worldY + entity.hitBox.y;
 
-                gp.closedDoor[i].hitBox.x = gp.closedDoor[i].worldX + gp.closedDoor[i].hitBox.x;
-                gp.closedDoor[i].hitBox.y = gp.closedDoor[i].worldY + gp.closedDoor[i].hitBox.y;
+                gp.openedDoor[i].hitBox.x = gp.openedDoor[i].worldX + gp.openedDoor[i].hitBox.x;
+                gp.openedDoor[i].hitBox.y = gp.openedDoor[i].worldY + gp.openedDoor[i].hitBox.y;
 
                 switch (entity.direction) {
                     case "up" -> entity.hitBox.y -= entity.speed;
@@ -221,8 +221,8 @@ public class CollisionChecker {
                     case "left" -> entity.hitBox.x -= entity.speed;
                     case "right" -> entity.hitBox.x += entity.speed;
                 }
-                if (entity.hitBox.intersects(gp.closedDoor[i].hitBox)) {
-                    if (gp.closedDoor[i].collision) {
+                if (entity.hitBox.intersects(gp.openedDoor[i].hitBox)) {
+                    if (gp.openedDoor[i].collision) {
                         entity.collisionDetected = true;
                     }
                     if (player) {
@@ -232,8 +232,8 @@ public class CollisionChecker {
 
                 entity.hitBox.x = entity.solidAreaDefaultX;
                 entity.hitBox.y = entity.solidAreaDefaultY;
-                gp.closedDoor[i].hitBox.x = gp.closedDoor[i].solidAreaDefaultX;
-                gp.closedDoor[i].hitBox.y = gp.closedDoor[i].solidAreaDefaultY;
+                gp.openedDoor[i].hitBox.x = gp.openedDoor[i].solidAreaDefaultX;
+                gp.openedDoor[i].hitBox.y = gp.openedDoor[i].solidAreaDefaultY;
             }
         }
         return index;

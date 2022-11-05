@@ -48,7 +48,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Alien[] alien = new Alien[10];
     public GameObject[] blackhole = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<Entity> projectileList = new ArrayList<>();
-    public GameObject[] closedDoor = new GameObject[1]; //Open Door after obtain 2 keys
+    public GameObject[] closedDoor = new GameObject[1];
+    public GameObject[] openedDoor = new GameObject[1];   //Open Door after obtain 2 keys
 
     List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<>();
     public int diamondSpawnTime = 0;
@@ -76,7 +77,9 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setAlien();
         aSetter.setBlackhole();
         aSetter.setDiamond();
+        aSetter.setOpenDoor(); // Open door is behind close door
         aSetter.setClosedDoor();
+
         currentGameState = playingState;
 
         //find all tiles that are walls or rocks
@@ -233,9 +236,9 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        for (int i = 0; i < closedDoor.length; i++) {
-            if (closedDoor[i] != null) {
-                closedDoor[i].draw(g2);
+        for (int i = 0; i < openedDoor.length; i++) {
+            if (openedDoor[i] != null) {
+                openedDoor[i].draw(g2);
             }
         }
 
@@ -244,6 +247,8 @@ public class GamePanel extends JPanel implements Runnable {
                 closedDoor[i].draw(g2);
             }
         }
+
+
 
         for(int i = 0; i < diamond.size(); i++){
             if(diamond.get(i) != null) {
