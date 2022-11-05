@@ -12,6 +12,7 @@ public class Alien extends Entity {
         super(gp);
         score = 1;
         speed = 2;
+        type = 1;
 
         hitBox.x = 3;
         hitBox.y = 18;
@@ -24,7 +25,7 @@ public class Alien extends Entity {
     }
 
     public void getImage() {
-        if (!onPath){
+        if (!onPath) {
             up1 = setup("/monster/greenslime_down_1");
             up2 = setup("/monster/greenslime_down_2");
             down1 = setup("/monster/greenslime_down_1");
@@ -33,8 +34,7 @@ public class Alien extends Entity {
             right2 = setup("/monster/greenslime_down_2");
             left1 = setup("/monster/greenslime_down_1");
             left2 = setup("/monster/greenslime_down_2");
-        }
-        else{
+        } else {
             up1 = setup("/monster/redslime_down_1");
             up2 = setup("/monster/redslime_down_2");
             down1 = setup("/monster/redslime_down_1");
@@ -50,7 +50,7 @@ public class Alien extends Entity {
         super.update();
 
         boolean collidedPlayer = gp.collisionChecker.checkPlayer(this);
-        if (collidedPlayer){
+        if (collidedPlayer) {
             if (!gp.player.invincible) {
                 gp.player.score = -1;
             }
@@ -58,15 +58,15 @@ public class Alien extends Entity {
 
         int xDistance = Math.abs(worldX - gp.player.worldX);
         int yDistance = Math.abs(worldY - gp.player.worldY);
-        int tileDistance = (xDistance + yDistance)/gp.tileSize;
+        int tileDistance = (xDistance + yDistance) / gp.tileSize;
 
-        if(!onPath && tileDistance < 5){
+        if (!onPath && tileDistance < 5) {
             onPath = true;
         }
 
-        if (invincible){ // Invincibility for alien
+        if (invincible) { // Invincibility for alien
             invincibleCounter++;
-            if(invincibleCounter > 40) { // Removes invincibility after one second
+            if (invincibleCounter > 40) { // Removes invincibility after one second
                 invincible = false;
                 invincibleCounter = 0;
             }
@@ -75,20 +75,19 @@ public class Alien extends Entity {
 
     public void setAction() {
 
-        if(onPath) {
-            if(!aggressive){
+        if (onPath) {
+            if (!aggressive) {
                 aggressive = true;
                 getImage();
             }
-            int goalCol = (gp.player.worldX + gp.player.hitBox.x)/gp.tileSize;
-            int goalRow = (gp.player.worldY + gp.player.hitBox.y)/gp.tileSize;
+            int goalCol = (gp.player.worldX + gp.player.hitBox.x) / gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.hitBox.y) / gp.tileSize;
 
-            searchPath(goalCol,goalRow);
-        }
-        else {
+            searchPath(goalCol, goalRow);
+        } else {
             actionLockCounter++;
 
-            if(actionLockCounter == 120) {
+            if (actionLockCounter == 120) {
                 Random random = new Random();
                 int i = random.nextInt(100) + 1; // pick a number from 1-100
 
@@ -110,12 +109,20 @@ public class Alien extends Entity {
         }
     }
 
-    public void draw(Graphics2D g2){
-        super.draw(g2);
-        if(invincible) { // Makes alien transparent when they are invincible
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+    public void damageReaction() {
+        actionLockCounter = 0;
+        direction = gp.player.direction;
+        if (direction == "up"){
+            worldY -= 5;
         }
-
-        g2.setComposite((AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)));
+        else if (direction == "down"){
+            worldY += 5;
+        }
+        else if (direction == "left"){
+            worldX -= 5;
+        }
+        else if (direction == "right"){
+            worldX += 5;
+        }
     }
 }

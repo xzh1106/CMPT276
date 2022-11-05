@@ -130,9 +130,14 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
 
             // Alien
-            for (Alien value : alien) {
-                if (value != null) {
-                    value.update();
+            for (int i = 0; i < alien.length; i++) {
+                if (alien[i] != null) {
+                    if (alien[i].alive && !alien[i].dying) {
+                        alien[i].update();
+                    }
+                    if(!alien[i].alive) {
+                        alien[i] = null;
+                    }
                 }
             }
 

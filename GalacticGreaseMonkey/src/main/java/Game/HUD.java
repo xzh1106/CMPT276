@@ -17,15 +17,15 @@ public class HUD {
 
         // Display Score
         g2.setColor(Color.BLACK);
-        g2.drawString("Score" + "=" + gp.player.score, 23, 38);
+        g2.drawString("Score: " + gp.player.score, 23, 38);
         g2.setColor(Color.WHITE);
-        g2.drawString("Score" + "=" + gp.player.score, 20, 35);
+        g2.drawString("Score: " + gp.player.score, 20, 35);
 
         // Parts collected
         g2.setColor(Color.BLACK);
-        g2.drawString("Parts" + "=" + gp.player.partsCollected, 273, 38);
+        g2.drawString("Parts: " + gp.player.partsCollected, 273, 38);
         g2.setColor(Color.WHITE);
-        g2.drawString("Parts" + "=" + gp.player.partsCollected, 270, 35);
+        g2.drawString("Parts: " + gp.player.partsCollected, 270, 35);
 
     }
 }
