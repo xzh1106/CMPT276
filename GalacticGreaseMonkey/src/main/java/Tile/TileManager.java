@@ -29,6 +29,7 @@ public class TileManager {
         setup(0,"space",false);
         setup(1,"spaceRock",true);
         setup(2,"satellite",true);
+        setup(3,"space2",false);
     }
 
     public void setup(int index, String imageName, boolean collision) {

@@ -20,8 +20,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GamePanel extends JPanel implements Runnable {
 
     // Screen Settings
-    final int originalTileSize = 24; // 24x24 tile
-    final int scale = 2;
+    final int originalTileSize = 16; // 16x16 tile
+    final int scale = 3;
 
     public final int tileSize = originalTileSize * scale; // 48x48
     public final int maxScreenCol = 32;
@@ -52,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<>();
     public int diamondSpawnTime = 0;
+    public int alienSpawnTime = 0;
 
     //Game state
     public final int playingState = 1;
@@ -139,6 +140,16 @@ public class GamePanel extends JPanel implements Runnable {
                     value.update();
                 }
             }
+
+            if(alienSpawnTime > 100){
+                int i = 0;
+                while(alien[i] != null && i < 4){
+                    i++;
+                }
+                aSetter.newAlien(i);
+                alienSpawnTime = 0;
+            }
+            alienSpawnTime++;
 
             //Remove diamonds every 280 frames
             for (int i=0; i<diamond.size(); i++) {
