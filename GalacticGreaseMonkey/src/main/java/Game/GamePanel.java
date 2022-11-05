@@ -164,7 +164,7 @@ public class GamePanel extends JPanel implements Runnable {
 
                 for(int j = 0; j < alien.length; j++){
                     if (alien[j] != null){
-                        if (alien[j].worldX >= 28*tileSize && alien[j].worldX <= 31*tileSize &&
+                        if (alien[j].worldX >= 28*tileSize && alien[j].worldX <= 32*tileSize &&
                                 alien[j].worldY >= 13*tileSize && alien[j].worldY <= 16*tileSize){
                             canSpawn1 = false;
                         }
@@ -179,11 +179,11 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
 
-                if(canSpawn1 && alien[i] == null || i != alien.length-1){
+                if(canSpawn1 && (alien[i] == null || i != alien.length-1)){
                     aSetter.newAlien(i);
                     alienSpawnTime = 0;
                 }
-                else if (canSpawn2 && alien[i] == null || i != alien.length-1) {
+                else if (canSpawn2 && (alien[i] == null || i != alien.length-1)) {
                     aSetter.newAlien2(i);
                     alienSpawnTime = 0;
                 }

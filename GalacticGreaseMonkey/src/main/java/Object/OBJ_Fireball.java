@@ -3,6 +3,8 @@ package Object;
 import Entity.Projectile;
 import Game.GamePanel;
 
+import java.awt.*;
+
 public class OBJ_Fireball extends Projectile {
 
     public OBJ_Fireball(GamePanel gp) {
@@ -15,6 +17,7 @@ public class OBJ_Fireball extends Projectile {
         score = maxLife;
         attack = 1;
         alive = false;
+        hitBox = new Rectangle(8,30, 32, 18);
         getImage();
 
     }

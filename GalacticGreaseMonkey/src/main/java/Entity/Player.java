@@ -17,7 +17,7 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
     public int partsCollected = 0;
-    public int projectileCounter = 180;
+    public int projectileCounter = 120;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -127,10 +127,10 @@ public class Player extends Entity{
             }
         }
 
-        if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 180) {
+        if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 120) {
             projectileCounter = 0;
             // Set default coordinates, direction, and user
-            projectile.set(worldX, worldY, direction, true, this);
+            projectile.set(worldX, worldY+10, direction, true, this);
 
             // Add it to the list
             gp.projectileList.add(projectile);
