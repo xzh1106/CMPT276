@@ -24,7 +24,7 @@ public class Projectile extends Entity{
 
         if (user == gp.player) {
             int alienIndex = gp.collisionChecker.checkEntity(this, gp.alien);
-            gp.collisionChecker.checkTile(this);
+            //gp.collisionChecker.checkTile(this);
             if (alienIndex != 999) {
                 gp.player.damageAlien(alienIndex);
                 alive = false;
