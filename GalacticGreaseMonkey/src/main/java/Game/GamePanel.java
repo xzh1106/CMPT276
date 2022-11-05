@@ -43,10 +43,10 @@ public class GamePanel extends JPanel implements Runnable {
     // Entities
     public Player player = new Player(this, keyH);
 
-    public GameObject[] spaceshipPart = new GameObject[10]; // 10 slots for object allocation
-    public ArrayList<GameObject> diamond = new ArrayList<>();
-    public Alien[] alien = new Alien[5];
-    public GameObject[] blackhole = new GameObject[10]; // 10 slots for object allocation
+    public GameObject spaceshipPart[] = new GameObject[10]; // 10 slots for object allocation
+    public ArrayList<OBJ_Diamond> diamond = new ArrayList<>();
+    public Alien alien[] = new Alien[10];
+    public GameObject blackhole[] = new GameObject[10]; // 10 slots for object allocation
 
     List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<>();
     public int diamondSpawnTime = 0;
@@ -146,10 +146,10 @@ public class GamePanel extends JPanel implements Runnable {
             }
             alienSpawnTime++;
 
-            //Remove diamonds every 300 frames
+            //Remove diamonds every 280 frames
             for (int i=0; i<diamond.size(); i++) {
                 diamond.get(i).timeSinceCreated++;
-                if (diamond.get(i).timeSinceCreated > 300) {
+                if (diamond.get(i).timeSinceCreated > 280) {
                     diamond.get(i).timeSinceCreated = 0;
                     diamond.remove(i);
                 }
@@ -196,27 +196,27 @@ public class GamePanel extends JPanel implements Runnable {
         // PLAYER
         player.draw(g2);
 
-        for(GameObject object : spaceshipPart){
-            if(object != null) {
-                object.draw(g2);
+        for(int i = 0; i < spaceshipPart.length; i++){
+            if(spaceshipPart[i] != null) {
+                spaceshipPart[i].draw(g2);
             }
         }
 
-        for(GameObject object : diamond){
-            if(object != null) {
-                object.draw(g2);
+        for(int i = 0; i < diamond.size(); i++){
+            if(diamond.get(i) != null) {
+                diamond.get(i).draw(g2);
             }
         }
 
-        for(GameObject object : blackhole){
-            if(object != null) {
-                object.draw(g2);
+        for(int i = 0; i < blackhole.length; i++){
+            if(blackhole[i] != null) {
+                blackhole[i].draw(g2);
             }
         }
 
-        for(Alien alien : alien){
-            if(alien != null) {
-                alien.draw(g2);
+        for(int i = 0; i < alien.length; i++){
+            if(alien[i] != null) {
+                alien[i].draw(g2);
             }
         }
 

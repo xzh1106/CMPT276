@@ -19,6 +19,7 @@ public class GameObject {
     public int solidAreaDefaultY = 0;
     public int timeSinceCreated = 0;
     public BufferedImage down1;
+    public String direction = "down";
 
     public GameObject (GamePanel gp) {
         this.gp = gp;
