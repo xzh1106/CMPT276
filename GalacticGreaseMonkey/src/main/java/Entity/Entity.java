@@ -22,6 +22,9 @@ public class Entity {
     public boolean invincible = false;
     public int invincibleCounter;
     public boolean onPath = false;
+    public int timeSinceCreated = 0;
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
+
 
     // Entities
     public int actionLockCounter;
@@ -89,6 +92,12 @@ public class Entity {
     //Sprite animations stored in these variables
     public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2;
     public String direction = "down";
+
+
+    // Handles objects
+
+    public String name;
+    public boolean collision = false;
 
     public void draw(Graphics2D g2) {
 

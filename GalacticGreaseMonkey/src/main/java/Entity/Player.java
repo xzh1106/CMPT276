@@ -28,6 +28,10 @@ public class Player extends Entity{
         worldY = 48;
         solidAreaDefaultX = hitBox.x;
         solidAreaDefaultY = hitBox.y;
+
+        attackArea.width = 36;
+        attackArea.height = 36;
+
         getPlayerImage();
     }
 
@@ -157,6 +161,20 @@ public class Player extends Entity{
             gp.blackhole[index] = null;
         }
     }
+
+    public void damageMonster(int i) {
+        if (i != 999) {
+            if(!gp.alien[i].invincible) {
+                gp.alien[i].score -= 1;
+                gp.alien[i].invincible = true;
+
+                if(gp.alien[i].score < 0) {
+                    gp.alien[i] = null;
+                }
+            }
+        }
+    }
+
     //Display corresponding image based on key press
     public void draw(Graphics2D g2) {
         BufferedImage image = null;

@@ -2,6 +2,7 @@ package Entity;
 
 import Game.GamePanel;
 
+import java.awt.*;
 import java.util.Random;
 
 public class Alien extends Entity {
@@ -9,8 +10,8 @@ public class Alien extends Entity {
 
     public Alien(GamePanel gp) {
         super(gp);
-        score = 400;
-        speed = 1;
+        score = 1;
+        speed = 2;
 
         hitBox.x = 3;
         hitBox.y = 18;
@@ -47,6 +48,7 @@ public class Alien extends Entity {
 
     public void update() {
         super.update();
+
         boolean collidedPlayer = gp.collisionChecker.checkPlayer(this);
         if (collidedPlayer){
             if (!gp.player.invincible) {
@@ -60,6 +62,14 @@ public class Alien extends Entity {
 
         if(!onPath && tileDistance < 5){
             onPath = true;
+        }
+
+        if (invincible){ // Invincibility for alien
+            invincibleCounter++;
+            if(invincibleCounter > 40) { // Removes invincibility after one second
+                invincible = false;
+                invincibleCounter = 0;
+            }
         }
     }
 
@@ -98,5 +108,14 @@ public class Alien extends Entity {
                 actionLockCounter = 0;
             }
         }
+    }
+
+    public void draw(Graphics2D g2){
+        super.draw(g2);
+        if(invincible) { // Makes alien transparent when they are invincible
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        }
+
+        g2.setComposite((AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)));
     }
 }
