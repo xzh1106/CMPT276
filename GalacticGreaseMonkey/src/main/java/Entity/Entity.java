@@ -23,6 +23,7 @@ public class Entity {
     public int invincibleCounter;
     public boolean onPath = false;
     public int timeSinceCreated = 0;
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
 
 
     // Entities
