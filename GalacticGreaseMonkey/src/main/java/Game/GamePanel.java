@@ -44,13 +44,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Entities
     public Player player = new Player(this, keyH);
-    public Entity spaceshipPart[] = new Entity[10]; // 10 slots for object allocation
+    public Entity[] spaceshipPart = new Entity[10]; // 10 slots for object allocation
     public ArrayList<OBJ_Diamond> diamond = new ArrayList<>();
-    public Alien alien[] = new Alien[10];
-    public Entity blackhole[] = new Entity[10]; // 10 slots for object allocation
+    public Alien[] alien = new Alien[5];
+    public Entity[] blackhole = new Entity[10]; // 10 slots for object allocation
     ArrayList<Entity> entityList = new ArrayList<>();
 
-    List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<AbstractMap.SimpleEntry<Integer, Integer>>();
+    List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<>();
     public int diamondSpawnTime = 0;
 
     //Game state
@@ -81,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
         for (int i=0; i<maxScreenCol; i++) {
             for (int j=0; j<maxScreenRow; j++) {
                 if (tileManager.mapTileNum[i][j] == 1 || tileManager.mapTileNum[i][j] == 6) {
-                    AbstractMap.SimpleEntry<Integer, Integer> rockCoords = new AbstractMap.SimpleEntry<Integer, Integer>(i, j);
+                    AbstractMap.SimpleEntry<Integer, Integer> rockCoords = new AbstractMap.SimpleEntry<>(i, j);
                     listOfRockCoords.add(rockCoords);
                 }
             }
@@ -134,9 +134,9 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
 
             // Alien
-            for (int i = 0; i < alien.length; i++) {
-                if (alien[i] != null) {
-                    alien[i].update();
+            for (Alien value : alien) {
+                if (value != null) {
+                    value.update();
                 }
             }
 
@@ -155,10 +155,10 @@ public class GamePanel extends JPanel implements Runnable {
                 boolean spawnLocationValid = false;
                 int randomWorldX = 0;
                 int randomWorldY = 0;
-                while (spawnLocationValid == false) {
+                while (!spawnLocationValid) {
                     randomWorldX = ThreadLocalRandom.current().nextInt(0, 32 + 1);
                     randomWorldY = ThreadLocalRandom.current().nextInt(0, 16 + 1);
-                    AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<Integer, Integer>(randomWorldX, randomWorldY);
+                    AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<>(randomWorldX, randomWorldY);
                     if( !listOfRockCoords.contains(newCoords)) {
                         spawnLocationValid = true;
                     }
@@ -189,15 +189,15 @@ public class GamePanel extends JPanel implements Runnable {
 
         entityList.add(player);
 
-        for(int i = 0; i < spaceshipPart.length; i++){
-            if(spaceshipPart[i] != null){
-                entityList.add(spaceshipPart[i]);
+        for (Entity element : spaceshipPart) {
+            if (element != null) {
+                entityList.add(element);
             }
         }
 
-        for(int i = 0; i < diamond.size(); i++){
-            if(diamond.get(i) != null){
-                entityList.add(diamond.get(i));
+        for (OBJ_Diamond obj_diamond : diamond) {
+            if (obj_diamond != null) {
+                entityList.add(obj_diamond);
             }
         }
 
@@ -207,15 +207,15 @@ public class GamePanel extends JPanel implements Runnable {
 //            }
 //        }
 
-        for(int i = 0; i < blackhole.length; i++){
-            if(blackhole[i] != null){
-                entityList.add(blackhole[i]);
+        for (Entity item : blackhole) {
+            if (item != null) {
+                entityList.add(item);
             }
         }
 
-        for(int i = 0; i < alien.length; i++){
-            if(alien[i] != null){
-                entityList.add(alien[i]);
+        for (Alien value : alien) {
+            if (value != null) {
+                entityList.add(value);
             }
         }
 
@@ -232,8 +232,8 @@ public class GamePanel extends JPanel implements Runnable {
         });
 
         // Draw Entities
-        for(int i = 0; i < entityList.size(); i++){
-            entityList.get(i).draw(g2);
+        for (Entity entity : entityList) {
+            entity.draw(g2);
         }
         entityList.clear();
 

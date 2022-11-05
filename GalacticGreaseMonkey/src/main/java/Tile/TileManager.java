@@ -5,7 +5,6 @@ import Game.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +14,7 @@ import java.util.Objects;
 public class TileManager {
     GamePanel gp;
     public Tile [] tile;
-    public int mapTileNum[][];
+    public int[][] mapTileNum;
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -27,9 +26,9 @@ public class TileManager {
 
     public void getTileImage() {
         // Collision handling for tiles
-        setup(0,"space3",false);
+        setup(0,"space",false);
         setup(1,"spaceRock",true);
-        setup(6,"satellite",true);
+        setup(2,"satellite",true);
     }
 
     public void setup(int index, String imageName, boolean collision) {
@@ -49,6 +48,7 @@ public class TileManager {
     public void loadMap(String filePath) {
         try {
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
+            assert inputStream != null;
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             int col = 0;
             int row = 0;
@@ -57,7 +57,7 @@ public class TileManager {
                 String getLine = bufferedReader.readLine();
 
                 while (col < gp.maxScreenCol ) {
-                    String numbers[] = getLine.split(" ");
+                    String[] numbers = getLine.split(" ");
                     int num = Integer.parseInt(numbers[col]);
 
                     mapTileNum[col][row] = num;

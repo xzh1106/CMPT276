@@ -85,9 +85,11 @@ public class Player extends Entity{
             int spaceshipPartIndex = gp.collisionChecker.checkSpaceshipPart(this, true);
             pickUpSpaceshipPart(spaceshipPartIndex);
 
+            // Check diamond collision
             int diamondIndex = gp.collisionChecker.checkDiamond(this, true);
             pickUpDiamond(diamondIndex);
 
+            // Check blackhole collision
             int blackholeIndex = gp.collisionChecker.checkBlackhole(this, true);
             collideBlackhole(blackholeIndex);
 
@@ -112,7 +114,7 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
 
-            if (score < 0){
+            if (score < 0){ // Game over if score is less than 0
                 gp.currentGameState = gp.loseState;
             }
         }
@@ -120,7 +122,7 @@ public class Player extends Entity{
         // Cooldown for player getting hit
         if (invincible){
             invincibleCounter++;
-            if(invincibleCounter > 60) {
+            if(invincibleCounter > 60) { // Removes invincibility after one second
                 invincible = false;
                 invincibleCounter = 0;
             }
@@ -192,8 +194,8 @@ public class Player extends Entity{
                 break;
         }
 
-        if(invincible) {
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        if(invincible) { // Makes player transparent when they are invincible
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
         }
 
         g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
