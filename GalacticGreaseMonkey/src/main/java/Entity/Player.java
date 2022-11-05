@@ -24,7 +24,7 @@ public class Player extends Entity{
         super(gp);
         speed = 5;
         direction = "down";
-        hitBox = new Rectangle(8,14, 30, 30);
+        hitBox = new Rectangle(8,12, 30, 30);
         this.gp = gp;
         this.keyH = keyH;
         worldX = 48;
@@ -127,10 +127,10 @@ public class Player extends Entity{
             }
         }
 
-        if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 120) {
+        if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 90) {
             projectileCounter = 0;
             // Set default coordinates, direction, and user
-            projectile.set(worldX, worldY+10, direction, true, this);
+            projectile.set(worldX+6, worldY+10, direction, true, this);
 
             // Add it to the list
             gp.projectileList.add(projectile);

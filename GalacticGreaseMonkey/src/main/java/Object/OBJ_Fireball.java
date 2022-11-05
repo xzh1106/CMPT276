@@ -17,7 +17,7 @@ public class OBJ_Fireball extends Projectile {
         score = maxLife;
         attack = 1;
         alive = false;
-        hitBox = new Rectangle(8,30, 32, 18);
+        hitBox = new Rectangle(16,16, 32, 32);
         getImage();
 
     }
