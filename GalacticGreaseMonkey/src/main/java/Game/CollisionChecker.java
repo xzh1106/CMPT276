@@ -204,6 +204,41 @@ public class CollisionChecker {
         return index;
     }
 
+    public int checkWinningDoor(Entity entity, boolean player) {
+        int index = 999;
+        for (int i = 0; i < gp.closedDoor.length; i++) {
+            if (gp.closedDoor[i] != null) {
+
+                entity.hitBox.x = entity.worldX + entity.hitBox.x;
+                entity.hitBox.y = entity.worldY + entity.hitBox.y;
+
+                gp.closedDoor[i].hitBox.x = gp.closedDoor[i].worldX + gp.closedDoor[i].hitBox.x;
+                gp.closedDoor[i].hitBox.y = gp.closedDoor[i].worldY + gp.closedDoor[i].hitBox.y;
+
+                switch (entity.direction) {
+                    case "up" -> entity.hitBox.y -= entity.speed;
+                    case "down" -> entity.hitBox.y += entity.speed;
+                    case "left" -> entity.hitBox.x -= entity.speed;
+                    case "right" -> entity.hitBox.x += entity.speed;
+                }
+                if (entity.hitBox.intersects(gp.closedDoor[i].hitBox)) {
+                    if (gp.closedDoor[i].collision) {
+                        entity.collisionDetected = true;
+                    }
+                    if (player) {
+                        index = i;
+                    }
+                }
+
+                entity.hitBox.x = entity.solidAreaDefaultX;
+                entity.hitBox.y = entity.solidAreaDefaultY;
+                gp.closedDoor[i].hitBox.x = gp.closedDoor[i].solidAreaDefaultX;
+                gp.closedDoor[i].hitBox.y = gp.closedDoor[i].solidAreaDefaultY;
+            }
+        }
+        return index;
+    }
+
     // Entity collision
     public int checkEntity(Entity entity, Entity[] target) {
         int index = 999;
