@@ -5,16 +5,14 @@ import AI.Pathfinder;
 import Entity.*;
 
 import Tile.TileManager;
+import Object.GameObject;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -44,11 +42,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Entities
     public Player player = new Player(this, keyH);
-    public Entity[] spaceshipPart = new Entity[10]; // 10 slots for object allocation
+
+    public GameObject spaceshipPart[] = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<OBJ_Diamond> diamond = new ArrayList<>();
-    public Alien[] alien = new Alien[5];
-    public Entity[] blackhole = new Entity[10]; // 10 slots for object allocation
-    ArrayList<Entity> entityList = new ArrayList<>();
+    public Alien alien[] = new Alien[10];
+    public GameObject blackhole[] = new GameObject[10]; // 10 slots for object allocation
 
     List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<>();
     public int diamondSpawnTime = 0;
@@ -75,7 +73,6 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setAlien();
         aSetter.setBlackhole();
         aSetter.setDiamond();
-        //aSetter.setRocks();
         currentGameState = playingState;
 
         //find all tiles that are walls or rocks
@@ -127,8 +124,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update()
     {
-
-//        gameTime++;
         // Handle WASD movement
         if (currentGameState == playingState) {
             // Player
@@ -198,55 +193,32 @@ public class GamePanel extends JPanel implements Runnable {
         // HUD
         hud.draw(g2);
 
-        entityList.add(player);
+        // PLAYER
+        player.draw(g2);
 
-        for (Entity element : spaceshipPart) {
-            if (element != null) {
-                entityList.add(element);
+        for(int i = 0; i < spaceshipPart.length; i++){
+            if(spaceshipPart[i] != null) {
+                spaceshipPart[i].draw(g2);
             }
         }
 
-        for (OBJ_Diamond obj_diamond : diamond) {
-            if (obj_diamond != null) {
-                entityList.add(obj_diamond);
+        for(int i = 0; i < diamond.size(); i++){
+            if(diamond.get(i) != null) {
+                diamond.get(i).draw(g2);
             }
         }
 
-//        for(int i = 0; i < rocks.length; i++){
-//            if(rocks[i] != null){
-//                entityList.add(rocks[i]);
-//            }
-//        }
-
-        for (Entity item : blackhole) {
-            if (item != null) {
-                entityList.add(item);
+        for(int i = 0; i < blackhole.length; i++){
+            if(blackhole[i] != null) {
+                blackhole[i].draw(g2);
             }
         }
 
-        for (Alien value : alien) {
-            if (value != null) {
-                entityList.add(value);
+        for(int i = 0; i < alien.length; i++){
+            if(alien[i] != null) {
+                alien[i].draw(g2);
             }
         }
-
-
-
-        // Sort entities by their Y coordinate
-        entityList.sort(new Comparator<>() {
-            @Override
-            public int compare(Entity e1, Entity e2) {
-
-                int result = Integer.compare(e1.worldY, e2.worldY);
-                return 0;
-            }
-        });
-
-        // Draw Entities
-        for (Entity entity : entityList) {
-            entity.draw(g2);
-        }
-        entityList.clear();
 
         //draw UI (includes only pause screen currently)
         userInterface.draw(g2);
