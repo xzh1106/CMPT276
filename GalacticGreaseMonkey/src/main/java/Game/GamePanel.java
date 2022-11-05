@@ -81,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
         //find all tiles that are walls or rocks
         for (int i=0; i<maxScreenCol; i++) {
             for (int j=0; j<maxScreenRow; j++) {
-                if (tileManager.mapTileNum[i][j] == 1 || tileManager.mapTileNum[i][j] == 6) {
+                if (tileManager.mapTileNum[i][j] == 1 || tileManager.mapTileNum[i][j] == 2) {
                     AbstractMap.SimpleEntry<Integer, Integer> rockCoords = new AbstractMap.SimpleEntry<>(i, j);
                     listOfRockCoords.add(rockCoords);
                 }

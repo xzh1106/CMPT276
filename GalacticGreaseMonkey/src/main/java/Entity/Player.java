@@ -134,6 +134,7 @@ public class Player extends Entity{
         // If index is 999, character haven't collided with any object
         if (index != 999) {
             score += 300;
+            partsCollected++;
             gp.spaceshipPart[index] = null;
         }
     }
