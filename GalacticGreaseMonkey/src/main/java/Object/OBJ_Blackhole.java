@@ -3,7 +3,7 @@ package Object;
 import Entity.Entity;
 import Game.GamePanel;
 
-public class OBJ_Blackhole extends Entity {
+public class OBJ_Blackhole extends GameObject {
 
     public OBJ_Blackhole(GamePanel gp) {
         super(gp);
