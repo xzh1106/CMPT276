@@ -1,6 +1,5 @@
 package Object;
 
-import Entity.Entity;
 import Game.GamePanel;
 
 public class OBJ_SpaceshipPart extends GameObject {

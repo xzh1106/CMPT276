@@ -48,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Alien[] alien = new Alien[10];
     public GameObject[] blackhole = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<Entity> projectileList = new ArrayList<>();
+    public GameObject[] closedDoor = new GameObject[1]; //Open Door after obtain 2 keys
 
     List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<>();
     public int diamondSpawnTime = 0;
@@ -57,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int playingState = 1;
     public final int pausedState = 2;
     public final int loseState = 3;
+    public final int winState = 4;
     public int currentGameState;
 
     public GamePanel()
@@ -74,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setAlien();
         aSetter.setBlackhole();
         aSetter.setDiamond();
+        aSetter.setClosedDoor();
         currentGameState = playingState;
 
         //find all tiles that are walls or rocks
@@ -123,8 +126,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void update()
-    {
+    public void update() {
         // Handle WASD movement
         if (currentGameState == playingState) {
             // Player
@@ -198,6 +200,11 @@ public class GamePanel extends JPanel implements Runnable {
             if (player.score < 0){
                 currentGameState = loseState;
             }
+
+            if (player.score == 999999) {
+                currentGameState = winState;
+            }
+
         }
     }
 
@@ -223,6 +230,18 @@ public class GamePanel extends JPanel implements Runnable {
         for(int i = 0; i < spaceshipPart.length; i++){
             if(spaceshipPart[i] != null) {
                 spaceshipPart[i].draw(g2);
+            }
+        }
+
+        for (int i = 0; i < closedDoor.length; i++) {
+            if (closedDoor[i] != null) {
+                closedDoor[i].draw(g2);
+            }
+        }
+
+        for (int i = 0; i < closedDoor.length; i++) {
+            if (closedDoor[i] != null) {
+                closedDoor[i].draw(g2);
             }
         }
 
