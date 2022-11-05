@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     public TileManager tileManager = new TileManager(this);
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
     public UserInterface userInterface = new UserInterface(this);
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
@@ -43,10 +43,11 @@ public class GamePanel extends JPanel implements Runnable {
     // Entities
     public Player player = new Player(this, keyH);
 
-    public GameObject spaceshipPart[] = new GameObject[10]; // 10 slots for object allocation
+    public GameObject[] spaceshipPart = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<OBJ_Diamond> diamond = new ArrayList<>();
-    public Alien alien[] = new Alien[10];
-    public GameObject blackhole[] = new GameObject[10]; // 10 slots for object allocation
+    public Alien[] alien = new Alien[10];
+    public GameObject[] blackhole = new GameObject[10]; // 10 slots for object allocation
+    public ArrayList<Entity> projectileList = new ArrayList<>();
 
     List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<>();
     public int diamondSpawnTime = 0;
@@ -129,6 +130,18 @@ public class GamePanel extends JPanel implements Runnable {
             // Player
             player.update();
 
+            // Projectile
+            for (int i = 0; i < projectileList.size(); i++) {
+                if (projectileList.get(i) != null) {
+                    if (projectileList.get(i).alive) {
+                        projectileList.get(i).update();
+                    }
+                    if(!projectileList.get(i).alive) {
+                        projectileList.remove(i);
+                    }
+                }
+            }
+
             // Alien
             for (int i = 0; i < alien.length; i++) {
                 if (alien[i] != null) {
@@ -200,6 +213,12 @@ public class GamePanel extends JPanel implements Runnable {
 
         // PLAYER
         player.draw(g2);
+
+        for(int i = 0; i < projectileList.size(); i++){
+            if(projectileList.get(i) != null) {
+                projectileList.get(i).draw(g2);
+            }
+        }
 
         for(int i = 0; i < spaceshipPart.length; i++){
             if(spaceshipPart[i] != null) {

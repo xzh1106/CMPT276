@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class Entity {
 
-    GamePanel gp;
+    protected GamePanel gp;
 
     // Hitbox and collision
     public int worldX, worldY;
@@ -34,12 +34,15 @@ public class Entity {
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
+    public int attack = 2;
+    boolean hpBarOn = false;
+    int hpBarCounter = 0;
+    public Projectile projectile;
+
     public int speed;
     public int maxLife = 2; // for alien healthbar
     public int score = 0;
     public int type; // 0 = player, 1 = alien
-    boolean hpBarOn = false;
-    int hpBarCounter = 0;
 
     public void setAction() {}
 
@@ -104,7 +107,6 @@ public class Entity {
     // Handles objects
 
     public String name;
-    public boolean collision = false;
 
     public void draw(Graphics2D g2) {
 
@@ -148,7 +150,7 @@ public class Entity {
         // HP Bar
         if(type == 1 && hpBarOn) {
             double oneScale = (double)gp.tileSize/maxLife;
-            double hpBarValue = oneScale*score;
+            double hpBarValue = oneScale*(score+1);
 
             g2.setColor(new Color(35,35,35));
             g2.fillRect(worldX-1, worldY - 6, gp.tileSize+2, 12);

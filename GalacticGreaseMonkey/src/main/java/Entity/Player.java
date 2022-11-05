@@ -4,6 +4,8 @@ import Game.GamePanel;
 import Game.KeyHandler;
 import Game.UtilityTool;
 
+import Object.OBJ_Fireball;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -15,6 +17,7 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
     public int partsCollected = 0;
+    public int projectileCounter = 180;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -31,6 +34,7 @@ public class Player extends Entity{
 
         attackArea.width = 36;
         attackArea.height = 36;
+        projectile = new OBJ_Fireball(gp);
 
         getPlayerImage();
     }
@@ -123,6 +127,18 @@ public class Player extends Entity{
             }
         }
 
+        if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 180) {
+            projectileCounter = 0;
+            System.out.println("TRUE");
+            // Set default coordinates, direction, and user
+            projectile.set(worldX, worldY, direction, true, this);
+
+            // Add it to the list
+            gp.projectileList.add(projectile);
+
+        }
+        projectileCounter++;
+
         // Cooldown for player getting hit
         if (invincible){
             invincibleCounter++;
@@ -162,7 +178,7 @@ public class Player extends Entity{
         }
     }
 
-    public void damageMonster(int i) {
+    public void damageAlien(int i) {
         if (i != 999) {
             if(!gp.alien[i].invincible) {
                 gp.alien[i].score -= 1;
