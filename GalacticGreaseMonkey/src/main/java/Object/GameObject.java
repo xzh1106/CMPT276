@@ -14,7 +14,7 @@ public class GameObject {
     public String name;
     public boolean collision = false;
     public int worldX, worldY;
-    public Rectangle hitBox = new Rectangle(0,0, 48, 48);
+    public Rectangle hitBox = new Rectangle(0,0, 40, 40);
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
     public int timeSinceCreated = 0;

@@ -92,6 +92,13 @@ public class AssetSetter {
         gp.alien[index] = new Alien(gp); // Make a key object and save into obj array
         gp.alien[index].worldX = 30 * gp.tileSize; // Set location for obj on map
         gp.alien[index].worldY = 14 * gp.tileSize;
+        gp.alien[index].direction = "left";
+    }
+    public void newAlien2(int index) {
+        gp.alien[index] = new Alien(gp); // Make a key object and save into obj array
+        gp.alien[index].worldX = 20 * gp.tileSize; // Set location for obj on map
+        gp.alien[index].worldY = 14 * gp.tileSize;
+        gp.alien[index].direction = "left";
     }
 
 }

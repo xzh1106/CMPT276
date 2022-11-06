@@ -17,14 +17,14 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
     public int partsCollected = 0;
-    public int projectileCounter = 180;
+    public int projectileCounter = 120;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
         super(gp);
         speed = 5;
         direction = "down";
-        hitBox = new Rectangle(8,14, 30, 30);
+        hitBox = new Rectangle(8,12, 30, 30);
         this.gp = gp;
         this.keyH = keyH;
         worldX = 48;
@@ -131,7 +131,7 @@ public class Player extends Entity{
             }
         }
 
-        if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 180) {
+        if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 90) {
             projectileCounter = 0;
             // Set default coordinates, direction, and user
             projectile.set(worldX, worldY, direction, true, this);

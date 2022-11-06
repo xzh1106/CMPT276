@@ -2,13 +2,13 @@ package Entity;
 
 import Game.GamePanel;
 
+import java.awt.*;
+
 public class Projectile extends Entity{
 
     Entity user;
 
-    public Projectile(GamePanel gp) {
-        super(gp);
-    }
+    public Projectile(GamePanel gp) { super(gp); }
 
     public void set(int worldX, int worldY, String direction, boolean alive, Entity user) {
         this.worldX = worldX;
@@ -24,12 +24,19 @@ public class Projectile extends Entity{
 
         if (user == gp.player) {
             int alienIndex = gp.collisionChecker.checkEntity(this, gp.alien);
+            //gp.collisionChecker.checkTile(this);
             if (alienIndex != 999) {
                 gp.player.damageAlien(alienIndex);
                 alive = false;
             }
         }
 
+        // TODO: Fix wall collision
+//        gp.collisionChecker.checkTile(this);
+//        if (collisionDetected){
+//            alive = false;
+//            collisionDetected = false;
+//        }
         switch (direction) {
             case "up" -> worldY -= speed;
             case "down" -> worldY += speed;
