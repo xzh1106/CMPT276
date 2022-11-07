@@ -15,6 +15,14 @@ import java.awt.Dimension;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * This subclass inherits the attributes and methods from the JPanel class.
+ * Is for setting game screen.
+ * @author Ryan
+ * @author Zihao
+ * @author Jason
+ * @author Luan
+ */
 public class GamePanel extends JPanel implements Runnable {
 
     // Screen Settings
@@ -62,6 +70,10 @@ public class GamePanel extends JPanel implements Runnable {
     public final int winState = 4;
     public int currentGameState;
 
+    /**
+     * This method is constructor of GamePanel.
+     * Is used to initializing object.
+     */
     public GamePanel()
     {
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -72,6 +84,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
+    /**
+     * This method is for setting game object.
+     */
     public void setupGame() {
         aSetter.setSpaceshipPart();
         aSetter.setAlien();
@@ -93,11 +108,18 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * This method is for starting game thread.
+     */
     public void startGameThread()
     {
         gameThread = new Thread(this);
         gameThread.start();
     }
+
+    /**
+     * This method is for Running game.
+     */
     public void run()
     {
         @SuppressWarnings("IntegerDivisionInFloatingPointContext") double drawInterval = 1000000000/FPS;
@@ -129,6 +151,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * This method is for Updating game status.
+     */
     public void update() {
         // Handle WASD movement
         if (currentGameState == playingState) {

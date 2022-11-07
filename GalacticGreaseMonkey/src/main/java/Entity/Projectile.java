@@ -4,12 +4,29 @@ import Game.GamePanel;
 
 import java.awt.*;
 
+/**
+ * This subclass inherits the attributes and methods from the Entity class
+ * is for initializing player properties.
+ * @author Ryan
+ */
 public class Projectile extends Entity{
 
     Entity user;
 
+    /**
+     * This method is constructor of Projectile class.
+     * @param gp GamePanel object.
+     */
     public Projectile(GamePanel gp) { super(gp); }
 
+    /**
+     * This method is for setting properties of projectile.
+     * @param worldX x-axis of game.
+     * @param worldY y-axis of game.
+     * @param direction projectile direction.
+     * @param alive available of shooting projectile.
+     * @param user user of projectile.
+     */
     public void set(int worldX, int worldY, String direction, boolean alive, Entity user) {
         this.worldX = worldX;
         this.worldY = worldY;
@@ -20,6 +37,10 @@ public class Projectile extends Entity{
 
     }
 
+
+    /**
+     * This method is for setting projectile shooting and damage.
+     */
     public void update() {
 
         if (user == gp.player) {

@@ -4,6 +4,10 @@ import Game.GamePanel;
 
 import java.util.ArrayList;
 
+/**
+ * This class is for using AI to find the shortest path.
+ * @author Ryan
+ */
 public class Pathfinder {
 
     GamePanel gp;
@@ -14,11 +18,19 @@ public class Pathfinder {
     boolean goalReached = false;
     int step = 0;
 
+    /**
+     * This method is constructor of Pathfinder class.
+     * @param gp GamePanel object
+     */
     public Pathfinder(GamePanel gp) {
         this.gp = gp;
         instantiateNodes();
     }
 
+
+    /**
+     * This method is for instantiating nodes.
+     */
     public void instantiateNodes() {
         node = new Node[gp.maxScreenCol][gp.maxScreenRow];
 
@@ -35,6 +47,9 @@ public class Pathfinder {
         }
     }
 
+    /**
+     * This class is for reset nodes.
+     */
     public void resetNodes() {
 
         int col = 0;
@@ -61,6 +76,13 @@ public class Pathfinder {
         step = 0;
     }
 
+    /**
+     * This method is for setting nodes value.
+     * @param startCol start colum of path.
+     * @param startRow start row of path.
+     * @param goalCol goal colum of path.
+     * @param goalRow goal row of path.
+     */
     public void setNodes(int startCol, int startRow, int goalCol, int goalRow) {
         resetNodes();
 
@@ -92,6 +114,10 @@ public class Pathfinder {
         }
     }
 
+    /**
+     * This method is for calculating cost of path.
+     * @param node Node object.
+     */
     public void getCost(Node node){
 
         // G cost
@@ -108,6 +134,10 @@ public class Pathfinder {
         node.fCost = node.gCost + node.hCost;
     }
 
+    /**
+     * This class is for determining whether the path is available.
+     * @return whether available of path.
+     */
     public boolean search() {
         while (!goalReached && step < 500){
             int col = currentNode.col;
@@ -174,6 +204,10 @@ public class Pathfinder {
         return goalReached;
     }
 
+    /**
+     * This method is for adding node to list.
+     * @param node Node object
+     */
     public void openNode (Node node){
         if (!node.open && !node.checked && !node.solid){
             node.open = true;
@@ -182,6 +216,9 @@ public class Pathfinder {
         }
     }
 
+    /**
+     * This method is for Tracking path of AI.
+     */
     public void trackThePath() {
         Node current = goalNode;
 

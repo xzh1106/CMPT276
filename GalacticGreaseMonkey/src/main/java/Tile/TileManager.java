@@ -11,11 +11,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
+/**
+ * This class is for managing tile of game.
+ * @author Jason
+ * @author Ryan
+ */
 public class TileManager {
     GamePanel gp;
     public Tile [] tile;
     public int[][] mapTileNum;
 
+    /**
+     * This method is constructor of TileManager class.
+     * @param gp GamePanel object.
+     */
     public TileManager(GamePanel gp) {
         this.gp = gp;
         tile = new Tile[10];
@@ -24,6 +33,9 @@ public class TileManager {
         loadMap("maps/map1.txt");
     }
 
+    /**
+     * This method is for retrieving image of Tile.
+     */
     public void getTileImage() {
         // Collision handling for tiles
         setup(0,"space",false);
@@ -32,6 +44,12 @@ public class TileManager {
         setup(3,"space2",false);
     }
 
+    /**
+     * This method is for add tile to array.
+     * @param index array position.
+     * @param imageName path of tile.
+     * @param collision whether collided.
+     */
     public void setup(int index, String imageName, boolean collision) {
         UtilityTool uTOol = new UtilityTool();
 
@@ -46,6 +64,10 @@ public class TileManager {
         }
     }
 
+    /**
+     * This class is for setting map of game.
+     * @param filePath tile path.
+     */
     public void loadMap(String filePath) {
         try {
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
@@ -75,6 +97,10 @@ public class TileManager {
         }
     }
 
+    /**
+     * This method is for drawing map of game.
+     * @param g2 Graphics2D object.
+     */
     public void draw(Graphics2D g2) {
         int worldCol = 0;
         int worldRow = 0;

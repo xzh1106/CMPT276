@@ -2,14 +2,27 @@ package Game;
 
 import Entity.Entity;
 
+/**
+ * This class is for checking Collision.
+ * @author Ryan
+ * @author Jason
+ */
 public class CollisionChecker {
 
     GamePanel gp;
 
+    /**
+     * This method is constructor of CollisionChecker class.
+     * @param gp GamePanel object.
+     */
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
     }
 
+    /**
+     * This method is for checking player collided with tile.
+     * @param e Entity object.
+     */
     public void checkTile(Entity e) {
         //get top left coords of entity hitbox
         int leftX = e.worldX + e.hitBox.x;
@@ -90,6 +103,12 @@ public class CollisionChecker {
         }
     }
 
+    /**
+     * This method is for checking player collided with Spaceship.
+     * @param entity Entity object.
+     * @param player Whether players collide with Spaceship.
+     * @return If index is 999, character haven't collided with any object.
+     */
     public int checkSpaceshipPart(Entity entity, boolean player) {
         int index = 999;
 
@@ -128,6 +147,12 @@ public class CollisionChecker {
         return index;
     }
 
+    /**
+     * This method is for checking player collided with Diamond.
+     * @param entity Entity object.
+     * @param player Whether players collide with Diamond.
+     * @return If index is 999, character haven't collided with any object.
+     */
     public int checkDiamond(Entity entity, boolean player) {
         int index = 999;
 
@@ -166,6 +191,12 @@ public class CollisionChecker {
         return index;
     }
 
+    /**
+     * This method is for checking player collided with Blackhole.
+     * @param entity Entity object.
+     * @param player Whether players collide with Blackhole.
+     * @return If index is 999, character haven't collided with any object.
+     */
     public int checkBlackhole(Entity entity, boolean player) {
         int index = 999;
 
@@ -204,6 +235,12 @@ public class CollisionChecker {
         return index;
     }
 
+    /**
+     * This method is for checking player collided with door.
+     * @param entity Entity object.
+     * @param player Whether players collide with door.
+     * @return If index is 999, character haven't collided with any object.
+     */
     public int checkWinningDoor(Entity entity, boolean player) {
         int index = 999;
         for (int i = 0; i < gp.openedDoor.length; i++) {
@@ -239,6 +276,12 @@ public class CollisionChecker {
         return index;
     }
 
+    /**
+     * This method is for Entity collision.
+     * @param entity Entity object.
+     * @param target Entity array.
+     * @return If index is 999, character haven't collided with any object.
+     */
     // Entity collision
     public int checkEntity(Entity entity, Entity[] target) {
         int index = 999;
@@ -275,6 +318,11 @@ public class CollisionChecker {
         return index;
     }
 
+    /**
+     * This method is for checking Player collision.
+     * @param entity Entity object.
+     * @return Whether to collide.
+     */
     public boolean checkPlayer(Entity entity) {
         boolean collidedPlayer = false;
         // Get entity's solid area position

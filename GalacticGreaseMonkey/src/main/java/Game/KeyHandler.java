@@ -3,10 +3,19 @@ package Game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * This class is for setting game keys.
+ * @author Jason
+ * @author Ryan
+ */
 public class KeyHandler implements KeyListener {
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, spacePressed;
 
+    /**
+     * This method is constructor of KeyHandler class.
+     * @param gp GamePanel object
+     */
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }

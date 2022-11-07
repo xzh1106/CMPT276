@@ -5,8 +5,17 @@ import Game.GamePanel;
 
 import java.awt.*;
 
+/**
+ * This subclass inherits the attributes and methods from the GameObject class.
+ * Is for setting Fireball properties.
+ * @author Ryan
+ */
 public class OBJ_Fireball extends Projectile {
 
+    /**
+     * This method is constructor of Fireball class.
+     * @param gp GamePanel object.
+     */
     public OBJ_Fireball(GamePanel gp) {
         super(gp);
         this.gp = gp;
@@ -22,6 +31,9 @@ public class OBJ_Fireball extends Projectile {
 
     }
 
+    /**
+     * This method is for retrieving image of projectile.
+     */
     public void getImage() {
         up1 = setup("/projectile/fireball_up_1");
         up2 = setup("/projectile/fireball_up_2");

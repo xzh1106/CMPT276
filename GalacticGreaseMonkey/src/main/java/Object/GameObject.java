@@ -9,6 +9,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * This class is for setting object of game.
+ * @author Jason
+ */
 public class GameObject {
     GamePanel gp;
     public String name;
@@ -21,6 +25,10 @@ public class GameObject {
     public BufferedImage down1;
     public String direction = "down";
 
+    /**
+     * This method is constructor of GameObject class.
+     * @param gp GamePanel object.
+     */
     public GameObject (GamePanel gp) {
         this.gp = gp;
     }
@@ -38,6 +46,10 @@ public class GameObject {
         return image;
     }
 
+    /**
+     * This method is for drawing image.
+     * @param g2 Graphics2D object.
+     */
     public void draw(Graphics2D g2) {
 
         BufferedImage image = down1;

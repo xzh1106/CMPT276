@@ -9,6 +9,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * This Class is for interacts with the game and responds to player input or other entities
+ * @author Ryan
+ */
 public class Entity {
 
     protected GamePanel gp;
@@ -48,6 +52,9 @@ public class Entity {
 
     public void damageReaction() {}
 
+    /**
+     * This method is for checking collision.
+     */
     public void checkCollision(){
         collisionDetected = false;
         gp.collisionChecker.checkTile(this);
@@ -70,6 +77,9 @@ public class Entity {
         }
     }
 
+    /**
+     * This method is for updating action and collision.
+     */
     public void update() {
         setAction();
 
@@ -87,6 +97,11 @@ public class Entity {
         }
     }
 
+    /**
+     * This method is for setting image.
+     * @param imagePath path of image.
+     * @return image
+     */
     public BufferedImage setup(String imagePath){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
@@ -100,6 +115,10 @@ public class Entity {
         return image;
     }
 
+    /**
+     * This method is Constructor of Entity class.
+     * @param gp GamePanel object.
+     */
     public Entity(GamePanel gp) {
         this.gp = gp;
     }
@@ -113,6 +132,12 @@ public class Entity {
 
     public String name;
 
+    /**
+     * This method is for displaying corresponding image based on key press.
+     * Makes player transparent when they are invincible.
+     * HP Bar.
+     * @param g2 Graphics2D object.
+     */
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;
@@ -186,6 +211,10 @@ public class Entity {
         changeAlpha(g2,1f);
     }
 
+    /**
+     * This method is for setting death animation.
+     * @param g2 Graphics2D object.
+     */
     public void dyingAnimation(Graphics2D g2) {
         dyingCounter++;
 
@@ -203,10 +232,20 @@ public class Entity {
         }
     }
 
+    /**
+     * This method is for changing the amount of transparency in an image.
+     * @param g2 Graphics2D object.
+     * @param alphaValue specifies the amount of transparency in an image.
+     */
     public void changeAlpha(Graphics2D g2, float alphaValue) {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 
+    /**
+     * This class is for searching path of AI
+     * @param goalCol goal colum.
+     * @param goalRow goal row.
+     */
     public void searchPath(int goalCol, int goalRow){
         int startCol = (worldX + hitBox.x)/gp.tileSize;
         int startRow = (worldY + hitBox.y)/gp.tileSize;

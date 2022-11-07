@@ -12,6 +12,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * This subclass inherits the attributes and methods from the Entity class
+ * is for initializing player properties.
+ * @author Ryan
+ * @author Jason
+ */
 public class Player extends Entity{
 
     GamePanel gp;
@@ -19,6 +25,11 @@ public class Player extends Entity{
     public int partsCollected = 0;
     public int projectileCounter = 120;
 
+    /**
+     * This method is constructor of Player class.
+     * @param gp GamePanel object.
+     * @param keyH KeyHandler object.
+     */
     public Player(GamePanel gp, KeyHandler keyH) {
 
         super(gp);
@@ -39,7 +50,9 @@ public class Player extends Entity{
         getPlayerImage();
     }
 
-    //retrieve sprite images
+    /**
+     * This method is for retrieving player image that can then be painted on the screen.
+     */
     public void getPlayerImage() {
         up1 = setup("monkeyUp1");
         up2 = setup("monkeyUp2");
@@ -64,7 +77,10 @@ public class Player extends Entity{
         }
         return image;
     }
-    //update player position on key press and animation every 10ms
+
+    /**
+     * This method is for updating player position on key press and animation every 10ms.
+     */
     public void update() {
         // Handle WASD movement
 
@@ -152,6 +168,10 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * This method is for collecting Spaceship.
+     * @param index If index is 999, character haven't collided with any object.
+     */
     public void pickUpSpaceshipPart(int index) {
 
         // If index is 999, character haven't collided with any object
@@ -165,6 +185,10 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * This method is for collecting Diamond.
+     * @param index If index is 999, character haven't collided with any object.
+     */
     public void pickUpDiamond(int index) {
 
         // If index is 999, character haven't collided with any object
@@ -174,6 +198,10 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * This method is for updating scores when player collided with Blackhole.
+     * @param index If index is 999, character haven't collided with any object.
+     */
     public void collideBlackhole(int index) {
         if (index != 999) {
             if (!invincible){
@@ -184,6 +212,10 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * This method is for setting damage, when player collided with OpenedDoor.
+     * @param index If index is 999, character haven't collided with any object.
+     */
     public void collideOpenedDoor(int index) {
         if (index != 999) {
             if (partsCollected == 2) {
@@ -192,6 +224,10 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * This method is for setting damage, when player collided with Alien.
+     * @param i If i is 999, character haven't collided with any object.
+     */
     public void damageAlien(int i) {
         if (i != 999) {
             if(!gp.alien[i].invincible) {

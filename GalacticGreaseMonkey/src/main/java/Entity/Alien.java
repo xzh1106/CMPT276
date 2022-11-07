@@ -5,9 +5,18 @@ import Game.GamePanel;
 import java.awt.*;
 import java.util.Random;
 
+/**
+ * This subclass inherits the attributes and methods from the Entity class
+ * is for implementing Aliens who tend to attack player.
+ * @author Ryan
+ */
 public class Alien extends Entity {
     boolean aggressive = false;
 
+    /**
+     * This method is constructor of Alien class.
+     * @param gp GamePanel object
+     */
     public Alien(GamePanel gp) {
         super(gp);
         score = 1;
@@ -24,6 +33,9 @@ public class Alien extends Entity {
 
     }
 
+    /**
+     * This method is for retrieving Alien image that can then be painted on the screen.
+     */
     public void getImage() {
         if (!onPath) {
             up1 = setup("/monster/greenslime_down_1");
@@ -46,6 +58,9 @@ public class Alien extends Entity {
         }
     }
 
+    /**
+     *This method is for updating Aliens.
+     */
     public void update() {
         super.update();
 
@@ -73,6 +88,9 @@ public class Alien extends Entity {
         }
     }
 
+    /**
+     * This method is for setting action of Aliens.
+     */
     public void setAction() {
 
         if (onPath) {
@@ -109,6 +127,9 @@ public class Alien extends Entity {
         }
     }
 
+    /**
+     * This method is for setting damage reaction.
+     */
     public void damageReaction() {
         actionLockCounter = 0;
         direction = gp.player.direction;

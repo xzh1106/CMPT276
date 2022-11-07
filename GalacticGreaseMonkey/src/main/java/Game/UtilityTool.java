@@ -3,6 +3,10 @@ package Game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * This class is for setting Image scale of game.
+ * @author Ryan
+ */
 public class UtilityTool {
     public BufferedImage scaleImage(BufferedImage original, int width, int height){
 

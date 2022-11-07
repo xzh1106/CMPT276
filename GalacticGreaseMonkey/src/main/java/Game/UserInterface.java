@@ -2,12 +2,20 @@ package Game;
 
 import java.awt.*;
 
+/**
+ * This class is for setting UserInterface.
+ * @author Jason
+ * @author Ryan
+ */
 public class UserInterface {
     GamePanel gp;
     Graphics2D g2;
     Font arial_40_Plain, arial_80_Bold;
 
-    //setting fonts
+    /**
+     * This method is constructor of UserInterface class.
+     * @param gp GamePanel object.
+     */
     public UserInterface(GamePanel gp) {
         this.gp = gp;
 
@@ -16,6 +24,10 @@ public class UserInterface {
         arial_80_Bold = new Font("Times New Roman", Font.BOLD, 80);
     }
 
+    /**
+     * This method is for setting properties of UserInterface.
+     * @param g2 GamePanel object.
+     */
     public void draw(Graphics2D g2) {
         this.g2 = g2;
         g2.setFont(arial_40_Plain);
@@ -35,6 +47,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * This method is for setting pause in game.
+     */
     public void showPauseScreen() {
         String message = "PAUSED";
         //find centre of the message
@@ -51,6 +66,9 @@ public class UserInterface {
         g2.drawString(message, x, y);
     }
 
+    /**
+     * This method is for Show player defeat in game.
+     */
     public void showLostScreen() {
         String message = "GAME OVER";
         //find centre of the message
@@ -67,6 +85,9 @@ public class UserInterface {
         g2.drawString(message, x, y);
     }
 
+    /**
+     * This method is for show player victory  in game.
+     */
     public void showWinScreen() {
         String message = "VICTORY";
         //Find centre of the message
