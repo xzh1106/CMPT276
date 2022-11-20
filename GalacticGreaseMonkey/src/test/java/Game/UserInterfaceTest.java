@@ -15,7 +15,7 @@ class UserInterfaceTest {
     Player player;
 
     @BeforeEach
-    public void setUpGamePanel() {
+    public void setUpUserInterface() {
         gp = new GamePanel();
         gp.setupGame();
 
@@ -50,7 +50,6 @@ class UserInterfaceTest {
         keyHandler.upPressed = true;
         player.update();
 
-        // 3 indicates losing state
         assertEquals(1, gp.currentGameState);
     }
 
@@ -69,7 +68,6 @@ class UserInterfaceTest {
         player.partsCollected = 1;
         player.collideOpenedDoor(1);
 
-        // 4 indicates win state
         assertEquals(1, gp.currentGameState);
     }
 }
