@@ -55,7 +55,7 @@ class KeyHandlerTest {
         keyHandler.keyPressed(key);
         gp.update();
 
-        //players position after 1 frame should be its old position plus the players move speed
+        //players position should remain the same after key press
         int playerYPosAfterKeyPress = player.worldY;
 
         //position should stay the same since game is not in play state

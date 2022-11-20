@@ -45,7 +45,7 @@ class UserInterfaceTest {
     }
     @Test
     void continueInPlayStateWhenPlayerScoreIsNotNegative() {
-        //player moves while score is less than 0 makes them lose
+        //player moves while score is not less than 0 should let player continue playing
         player.score = 0;
         keyHandler.upPressed = true;
         player.update();
@@ -64,7 +64,7 @@ class UserInterfaceTest {
     }
     @Test
     void continueInPlayStateWhenPlayerDoesntHaveAllPartsAndCollidesWithDoor() {
-        //player has all spaceship parts and collides with door
+        //player does not have all spaceship parts and collides with door
         player.partsCollected = 1;
         player.collideOpenedDoor(1);
 
