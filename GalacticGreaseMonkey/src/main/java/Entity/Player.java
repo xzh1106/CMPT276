@@ -219,7 +219,7 @@ public class Player extends Entity{
     public void collideOpenedDoor(int index) {
         if (index != 999) {
             if (partsCollected == 2) {
-                score = 999999;
+                gp.currentGameState = gp.winState;
             }
         }
     }
