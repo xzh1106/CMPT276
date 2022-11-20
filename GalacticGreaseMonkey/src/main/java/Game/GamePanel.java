@@ -254,11 +254,6 @@ public class GamePanel extends JPanel implements Runnable {
             if (player.score < 0){
                 currentGameState = loseState;
             }
-
-            if (player.score == 999999) {
-                currentGameState = winState;
-            }
-
         }
     }
 
