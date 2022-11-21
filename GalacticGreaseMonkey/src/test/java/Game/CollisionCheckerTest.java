@@ -1,5 +1,6 @@
 package Game;
 
+import Entity.Entity;
 import Entity.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -96,4 +97,19 @@ class CollisionCheckerTest {
 
         assertEquals(0, player.score);
     }
+
+    @Test
+    void tile_collision_test(){
+        // Put player at default location
+        player.worldX = 48;
+        player.worldY = 48;
+
+        // The solid tile at up, right and left
+        switch (player.direction) {
+            case "up", "left", "right" -> assertTrue(player.collisionDetected);
+            case "down" -> assertFalse(player.collisionDetected);
+        }
+
+    }
+
 }
