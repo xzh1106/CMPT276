@@ -64,7 +64,7 @@ class CollisionCheckerTest {
     }
 
     @Test
-    void Score_and_CollectedObject_Updated_When_CollideWithSpaceShipPart() {
+    void Score_and_CollectedObject_Updated_Collide_SpaceShipPart() {
 
         // Put player at ship's part location
         player.worldX = 7 * gp.tileSize;
@@ -80,7 +80,7 @@ class CollisionCheckerTest {
     }
 
     @Test
-    void Score_and_CollectedObject_Updated_When_Not_CollideWithSpaceShipPart() {
+    void Score_and_CollectedObject_NotUpdated_NotCollide_SpaceShipPart() {
 
         // Put player at NOT ship's part location
         player.worldX = 7 * gp.tileSize;
@@ -88,14 +88,44 @@ class CollisionCheckerTest {
 
         // objectIndex is not return if player doesn't hit object
         int collidedObjectIndex = collisionChecker.checkSpaceshipPart(player, true);
-
-        // default index is 999 if not hit any object
-        assertEquals(999, collidedObjectIndex);
-
-        // player did not hit object thus score should be 0;
         player.pickUpSpaceshipPart(collidedObjectIndex);
 
-        assertEquals(0, player.score);
+
+        assertEquals(0, player.score);          // player did not hit object thus score should be 0
+        assertEquals(999, collidedObjectIndex); // default index is 999 if not hit any object
+
+    }
+
+    @Test
+    void Score_and_CollectedObject_Update_Collide_Blackhole() {
+
+        // Initial player
+        player.score = 1000;
+        player.worldX = 20 * gp.tileSize;
+        player.worldY = 5 * gp.tileSize;
+
+        //ObjectIndex is return if player hit object
+        int collideObjectIndex = collisionChecker.checkBlackhole(player, true);
+        player.collideBlackhole(collideObjectIndex);
+
+        assertEquals(700, player.score);
+        assertEquals(0, collideObjectIndex);
+    }
+
+    @Test
+    void Score_and_CollectedObject_NotUpdate_NotCollide_Blackhole() {
+
+        // Initial player
+        player.score = 1000;
+        player.worldX = 22 * gp.tileSize;
+        player.worldY = 5 * gp.tileSize;
+
+        //ObjectIndex is return if player hit object
+        int collideObjectIndex = collisionChecker.checkBlackhole(player, true);
+        player.collideBlackhole(collideObjectIndex);
+
+        assertEquals(1000, player.score);       // Not collide with blackhole, unchanged score
+        assertEquals(999, collideObjectIndex);  // Not collide with blackhole, index = 999
     }
 
     @Test

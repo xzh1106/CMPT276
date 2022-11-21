@@ -67,7 +67,7 @@ public class UserInterface {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         String message = "Alien Monkey";
 
-        int currentTopScore = -1;
+        int currentTopScore = 0;
 
         try (BufferedReader buffer = new BufferedReader(new FileReader("src/main/resources/topScore.txt"))) {
             String temp = buffer.readLine();
