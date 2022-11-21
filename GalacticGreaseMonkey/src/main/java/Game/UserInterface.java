@@ -63,18 +63,30 @@ public class UserInterface {
         g2.setColor(new Color(36,28,51));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         String message = "Alien Monkey";
+        String topScore = "Top Score: 0";
 //        int messageCentre = XCentreText(message);
 
         //determine where message should go
 //        int x = gp.screenWidth/2 - messageCentre/2;
+        //for Title
         int x = XCentreText(message);
         int y = gp.screenHeight/2 - 200;
 
-        //Message
+        //for top score
+        int x1 = XCentreText(topScore);
+        int y1 = gp.screenHeight/2 - 125;
+
+        //Title message
         g2.setColor(Color.YELLOW);
         g2.drawString(message, x+3, y+3);
         g2.setColor(Color.ORANGE);
         g2.drawString(message, x, y);
+
+        //top score message
+        g2.setColor(Color.YELLOW);
+        g2.drawString(topScore, x1+3, y1+3);
+        g2.setColor(Color.ORANGE);
+        g2.drawString(topScore, x1, y1);
 
         //Monkey image
         x = gp.screenWidth/2 - (gp.tileSize*2)/2;

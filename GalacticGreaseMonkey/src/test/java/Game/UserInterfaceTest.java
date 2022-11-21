@@ -25,9 +25,13 @@ class UserInterfaceTest {
 
     @Test
     void showPauseScreenWhenPauseIsPressed() {
-        //simulating key press
-        KeyEvent key = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_P,'P');
+        //simulating 'enter' key press to start game
+        KeyEvent key = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_ENTER,'\n');
         gp.getKeyListeners()[0].keyPressed(key);
+
+        //simulating pause key press
+        KeyEvent key2 = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_P,'P');
+        gp.getKeyListeners()[0].keyPressed(key2);
 
         // 2 indicates paused state
         assertEquals(2, gp.currentGameState);
@@ -50,7 +54,7 @@ class UserInterfaceTest {
         keyHandler.upPressed = true;
         player.update();
 
-        assertEquals(1, gp.currentGameState);
+        assertEquals(0, gp.currentGameState);
     }
 
     @Test
@@ -68,6 +72,7 @@ class UserInterfaceTest {
         player.partsCollected = 1;
         player.collideOpenedDoor(1);
 
-        assertEquals(1, gp.currentGameState);
+        //0 indicates start screen and player hasn't changed it to victory state (4)
+        assertEquals(0, gp.currentGameState);
     }
 }
