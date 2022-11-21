@@ -1,6 +1,9 @@
 package Game;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * This class is for setting UserInterface.
@@ -63,7 +66,16 @@ public class UserInterface {
         g2.setColor(new Color(36,28,51));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         String message = "Alien Monkey";
-        String topScore = "Top Score: 0";
+
+        int currentTopScore = -1;
+
+        try (BufferedReader buffer = new BufferedReader(new FileReader("src/main/resources/topScore.txt"))) {
+            String temp = buffer.readLine();
+            currentTopScore = Integer.parseInt(temp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String topScore = "Top Score: " + currentTopScore;
 //        int messageCentre = XCentreText(message);
 
         //determine where message should go

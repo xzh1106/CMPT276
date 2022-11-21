@@ -9,7 +9,10 @@ import Object.OBJ_Fireball;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Objects;
 
 /**
@@ -220,6 +223,28 @@ public class Player extends Entity{
         if (index != 999) {
             if (partsCollected == 2) {
                 gp.currentGameState = gp.winState;
+
+                int currentTopScore = -1;
+
+                try (BufferedReader buffer = new BufferedReader(new FileReader("src/main/resources/topScore.txt"))) {
+                    String temp = buffer.readLine();
+                    currentTopScore = Integer.parseInt(temp);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if (score > currentTopScore) {
+                    currentTopScore = score;
+                }
+
+                try {
+                    PrintWriter writer = new PrintWriter("src/main/resources/topScore.txt", "UTF-8");
+                    writer.println(Integer.toString(currentTopScore));
+                    writer.close();
+                }
+                catch(Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
