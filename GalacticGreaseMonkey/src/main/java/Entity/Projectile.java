@@ -37,7 +37,6 @@ public class Projectile extends Entity{
 
     }
 
-
     /**
      * This method is for setting projectile shooting and damage.
      */

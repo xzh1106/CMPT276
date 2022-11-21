@@ -42,6 +42,7 @@ class CollisionCheckerTest {
             assertEquals(playersScoreAfterDiamondCollision, playersScoreBeforeDiamondCollision + 500);
         }
     }
+
     @Test
     void doNothingIfPlayerHasntCollidedWithDiamond() {
         //placing player outside the hitbox of any diamond that exists
@@ -59,5 +60,40 @@ class CollisionCheckerTest {
             int playersScoreAfterDiamondCollision = player.score;
             assertEquals(playersScoreAfterDiamondCollision, playersScoreBeforeDiamondCollision);
         }
+    }
+
+    @Test
+    void Score_and_CollectedObject_Updated_When_CollideWithSpaceShipPart() {
+
+        // Put player at ship's part location
+        player.worldX = 7 * gp.tileSize;
+        player.worldY = 10 * gp.tileSize;
+
+        // objectIndex is returned if player hit object
+        int collidedObjectIndex = collisionChecker.checkSpaceshipPart(player, true);
+        player.pickUpSpaceshipPart(collidedObjectIndex);
+
+        // First object in ship's array, index = 0
+        assertEquals(0, collidedObjectIndex);
+        assertEquals(300, player.score);
+    }
+
+    @Test
+    void Score_and_CollectedObject_Updated_When_Not_CollideWithSpaceShipPart() {
+
+        // Put player at NOT ship's part location
+        player.worldX = 7 * gp.tileSize;
+        player.worldY = 12 * gp.tileSize;
+
+        // objectIndex is not return if player doesn't hit object
+        int collidedObjectIndex = collisionChecker.checkSpaceshipPart(player, true);
+
+        // default index is 999 if not hit any object
+        assertEquals(999, collidedObjectIndex);
+
+        // player did not hit object thus score should be 0;
+        player.pickUpSpaceshipPart(collidedObjectIndex);
+
+        assertEquals(0, player.score);
     }
 }
