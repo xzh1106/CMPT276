@@ -102,7 +102,7 @@ public class UserInterface {
 
         //Monkey image
         x = gp.screenWidth/2 - (gp.tileSize*2)/2;
-        y += gp.tileSize*2;
+        y += gp.tileSize*2 + 75;
         g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
 
         // Menu
@@ -110,7 +110,7 @@ public class UserInterface {
 
         String menu1 = "New Game";
         x = XCentreText(menu1);
-        y += gp.tileSize * 5;
+        y += gp.tileSize * 4;
         g2.drawString(menu1, x, y);
         if (commandNum == 0) {
             g2.drawString(">", x - gp.tileSize, y);
