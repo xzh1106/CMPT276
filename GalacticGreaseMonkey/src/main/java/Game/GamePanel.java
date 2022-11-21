@@ -64,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
     public int alienSpawnTime = 0;
 
     //Game state
+    public final int titleState = 0;
     public final int playingState = 1;
     public final int pausedState = 2;
     public final int loseState = 3;
@@ -95,7 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setOpenDoor(); // Open door is behind close door
         aSetter.setClosedDoor();
 
-        currentGameState = playingState;
+        currentGameState = titleState;
 
         //find all tiles that are walls or rocks
         for (int i=0; i<maxScreenCol; i++) {
@@ -261,60 +262,63 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        // TILE
-        tileManager.draw(g2);
+        // TITLE
+        if(currentGameState == titleState) {
+            userInterface.draw(g2);
+        } else {
+            // TILE
+            tileManager.draw(g2);
 
-        // HUD
-        hud.draw(g2);
+            // HUD
+            hud.draw(g2);
 
-        // PLAYER
-        player.draw(g2);
+            // PLAYER
+            player.draw(g2);
 
-        for(int i = 0; i < projectileList.size(); i++){
-            if(projectileList.get(i) != null) {
-                projectileList.get(i).draw(g2);
+            for (int i = 0; i < projectileList.size(); i++) {
+                if (projectileList.get(i) != null) {
+                    projectileList.get(i).draw(g2);
+                }
             }
-        }
 
-        for(int i = 0; i < spaceshipPart.length; i++){
-            if(spaceshipPart[i] != null) {
-                spaceshipPart[i].draw(g2);
+            for (int i = 0; i < spaceshipPart.length; i++) {
+                if (spaceshipPart[i] != null) {
+                    spaceshipPart[i].draw(g2);
+                }
             }
-        }
 
-        for (int i = 0; i < openedDoor.length; i++) {
-            if (openedDoor[i] != null) {
-                openedDoor[i].draw(g2);
+            for (int i = 0; i < openedDoor.length; i++) {
+                if (openedDoor[i] != null) {
+                    openedDoor[i].draw(g2);
+                }
             }
-        }
 
-        for (int i = 0; i < closedDoor.length; i++) {
-            if (closedDoor[i] != null) {
-                closedDoor[i].draw(g2);
+            for (int i = 0; i < closedDoor.length; i++) {
+                if (closedDoor[i] != null) {
+                    closedDoor[i].draw(g2);
+                }
             }
-        }
 
-
-
-        for(int i = 0; i < diamond.size(); i++){
-            if(diamond.get(i) != null) {
-                diamond.get(i).draw(g2);
+            for (int i = 0; i < diamond.size(); i++) {
+                if (diamond.get(i) != null) {
+                    diamond.get(i).draw(g2);
+                }
             }
-        }
 
-        for(int i = 0; i < blackhole.length; i++){
-            if(blackhole[i] != null) {
-                blackhole[i].draw(g2);
+            for (int i = 0; i < blackhole.length; i++) {
+                if (blackhole[i] != null) {
+                    blackhole[i].draw(g2);
+                }
             }
-        }
 
-        for(int i = 0; i < alien.length; i++){
-            if(alien[i] != null) {
-                alien[i].draw(g2);
+            for (int i = 0; i < alien.length; i++) {
+                if (alien[i] != null) {
+                    alien[i].draw(g2);
+                }
             }
-        }
 
-        //draw UI (includes only pause screen currently)
-        userInterface.draw(g2);
+            //draw UI (includes only pause screen currently)
+            userInterface.draw(g2);
+        }
     }
 }

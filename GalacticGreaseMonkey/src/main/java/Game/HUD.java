@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class HUD {
     GamePanel gp;
-    Font arial_40;
+    Font monospaced_40;
 
     /**
      * This method is constructor of HUD class.
@@ -18,7 +18,7 @@ public class HUD {
     public HUD(GamePanel gp){
         this.gp = gp;
 
-        arial_40 = new Font("Arial", Font.PLAIN, 40);
+        monospaced_40 = new Font("Monospaced", Font.PLAIN, 40);
     }
 
     /**
@@ -26,7 +26,7 @@ public class HUD {
      * @param g2 Graphics2D objects.
      */
     public void draw(Graphics2D g2){
-        g2.setFont(arial_40);
+        g2.setFont(monospaced_40);
 
         // Display Score
         g2.setColor(Color.BLACK);
