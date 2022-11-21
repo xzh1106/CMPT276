@@ -151,6 +151,7 @@ public class UserInterface {
      */
     public void showLostScreen() {
         String message = "GAME OVER";
+        String tryAgainMessage = "Press Enter to Play Again...";
         //find centre of the message
         int messageCentre = XCentreText(message);
 
@@ -159,11 +160,20 @@ public class UserInterface {
         int x = XCentreText(message);
         int y = gp.screenHeight/2;
 
+        int x1 = XCentreText(tryAgainMessage);
+        int y1 = gp.screenHeight/2 + 75;
+
         //draw message
         g2.setColor(Color.black);
         g2.drawString(message, x+5, y+5);
-        g2.setColor(Color.white);
+        g2.setColor(Color.red);
         g2.drawString(message, x, y);
+
+        //tryAgain message
+        g2.setColor(Color.black);
+        g2.drawString(tryAgainMessage, x1+5, y1+5);
+        g2.setColor(Color.orange);
+        g2.drawString(tryAgainMessage, x1, y1);
     }
 
     /**
@@ -171,6 +181,7 @@ public class UserInterface {
      */
     public void showWinScreen() {
         String message = "VICTORY";
+        String continueMessage = "Press Enter to Continute";
         //Find centre of the message
         int messageCentre = XCentreText(message);
 
@@ -179,11 +190,20 @@ public class UserInterface {
         int x = XCentreText(message);
         int y = gp.screenHeight/2;
 
+        int x1 = XCentreText(continueMessage);
+        int y1 = gp.screenHeight/2 + 75;
+
         //draw message
         g2.setColor(Color.red);
         g2.drawString(message, x+5, y+5);
         g2.setColor(Color.orange);
         g2.drawString(message, x, y);
+
+        //continute message
+        g2.setColor(Color.black);
+        g2.drawString(continueMessage, x1+5, y1+5);
+        g2.setColor(Color.orange);
+        g2.drawString(continueMessage, x1, y1);
     }
 
     private int XCentreText(String text) {

@@ -96,6 +96,9 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setOpenDoor(); // Open door is behind close door
         aSetter.setClosedDoor();
 
+        //starting position and direction
+        player.playerReset();
+
         currentGameState = titleState;
 
         //find all tiles that are walls or rocks

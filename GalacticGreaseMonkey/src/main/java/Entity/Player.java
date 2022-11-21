@@ -267,6 +267,14 @@ public class Player extends Entity{
         }
     }
 
+    public void playerReset() {
+        worldX = 48;
+        worldY = 48;
+        direction = "down";
+        partsCollected = 0;
+        score = 0;
+    }
+
     //Display corresponding image based on key press
     public void draw(Graphics2D g2) {
         BufferedImage image = null;

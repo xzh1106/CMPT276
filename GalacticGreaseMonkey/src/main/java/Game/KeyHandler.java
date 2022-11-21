@@ -43,6 +43,14 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+
+        //retry when in lost state
+        if(gp.currentGameState == gp.loseState || gp.currentGameState == gp.winState) {
+            if (code == KeyEvent.VK_ENTER) {
+                gp.setupGame();
+            }
+        }
+
         if(code == KeyEvent.VK_W) {
             upPressed = true;
         }
