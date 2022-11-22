@@ -24,6 +24,7 @@ class GamePanelTest {
     void spawnDiamondIfFrameIsMultipleOf100() {
         int sizeOfDiamondArrayBefore100Frames = gp.diamond.size();
         gp.diamondSpawnTime = 99;   //starting on 99th frame
+        gp.currentGameState = 1;
         gp.update(); //should add 1 diamond item to diamond array because update() invokes 100th frame
 
         assertEquals(gp.diamond.size(), sizeOfDiamondArrayBefore100Frames+1);   //size of diamond array should be 1 larger than before
