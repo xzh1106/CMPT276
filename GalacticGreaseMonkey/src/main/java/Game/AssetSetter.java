@@ -31,7 +31,7 @@ public class AssetSetter {
 
         gp.spaceshipPart[1] = new OBJ_SpaceshipPart(gp); // Make a key object and save into obj array
         gp.spaceshipPart[1].worldX = 18 * gp.tileSize; // Set location for obj on map
-        gp.spaceshipPart[1].worldY = 1 * gp.tileSize;
+        gp.spaceshipPart[1].worldY = gp.tileSize;
 
 
     }
@@ -111,7 +111,7 @@ public class AssetSetter {
 
         gp.alien[3] = new Alien(gp);
         gp.alien[3].worldX = 21 * gp.tileSize;
-        gp.alien[3].worldY = 1 * gp.tileSize;
+        gp.alien[3].worldY = gp.tileSize;
     }
 
     /**

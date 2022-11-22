@@ -2,7 +2,7 @@ package Entity;
 
 import Game.GamePanel;
 
-import java.awt.*;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -133,16 +133,16 @@ public class Alien extends Entity {
     public void damageReaction() {
         actionLockCounter = 0;
         direction = gp.player.direction;
-        if (direction == "up"){
+        if (Objects.equals(direction, "up")){
             worldY -= 5;
         }
-        else if (direction == "down"){
+        else if (Objects.equals(direction, "down")){
             worldY += 5;
         }
-        else if (direction == "left"){
+        else if (Objects.equals(direction, "left")){
             worldX -= 5;
         }
-        else if (direction == "right"){
+        else if (Objects.equals(direction, "right")){
             worldX += 5;
         }
     }

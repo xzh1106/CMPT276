@@ -1,6 +1,5 @@
 package Object;
 
-import Entity.Entity;
 import Game.GamePanel;
 
 /**

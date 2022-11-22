@@ -2,7 +2,6 @@ package Entity;
 
 import Game.GamePanel;
 
-import java.awt.*;
 
 /**
  * This subclass inherits the attributes and methods from the Entity class
