@@ -1,7 +1,7 @@
 package Game;
 
-import Entity.Entity;
 import Entity.Player;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -126,6 +126,18 @@ class CollisionCheckerTest {
 
         assertEquals(1000, player.score);       // Not collide with blackhole, unchanged score
         assertEquals(999, collideObjectIndex);  // Not collide with blackhole, index = 999
+    }
+
+    @Test
+    void WinningStage_Collided_OpenedDoor() {
+
+        // Initital condition
+        player.pickUpSpaceshipPart(0);
+        player.pickUpSpaceshipPart(1);
+
+        player.collideOpenedDoor(0);
+
+        assertEquals(4, gp.currentGameState);
     }
 
     @Test
