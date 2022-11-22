@@ -58,8 +58,11 @@ public class Entity {
     public void checkCollision(){
         collisionDetected = false;
         gp.collisionChecker.checkTile(this);
-        gp.collisionChecker.checkSpaceshipPart(this, false);
-        gp.collisionChecker.checkEntity(this, gp.alien);
+        if (type == 0){
+            gp.collisionChecker.checkSpaceshipPart(this, false);
+            gp.collisionChecker.checkEntity(this, gp.alien);
+        }
+
         boolean playerCollision = gp.collisionChecker.checkPlayer(this);
         if(type == 2){
             if(!playerCollision){
