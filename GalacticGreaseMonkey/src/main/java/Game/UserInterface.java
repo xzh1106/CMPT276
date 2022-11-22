@@ -23,7 +23,7 @@ public class UserInterface {
     public UserInterface(GamePanel gp) {
         this.gp = gp;
 
-        //MacOs bug when "Times" font not installed (first pause message is slightly delayed)
+        //macOS bug when "Times" font not installed (first pause message is slightly delayed)
         monospaced_40_Plain = new Font("Monospaced", Font.PLAIN, 60);
         arial_80_Bold = new Font("Times New Roman", Font.BOLD, 80);
     }
@@ -69,7 +69,7 @@ public class UserInterface {
 
         int currentTopScore = 0;
 
-        try (BufferedReader buffer = new BufferedReader(new FileReader("src/main/resources/topScore.txt"))) {
+        try (BufferedReader buffer = new BufferedReader(new FileReader("topScore.txt"))) {
             String temp = buffer.readLine();
             currentTopScore = Integer.parseInt(temp);
         } catch (IOException e) {
@@ -131,11 +131,8 @@ public class UserInterface {
      */
     public void showPauseScreen() {
         String message = "PAUSED";
-        //find centre of the message
-        int messageCentre = XCentreText(message);
 
         //determine where message should go
-//        int x = gp.screenWidth/2 - messageCentre/2;
         int x = XCentreText(message);
         int y = gp.screenHeight/2;
 
@@ -153,10 +150,8 @@ public class UserInterface {
         String message = "GAME OVER";
         String tryAgainMessage = "Press Enter to Play Again...";
         //find centre of the message
-        int messageCentre = XCentreText(message);
 
         //determine where message should go
-//        int x = gp.screenWidth/2 - messageCentre/2;
         int x = XCentreText(message);
         int y = gp.screenHeight/2;
 
@@ -183,10 +178,8 @@ public class UserInterface {
         String message = "VICTORY";
         String continueMessage = "Press Enter to Continute";
         //Find centre of the message
-        int messageCentre = XCentreText(message);
 
         //Where message should go
-//        int x = gp.screenWidth/2 - messageCentre/2;
         int x = XCentreText(message);
         int y = gp.screenHeight/2;
 

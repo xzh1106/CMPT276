@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
@@ -100,7 +101,7 @@ public class Player extends Entity{
                 direction = "left";
             }
 
-            else if(keyH.rightPressed) {
+            else {
                 direction = "right";
             }
 
@@ -226,7 +227,7 @@ public class Player extends Entity{
 
                 int currentTopScore = -1;
 
-                try (BufferedReader buffer = new BufferedReader(new FileReader("src/main/resources/topScore.txt"))) {
+                try (BufferedReader buffer = new BufferedReader(new FileReader("topScore.txt"))) {
                     String temp = buffer.readLine();
                     currentTopScore = Integer.parseInt(temp);
                 } catch (IOException e) {
@@ -238,8 +239,8 @@ public class Player extends Entity{
                 }
 
                 try {
-                    PrintWriter writer = new PrintWriter("src/main/resources/topScore.txt", "UTF-8");
-                    writer.println(Integer.toString(currentTopScore));
+                    PrintWriter writer = new PrintWriter("topScore.txt", StandardCharsets.UTF_8);
+                    writer.println(currentTopScore);
                     writer.close();
                 }
                 catch(Exception e) {
@@ -251,7 +252,7 @@ public class Player extends Entity{
 
     /**
      * This method is for setting damage, when player collided with Alien.
-     * @param i If i is 999, character haven't collided with any object.
+     * @param i If index is 999, character haven't collided with any object.
      */
     public void damageAlien(int i) {
         if (i != 999) {
