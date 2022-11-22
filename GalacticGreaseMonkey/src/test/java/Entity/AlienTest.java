@@ -30,7 +30,7 @@ public class AlienTest {
         alien.worldY = 14 * gp.tileSize;
 
         alien.update();
-        assertFalse(alien.aggressive);
+        assertFalse(alien.onPath);
     }
 
     @Test
@@ -43,6 +43,52 @@ public class AlienTest {
         alien.worldY = 48 + 2 * gp.tileSize;
 
         alien.update();
-        assertTrue(alien.aggressive);
+        assertTrue(alien.onPath);
+    }
+
+    @Test
+    void actionLockOnTest() {
+        Alien alien = new Alien(gp);
+        alien.actionLockCounter = 0;
+        String initialDirection = alien.direction;
+
+        alien.setAction();
+        assertEquals(initialDirection, alien.direction); // Shouldn't change due to action lock
+    }
+
+    @Test
+    void actionLockOff() {
+        Alien alien = new Alien(gp);
+        alien.actionLockCounter = 120;
+
+        alien.setAction();
+        assertEquals(0, alien.actionLockCounter); // Counter should reset to 0 after switching direction
+    }
+
+    @Test
+    void alienInvincibility(){
+        gp.alien[0] = new Alien(gp);
+
+        // Initial damage makes alien invincible
+        gp.player.damageAlien(0);
+        gp.alien[0].update();
+        assertTrue(gp.alien[0].invincible);
+
+        // After counter surpasses 40, invincibility should turn off
+        gp.alien[0].invincibleCounter = 41;
+        gp.alien[0].update();
+        assertFalse(gp.alien[0].invincible);
+    }
+
+    @Test
+    void alienTakesDamage(){
+        gp.alien[0] = new Alien(gp);
+
+        int initialAlienScore = gp.alien[0].score;
+
+        // Damaging alien should reduce score by 1
+        gp.player.damageAlien(0);
+        gp.alien[0].update();
+        assertEquals(initialAlienScore-1, gp.alien[0].score);
     }
 }
