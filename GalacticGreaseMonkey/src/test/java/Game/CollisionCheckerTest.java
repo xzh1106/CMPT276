@@ -1,9 +1,13 @@
 package Game;
 
+import Entity.Alien;
 import Entity.Player;
-import org.junit.jupiter.api.Assertions;
+import Object.OBJ_Blackhole;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -154,4 +158,62 @@ class CollisionCheckerTest {
 
     }
 
+    @Test
+    void alienCollisionWithPlayer(){
+        // Put player at default location
+        player.worldX = 48;
+        player.worldY = 48;
+
+        Alien alien = new Alien(gp);
+        alien.worldX = 48;
+        alien.worldY = 48 + gp.tileSize;
+
+        switch (alien.direction) {
+            case "up" -> assertTrue(alien.collisionDetected);
+            case "down" -> assertFalse(alien.collisionDetected);
+        }
+    }
+
+    @Test
+    void alienCollisionWithAlien(){
+        Alien a1 = new Alien(gp);
+        a1.worldX = 48;
+        a1.worldY = 48 + gp.tileSize;
+        Alien a2 = new Alien(gp);
+        a2.worldX = 48;
+        a2.worldY = 48 + 2 * gp.tileSize;
+        switch (a1.direction) {
+            case "down", "up" -> assertFalse(a1.collisionDetected); // If the alien 1 walks down, shouldn't detect collision from alien 2
+            case "left", "right" -> assertTrue(a1.collisionDetected); // Should be true due to tiles
+        }
+    }
+
+    @Test
+    void alienCollisionWithTile(){
+        Alien alien = new Alien(gp);
+        alien.worldX = 48;
+        alien.worldY = 48 + gp.tileSize;
+
+        switch (alien.direction) {
+            case "left", "right" -> assertTrue(alien.collisionDetected); // Collision should be true due to solid tiles
+            case "down", "up" -> assertFalse(alien.collisionDetected); // Collision should be false due to walkable tiles
+        }
+    }
+
+    @Test
+    void alienCollisionWithBlackhole(){
+        Alien alien = new Alien(gp);
+        alien.worldX = 48;
+        alien.worldY = 48 + gp.tileSize;
+
+        OBJ_Blackhole blackhole = new OBJ_Blackhole(gp);
+        blackhole.worldX = 48;
+        blackhole.worldY = 48;
+
+        int initialScore = alien.score;
+
+        if (Objects.equals(alien.direction, "up")) { // Score shouldn't be affected by blackhole
+            assertEquals(initialScore, alien.score);
+        }
+    }
 }
