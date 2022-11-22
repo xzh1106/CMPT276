@@ -21,7 +21,22 @@ public class AlienTest {
     }
 
     @Test
-    void playerOutOfRange(){
+    public void alienConstructorTest() { // Test constructor
+        Alien alien = new Alien(gp);
+
+        assertEquals(1,alien.score);
+        assertEquals(2,alien.speed);
+        assertEquals(1,alien.type);
+        assertEquals(3,alien.hitBox.x);
+        assertEquals(18,alien.hitBox.y);
+        assertEquals(42,alien.hitBox.width);
+        assertEquals(30,alien.hitBox.height);
+        assertEquals(alien.hitBox.x,alien.solidAreaDefaultX);
+        assertEquals(alien.hitBox.y,alien.solidAreaDefaultY);
+    }
+
+    @Test
+    void playerOutOfRangeTest(){
         player.worldX = 48;
         player.worldY = 48;
 
@@ -34,7 +49,7 @@ public class AlienTest {
     }
 
     @Test
-    void playerInRange(){
+    void playerInRangeTest(){
         player.worldX = 48;
         player.worldY = 48;
 
@@ -57,7 +72,7 @@ public class AlienTest {
     }
 
     @Test
-    void actionLockOff() {
+    void actionLockOffTest() {
         Alien alien = new Alien(gp);
         alien.actionLockCounter = 120;
 
@@ -66,7 +81,7 @@ public class AlienTest {
     }
 
     @Test
-    void alienInvincibility(){
+    void alienInvincibilityTest(){
         gp.alien[0] = new Alien(gp);
 
         // Initial damage makes alien invincible
@@ -81,7 +96,7 @@ public class AlienTest {
     }
 
     @Test
-    void alienTakesDamage(){
+    void alienTakesDamageTest(){
         gp.alien[0] = new Alien(gp);
 
         int initialAlienScore = gp.alien[0].score;
