@@ -93,4 +93,27 @@ class KeyHandlerTest {
         assertEquals(playerYPosBeforeKeyPress, playerYPosAfterKeyPress);
         assertEquals(playerXPosBeforeKeyPress, playerXPosAfterKeyPress);
     }
+
+    @Test
+    void testForReleaseKey() {
+        //simulating down key press
+        KeyEvent downKey = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_S,'S');
+        gp.getKeyListeners()[0].keyPressed(downKey);
+
+        KeyEvent rightKey = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_D,'D');
+        gp.getKeyListeners()[0].keyPressed(rightKey);
+
+        //test downKeyPress direction
+        keyHandler.keyPressed(downKey);
+        player.update();
+        keyHandler.keyReleased(downKey);
+        player.update();
+
+        //test downKeyPress direction
+        keyHandler.keyPressed(rightKey);
+        player.update();
+
+        assertEquals(false, keyHandler.downPressed);
+        assertEquals(true, keyHandler.rightPressed); //key was not released so should remain true
+    }
 }
