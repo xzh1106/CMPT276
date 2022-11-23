@@ -26,19 +26,36 @@ class KeyHandlerTest {
     @Test
     void playerMovesDuringKeyPressIfInPlayState() {
         int playerYPosBeforeKeyPress = player.worldY;
+        int playerXPosBeforeKeyPress = player.worldX;
 
         //simulating down key press
-        KeyEvent key = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_S,'S');
-        gp.getKeyListeners()[0].keyPressed(key);
+        KeyEvent downKey = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_S,'S');
+        gp.getKeyListeners()[0].keyPressed(downKey);
 
-        keyHandler.keyPressed(key);
+        KeyEvent rightKey = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_D,'D');
+        gp.getKeyListeners()[0].keyPressed(rightKey);
+
+        //test downKeyPress direction
+        keyHandler.keyPressed(downKey);
         player.update();
+        keyHandler.keyReleased(downKey);
+        assertEquals("down", player.direction);
 
-        //players position after 1 frame should be its old position plus the players move speed
         int playerYPosAfterKeyPress = player.worldY;
 
-        //position should be "player.speed" amount of pixels more than before
+        //test rightKeyPress direction
+        keyHandler.keyPressed(rightKey);
+        player.update();
+        keyHandler.keyReleased(rightKey);
+        assertEquals("right", player.direction);
+
+        int playerXPosAfterKeyPress = player.worldX;
+
+        //players Y position after 1 frame should be its old position plus the players speed
         assertEquals(playerYPosBeforeKeyPress+player.speed, playerYPosAfterKeyPress);
+
+        //players X position after 1 frame should be its old position plus the players speed
+        assertEquals(playerXPosBeforeKeyPress+player.speed, playerXPosAfterKeyPress);
     }
     @Test
     void playerDoesNotMoveDuringKeyPressIfNotInPlayState() {
@@ -47,18 +64,33 @@ class KeyHandlerTest {
         gp.update();
 
         int playerYPosBeforeKeyPress = player.worldY;
+        int playerXPosBeforeKeyPress = player.worldX;
 
         //simulating down key press
-        KeyEvent key = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_S,'S');
-        gp.getKeyListeners()[0].keyPressed(key);
+        KeyEvent downKey = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_S,'S');
+        gp.getKeyListeners()[0].keyPressed(downKey);
 
-        keyHandler.keyPressed(key);
+        KeyEvent rightKey = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_D,'D');
+        gp.getKeyListeners()[0].keyPressed(rightKey);
+
+        keyHandler.keyPressed(downKey);
         gp.update();
+        keyHandler.keyReleased(downKey);
+        assertEquals("down", player.direction);
 
         //players position should remain the same after key press
         int playerYPosAfterKeyPress = player.worldY;
 
+        //test rightKeyPress direction
+        keyHandler.keyPressed(rightKey);
+        gp.update();
+        keyHandler.keyReleased(rightKey);
+        assertEquals("down", player.direction);
+
+        int playerXPosAfterKeyPress = player.worldX;
+
         //position should stay the same since game is not in play state
         assertEquals(playerYPosBeforeKeyPress, playerYPosAfterKeyPress);
+        assertEquals(playerXPosBeforeKeyPress, playerXPosAfterKeyPress);
     }
 }
