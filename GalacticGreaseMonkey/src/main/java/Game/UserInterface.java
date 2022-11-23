@@ -68,7 +68,7 @@ public class UserInterface {
 
         int currentTopScore = 0;
 
-        InputStream is = getClass().getClassLoader().getResourceAsStream("topScore.txt");
+        InputStream is = getClass().getClassLoader().getResourceAsStream("Score/topScore.txt");
         try (BufferedReader buffer = new BufferedReader(new InputStreamReader(is))) {
             String temp = buffer.readLine();
             currentTopScore = Integer.parseInt(temp);

@@ -229,7 +229,7 @@ public class Player extends Entity{
 
                 int currentTopScore = -1;
 
-                InputStream is = getClass().getClassLoader().getResourceAsStream("topScore.txt");
+                InputStream is = getClass().getClassLoader().getResourceAsStream("Score/topScore.txt");
                 try (BufferedReader buffer = new BufferedReader(new InputStreamReader(is))) {
                     String temp = buffer.readLine();
                     currentTopScore = Integer.parseInt(temp);
@@ -242,7 +242,7 @@ public class Player extends Entity{
                 }
 
                 try {
-                    PrintWriter writer = new PrintWriter(this.getClass().getResourceAsStream("topScore.txt").toString(), StandardCharsets.UTF_8);
+                    PrintWriter writer = new PrintWriter(Objects.requireNonNull(this.getClass().getResourceAsStream("Score/topScore.txt")).toString(), StandardCharsets.UTF_8);
                     writer.println(currentTopScore);
                     writer.close();
                 }
