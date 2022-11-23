@@ -36,7 +36,7 @@ public class Player extends Entity{
         super(gp);
         speed = 5;
         direction = "down";
-        hitBox = new Rectangle(8,12, 30, 30);
+        hitBox = new Rectangle(8,12, 26, 26);
         this.gp = gp;
         this.keyH = keyH;
         worldX = 48;
