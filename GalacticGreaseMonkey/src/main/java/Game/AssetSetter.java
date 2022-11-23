@@ -2,6 +2,9 @@ package Game;
 import Objects.*;
 import Entity.*;
 
+import java.util.AbstractMap;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * This class is for setting location of object.
  * @author Jason
@@ -58,18 +61,37 @@ public class AssetSetter {
      */
     public void setBlackhole() {
 
-        gp.blackhole[0] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
-        gp.blackhole[0].worldX = 20 * gp.tileSize; // Set location for obj on map
-        gp.blackhole[0].worldY = 5 * gp.tileSize;
+//        gp.blackhole[0] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
+//        gp.blackhole[0].worldX = 20 * gp.tileSize; // Set location for obj on map
+//        gp.blackhole[0].worldY = 5 * gp.tileSize;
+//
+//        gp.blackhole[1] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
+//        gp.blackhole[1].worldX = 8 * gp.tileSize; // Set location for obj on map
+//        gp.blackhole[1].worldY = 7 * gp.tileSize;
+//
+//        gp.blackhole[2] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
+//        gp.blackhole[2].worldX = 27 * gp.tileSize; // Set location for obj on map
+//        gp.blackhole[2].worldY = 9 * gp.tileSize;
 
-        gp.blackhole[1] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
-        gp.blackhole[1].worldX = 8 * gp.tileSize; // Set location for obj on map
-        gp.blackhole[1].worldY = 7 * gp.tileSize;
+        int numBlackholes = ThreadLocalRandom.current().nextInt(2,7);
 
-        gp.blackhole[2] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
-        gp.blackhole[2].worldX = 27 * gp.tileSize; // Set location for obj on map
-        gp.blackhole[2].worldY = 9 * gp.tileSize;
+        for (int i = 0; i < numBlackholes; i++) {
+            gp.blackhole[i] = new OBJ_Blackhole(gp);
+            boolean validLocation = false;
+            int randomX = 0;
+            int randomY = 0;
 
+            while (!validLocation) {
+                randomX = ThreadLocalRandom.current().nextInt(3, 30);
+                randomY = ThreadLocalRandom.current().nextInt(3, 15);
+                AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<>(randomX, randomY);
+                if (!gp.listOfRockCoords.contains(newCoords)) {
+                    validLocation = true;
+                }
+            }
+            gp.blackhole[i].worldX = randomX * gp.tileSize;
+            gp.blackhole[i].worldY = randomY * gp.tileSize;
+        }
     }
 
     /**
