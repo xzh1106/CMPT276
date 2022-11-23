@@ -65,7 +65,7 @@ public class UserInterface {
 //        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
         g2.setColor(new Color(36,28,51));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        String message = "Alien Monkey";
+        String message = "Galactic Grease Monkey";
 
         int currentTopScore = 0;
 
