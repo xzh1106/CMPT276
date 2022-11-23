@@ -14,7 +14,8 @@ public class UserInterface {
     GamePanel gp;
     Graphics2D g2;
     Font monospaced_40_Plain, arial_80_Bold;
-    public int commandNum = 0;
+    public int commandNumTitleScreen = 0;
+    public int commandNumPauseScreen = 0;
 
     /**
      * This method is constructor of UserInterface class.
@@ -112,7 +113,7 @@ public class UserInterface {
         x = XCentreText(menu1);
         y += gp.tileSize * 4;
         g2.drawString(menu1, x, y);
-        if (commandNum == 0) {
+        if (commandNumTitleScreen == 0) {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
@@ -120,7 +121,7 @@ public class UserInterface {
         x = XCentreText(menu2);
         y += gp.tileSize * 2;
         g2.drawString(menu2, x, y);
-        if (commandNum == 1) {
+        if (commandNumTitleScreen == 1) {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
@@ -134,13 +135,42 @@ public class UserInterface {
 
         //determine where message should go
         int x = XCentreText(message);
-        int y = gp.screenHeight/2;
+        int y = gp.screenHeight/2 - 100;
 
         //draw message
         g2.setColor(Color.gray);
         g2.drawString(message, x+5, y+5);
         g2.setColor(Color.white);
         g2.drawString(message, x, y);
+
+        String option1 = "Resume";
+        String option2 = "Restart";
+        String option3 = "Exit";
+
+        // Resume Location and UI
+        x = XCentreText(option1);
+        y += gp.titleState * 4 + 70;
+        g2.drawString(option1, x, y);
+        if (commandNumPauseScreen == 0) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+
+        // Restart Location and UI
+        x = XCentreText(option2);
+        y += 75;
+        g2.drawString(option2, x, y);
+        if (commandNumPauseScreen == 1) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+
+        // Exit Location and UI
+        x = XCentreText(option3);
+        y += 75;
+        g2.drawString(option3, x, y);
+        if (commandNumPauseScreen == 2) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+
     }
 
     /**
