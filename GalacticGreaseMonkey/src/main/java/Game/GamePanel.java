@@ -64,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
     List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<>();
     public int diamondSpawnTime = 0;
     public int alienSpawnTime = 0;
+    int alienSpawnNum = 1;
 
     //Game state
     public final int titleState = 0;
@@ -191,37 +192,30 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
-            if(alienSpawnTime > 100){
-                boolean canSpawn1 = true;
-                boolean canSpawn2 = true;
+            if(alienSpawnTime > 120){
+                boolean canSpawn = false;
                 int i = 0;
-                while(alien[i] != null && i < alien.length-1){
-                    i++;
+
+                while(i < alien.length && !canSpawn) {
+                    if (alien[i] == null){
+                        if (alienSpawnNum == 1){
+                            alienSpawnNum = 2;
+                        }
+                        else if (alienSpawnNum == 2){
+                            alienSpawnNum = 1;
+                        }
+                        canSpawn = true;
+                    }
+                    if (!canSpawn) {i++;}
                 }
 
-                for(int j = 0; j < alien.length; j++){
-                    if (alien[j] != null){
-                        if (alien[j].worldX >= 28*tileSize && alien[j].worldX <= 32*tileSize &&
-                                alien[j].worldY >= 13*tileSize && alien[j].worldY <= 16*tileSize){
-                            canSpawn1 = false;
-                        }
+                if(i != alien.length && canSpawn){
+                    if(alienSpawnNum == 1){
+                        aSetter.newAlien(i);
                     }
-                }
-                for(int j = 0; j < alien.length; j++){
-                    if (alien[j] != null){
-                        if (alien[j].worldX >= 18*tileSize && alien[j].worldX <= 22*tileSize &&
-                                alien[j].worldY >= 13*tileSize && alien[j].worldY <= 16*tileSize){
-                            canSpawn2 = false;
-                        }
+                    else {
+                        aSetter.newAlien2(i);
                     }
-                }
-
-                if(canSpawn1 && (alien[i] == null || i != alien.length-1)){
-                    aSetter.newAlien(i);
-                    alienSpawnTime = 0;
-                }
-                else if (canSpawn2 && (alien[i] == null || i != alien.length-1)) {
-                    aSetter.newAlien2(i);
                     alienSpawnTime = 0;
                 }
             }
