@@ -87,25 +87,21 @@ public class KeyHandler implements KeyListener {
         }
 
         if (gp.currentGameState == gp.pausedState) {
-            if (code == KeyEvent.VK_W) {
+            if (code == KeyEvent.VK_W && gp.userInterface.commandNumPauseScreen > 0) {
                 gp.userInterface.commandNumPauseScreen--;
             }
-            if (code == KeyEvent.VK_S) {
+            if (code == KeyEvent.VK_S && gp.userInterface.commandNumPauseScreen < 2) {
                 gp.userInterface.commandNumPauseScreen++;
             }
 
             if (code == KeyEvent.VK_ENTER) {
                 switch (gp.userInterface.commandNumPauseScreen) {
-                    case 0:
-                        gp.currentGameState = gp.playingState;
-                        break;
-                    case 1:
+                    case 0 -> gp.currentGameState = gp.playingState;
+                    case 1 -> {
                         gp.setupGame();
                         gp.currentGameState = gp.playingState;
-                        break;
-                    case 2:
-                        System.exit(0);
-                        break;
+                    }
+                    case 2 -> System.exit(0);
                 }
             }
         }
