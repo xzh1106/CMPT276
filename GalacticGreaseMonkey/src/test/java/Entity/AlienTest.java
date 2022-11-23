@@ -33,6 +33,7 @@ public class AlienTest {
         assertEquals(30,alien.hitBox.height);
         assertEquals(alien.hitBox.x,alien.solidAreaDefaultX);
         assertEquals(alien.hitBox.y,alien.solidAreaDefaultY);
+        assertFalse(alien.aggressive);
     }
 
     @Test

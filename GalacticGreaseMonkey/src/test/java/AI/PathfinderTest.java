@@ -58,4 +58,12 @@ public class PathfinderTest {
 
         assertTrue(pf.node[0][0].solid);
     }
+
+    @Test
+    void openNodeTest() {
+        Pathfinder pf = new Pathfinder(gp);
+        pf.openNode(pf.node[0][0]);
+
+        assertTrue(pf.node[0][0].open);
+    }
 }
