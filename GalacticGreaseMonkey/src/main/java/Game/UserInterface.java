@@ -2,6 +2,7 @@ package Game;
 
 import java.awt.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * This class is for setting UserInterface.
@@ -68,13 +69,26 @@ public class UserInterface {
 
         int currentTopScore = 0;
 
-        InputStream is = getClass().getClassLoader().getResourceAsStream("topScore.txt");
-        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(is))) {
+        try{
+            File file = new File("topScore.txt");
+            if(file.createNewFile()){
+                PrintWriter writer = new PrintWriter("topScore.txt", StandardCharsets.UTF_8);
+                writer.println(0);
+                writer.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            BufferedReader buffer = new BufferedReader(new FileReader("topScore.txt"));
             String temp = buffer.readLine();
             currentTopScore = Integer.parseInt(temp);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         String topScore = "Top Score: " + currentTopScore;
 //        int messageCentre = XCentreText(message);
 
