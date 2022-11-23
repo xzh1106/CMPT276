@@ -1,9 +1,7 @@
 package Game;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * This class is for setting UserInterface.
@@ -70,7 +68,8 @@ public class UserInterface {
 
         int currentTopScore = 0;
 
-        try (BufferedReader buffer = new BufferedReader(new FileReader("src/main/resources/topScore.txt"))) {
+        InputStream is = getClass().getClassLoader().getResourceAsStream("topScore.txt");
+        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(is))) {
             String temp = buffer.readLine();
             currentTopScore = Integer.parseInt(temp);
         } catch (IOException e) {
