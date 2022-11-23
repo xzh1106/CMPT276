@@ -29,15 +29,19 @@ public class KeyHandler implements KeyListener {
         if(gp.currentGameState == gp.titleState) {
             if (code == KeyEvent.VK_W && gp.userInterface.commandNum == 1) {
                 gp.userInterface.commandNum--;
+                gp.playSE(0);
             }
             if (code == KeyEvent.VK_S && gp.userInterface.commandNum == 0) {
                 gp.userInterface.commandNum++;
+                gp.playSE(0);
             }
 
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.userInterface.commandNum == 0) {
+                    gp.playSE(9);
                     gp.currentGameState = gp.playingState;
                 } else {
+                    gp.playSE(10);
                     System.exit(0);
                 }
             }

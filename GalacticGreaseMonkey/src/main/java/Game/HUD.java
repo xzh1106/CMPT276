@@ -36,9 +36,9 @@ public class HUD {
 
         // Parts collected
         g2.setColor(Color.BLACK);
-        g2.drawString("Parts: " + gp.player.partsCollected, 273, 38);
+        g2.drawString("Parts: " + gp.player.partsCollected, 300, 38);
         g2.setColor(Color.WHITE);
-        g2.drawString("Parts: " + gp.player.partsCollected, 270, 35);
+        g2.drawString("Parts: " + gp.player.partsCollected, 300, 35);
 
     }
 }

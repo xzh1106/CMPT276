@@ -40,6 +40,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public TileManager tileManager = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
+
+    Sound sound = new Sound();
     public UserInterface userInterface = new UserInterface(this);
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
@@ -95,6 +97,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setDiamond();
         aSetter.setOpenDoor(); // Open door is behind close door
         aSetter.setClosedDoor();
+
 
         //starting position and direction
         player.playerReset();
@@ -323,5 +326,20 @@ public class GamePanel extends JPanel implements Runnable {
             //draw UI (includes only pause screen currently)
             userInterface.draw(g2);
         }
+    }
+
+    public void playMusic(int i){
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+
+    public void stopMusic(){
+        sound.stop();
+    }
+
+    public void playSE(int i){
+        sound.setFile(i);
+        sound.play();
     }
 }

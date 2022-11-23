@@ -159,6 +159,8 @@ public class Player extends Entity{
             // Add it to the list
             gp.projectileList.add(projectile);
 
+            gp.playSE(7);
+
         }
         projectileCounter++;
 
@@ -180,6 +182,7 @@ public class Player extends Entity{
 
         // If index is 999, character haven't collided with any object
         if (index != 999) {
+            gp.playSE(4);
             score += 300;
             partsCollected++;
             gp.spaceshipPart[index] = null;
@@ -197,6 +200,7 @@ public class Player extends Entity{
 
         // If index is 999, character haven't collided with any object
         if (index != 999) {
+            gp.playSE(1);
             score += 500;
             gp.diamond.remove(index);
         }
@@ -211,13 +215,14 @@ public class Player extends Entity{
             if (!invincible){
                 invincible = true;
             }
+            gp.playSE(6);
             score -= 300;
             gp.blackhole[index] = null;
         }
     }
 
     /**
-     * This method is for setting damage, when player collided with OpenedDoor.
+     * This method is for setting reaction, when player collided with OpenedDoor.
      * @param index If index is 999, character haven't collided with any object.
      */
     public void collideOpenedDoor(int index) {
@@ -247,6 +252,7 @@ public class Player extends Entity{
                     e.printStackTrace();
                 }
             }
+            gp.playSE(8);
         }
     }
 
@@ -257,6 +263,7 @@ public class Player extends Entity{
     public void damageAlien(int i) {
         if (i != 999) {
             if(!gp.alien[i].invincible) {
+                gp.playSE(5);
                 gp.alien[i].score -= 1;
                 gp.alien[i].invincible = true;
                 gp.alien[i].damageReaction();
