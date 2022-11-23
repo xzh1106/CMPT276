@@ -27,17 +27,17 @@ public class KeyHandler implements KeyListener {
 
         //Title State
         if(gp.currentGameState == gp.titleState) {
-            if (code == KeyEvent.VK_W && gp.userInterface.commandNum == 1) {
-                gp.userInterface.commandNum--;
+            if (code == KeyEvent.VK_W && gp.userInterface.commandNumTitleScreen == 1) {
+                gp.userInterface.commandNumTitleScreen--;
                 gp.playSE(0);
             }
-            if (code == KeyEvent.VK_S && gp.userInterface.commandNum == 0) {
-                gp.userInterface.commandNum++;
+            if (code == KeyEvent.VK_S && gp.userInterface.commandNumTitleScreen == 0) {
+                gp.userInterface.commandNumTitleScreen++;
                 gp.playSE(0);
             }
 
             if (code == KeyEvent.VK_ENTER) {
-                if (gp.userInterface.commandNum == 0) {
+                if (gp.userInterface.commandNumTitleScreen == 0) {
                     gp.playSE(9);
                     gp.currentGameState = gp.playingState;
                 } else {
@@ -52,6 +52,7 @@ public class KeyHandler implements KeyListener {
         if(gp.currentGameState == gp.loseState || gp.currentGameState == gp.winState) {
             if (code == KeyEvent.VK_ENTER) {
                 gp.setupGame();
+                gp.currentGameState = gp.playingState;
             }
         }
 
@@ -75,12 +76,37 @@ public class KeyHandler implements KeyListener {
             spacePressed = true;
         }
 
+        //Pause State
         if(code == KeyEvent.VK_P || code == KeyEvent.VK_ESCAPE) {
             if (gp.currentGameState == gp.playingState) {
                 gp.currentGameState = gp.pausedState;
             }
             else if (gp.currentGameState == gp.pausedState){
                 gp.currentGameState = gp.playingState;
+            }
+        }
+
+        if (gp.currentGameState == gp.pausedState) {
+            if (code == KeyEvent.VK_W) {
+                gp.userInterface.commandNumPauseScreen--;
+            }
+            if (code == KeyEvent.VK_S) {
+                gp.userInterface.commandNumPauseScreen++;
+            }
+
+            if (code == KeyEvent.VK_ENTER) {
+                switch (gp.userInterface.commandNumPauseScreen) {
+                    case 0:
+                        gp.currentGameState = gp.playingState;
+                        break;
+                    case 1:
+                        gp.setupGame();
+                        gp.currentGameState = gp.playingState;
+                        break;
+                    case 2:
+                        System.exit(0);
+                        break;
+                }
             }
         }
     }
