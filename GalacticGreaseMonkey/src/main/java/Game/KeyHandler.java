@@ -36,6 +36,16 @@ public class KeyHandler implements KeyListener {
                 gp.playSE(0);
             }
 
+            if (code == KeyEvent.VK_1) {
+                gp.userInterface.commandLevel = 0;
+            }
+            if (code == KeyEvent.VK_2) {
+                gp.userInterface.commandLevel = 1;
+            }
+            if (code == KeyEvent.VK_3) {
+                gp.userInterface.commandLevel = 2;
+            }
+
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.userInterface.commandNumTitleScreen == 0) {
                     gp.playSE(9);
