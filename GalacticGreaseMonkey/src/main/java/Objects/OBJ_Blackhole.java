@@ -1,6 +1,5 @@
-package Object;
+package Objects;
 
-import Entity.Entity;
 import Game.GamePanel;
 /**
  * This subclass inherits the attributes and methods from the GameObject class.

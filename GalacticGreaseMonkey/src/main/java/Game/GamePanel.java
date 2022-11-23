@@ -1,11 +1,11 @@
 package Game;
-import Object.OBJ_Diamond;
+import Objects.OBJ_Diamond;
 
 import AI.Pathfinder;
 import Entity.*;
 
 import Tile.TileManager;
-import Object.GameObject;
+import Objects.GameObject;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;

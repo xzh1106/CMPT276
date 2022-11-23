@@ -4,15 +4,12 @@ import Game.GamePanel;
 import Game.KeyHandler;
 import Game.UtilityTool;
 
-import Object.OBJ_Fireball;
+import Objects.OBJ_Fireball;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
@@ -232,7 +229,7 @@ public class Player extends Entity{
 
                 int currentTopScore = -1;
 
-                try (BufferedReader buffer = new BufferedReader(new FileReader("topScore.txt"))) {
+                try (BufferedReader buffer = new BufferedReader(new FileReader("src/main/resources/topScore.txt"))) {
                     String temp = buffer.readLine();
                     currentTopScore = Integer.parseInt(temp);
                 } catch (IOException e) {
@@ -244,7 +241,7 @@ public class Player extends Entity{
                 }
 
                 try {
-                    PrintWriter writer = new PrintWriter("topScore.txt", StandardCharsets.UTF_8);
+                    PrintWriter writer = new PrintWriter("src/main/resources/topScore.txt", StandardCharsets.UTF_8);
                     writer.println(currentTopScore);
                     writer.close();
                 }

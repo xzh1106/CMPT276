@@ -1,22 +1,22 @@
-package Object;
+package Objects;
 
 import Game.GamePanel;
 
 /**
  * This subclass inherits the attributes and methods from the GameObject class.
- * is for setting Diamond properties.
- * @author Jason
+ * Is for Fireball Key properties.
+ * @author Luan
  */
-public class OBJ_Diamond extends GameObject {
+public class OBJ_SpaceshipPart extends GameObject {
 
     /**
      * This method is constructor of Diamond class.
      * @param gp GamePanel object.
      */
-    public OBJ_Diamond(GamePanel gp) {
+    public OBJ_SpaceshipPart(GamePanel gp) {
         super(gp);
-        name = "Diamond";
-        down1 = setup("/object/diamond");
+        name = "Key";
+        down1 = setup("/object/gear");
         collision = false;
     }
 }

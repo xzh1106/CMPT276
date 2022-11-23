@@ -69,7 +69,7 @@ public class UserInterface {
 
         int currentTopScore = 0;
 
-        try (BufferedReader buffer = new BufferedReader(new FileReader("topScore.txt"))) {
+        try (BufferedReader buffer = new BufferedReader(new FileReader("src/main/resources/topScore.txt"))) {
             String temp = buffer.readLine();
             currentTopScore = Integer.parseInt(temp);
         } catch (IOException e) {

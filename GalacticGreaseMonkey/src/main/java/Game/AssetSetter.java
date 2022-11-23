@@ -1,5 +1,5 @@
 package Game;
-import Object.*;
+import Objects.*;
 import Entity.*;
 
 /**

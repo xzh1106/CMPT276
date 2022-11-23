@@ -2,7 +2,7 @@ package Game;
 
 import Entity.Alien;
 import Entity.Player;
-import Object.OBJ_Blackhole;
+import Objects.OBJ_Blackhole;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
