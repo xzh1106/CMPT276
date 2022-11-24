@@ -75,4 +75,23 @@ class UserInterfaceTest {
         //0 indicates start screen and player hasn't changed it to victory state (4)
         assertEquals(0, gp.currentGameState);
     }
+
+    @Test
+    void startButtonInTitleScreenIsWorking() {
+        KeyEvent key = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_ENTER, '\n');
+        gp.getKeyListeners()[0].keyPressed(key);
+        assertEquals(1, gp.currentGameState);
+    }
+    @Test
+    void changingGameLevelSuccessfully() {
+        KeyEvent key = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_1, '\n');
+        gp.getKeyListeners()[0].keyPressed(key);
+        assertEquals(0, gp.userInterface.commandLevel);
+        key = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_2, '\n');
+        gp.getKeyListeners()[0].keyPressed(key);
+        assertEquals(1, gp.userInterface.commandLevel);
+        key = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_3, '\n');
+        gp.getKeyListeners()[0].keyPressed(key);
+        assertEquals(2, gp.userInterface.commandLevel);
+    }
 }
