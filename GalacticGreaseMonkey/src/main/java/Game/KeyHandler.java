@@ -36,6 +36,16 @@ public class KeyHandler implements KeyListener {
                 gp.playSE(0);
             }
 
+            if (code == KeyEvent.VK_1) {
+                gp.userInterface.commandLevel = 0;
+            }
+            if (code == KeyEvent.VK_2) {
+                gp.userInterface.commandLevel = 1;
+            }
+            if (code == KeyEvent.VK_3) {
+                gp.userInterface.commandLevel = 2;
+            }
+
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.userInterface.commandNumTitleScreen == 0) {
                     gp.playSE(9);
@@ -43,6 +53,7 @@ public class KeyHandler implements KeyListener {
                 } else {
                     gp.playSE(10);
                     System.exit(0);
+
                 }
             }
         }
@@ -54,8 +65,11 @@ public class KeyHandler implements KeyListener {
                 if (gp.currentGameState == gp.loseState) {
                     gp.setupGame();
                     gp.currentGameState = gp.playingState;
+                    gp.userInterface.commandNumTitleScreen = 0;
+                    gp.userInterface.commandNumPauseScreen = 0;
                 } else {
                     gp.setupGame();
+
                 }
             }
         }
@@ -101,13 +115,18 @@ public class KeyHandler implements KeyListener {
 
             if (code == KeyEvent.VK_ENTER) {
                 switch (gp.userInterface.commandNumPauseScreen) {
-                    case 0 -> gp.currentGameState = gp.playingState;
+                    case 0 -> {
+                        gp.currentGameState = gp.playingState;
+
+                    }
                     case 1 -> {
                         gp.setupGame();
                         gp.currentGameState = gp.playingState;
                     }
                     case 2 -> System.exit(0);
                 }
+                gp.userInterface.commandNumTitleScreen = 0;
+                gp.userInterface.commandNumPauseScreen = 0;
             }
         }
     }

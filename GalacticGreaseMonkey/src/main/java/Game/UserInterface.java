@@ -3,6 +3,7 @@ package Game;
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import Objects.*;
 
 /**
  * This class is for setting UserInterface.
@@ -12,9 +13,11 @@ import java.nio.charset.StandardCharsets;
 public class UserInterface {
     GamePanel gp;
     Graphics2D g2;
-    Font monospaced_40_Plain, arial_80_Bold;
+    Font monospaced_60_Plain;
+    Font monospaced_40_Plain;
     public int commandNumTitleScreen = 0;
     public int commandNumPauseScreen = 0;
+    public int commandLevel = 0;
 
     /**
      * This method is constructor of UserInterface class.
@@ -24,8 +27,8 @@ public class UserInterface {
         this.gp = gp;
 
         //macOS bug when "Times" font not installed (first pause message is slightly delayed)
-        monospaced_40_Plain = new Font("Monospaced", Font.PLAIN, 60);
-        arial_80_Bold = new Font("Times New Roman", Font.BOLD, 80);
+        monospaced_60_Plain = new Font("Monospaced", Font.PLAIN, 60);
+        monospaced_40_Plain = new Font("Monospaced", Font.PLAIN, 40);
     }
 
     /**
@@ -34,7 +37,7 @@ public class UserInterface {
      */
     public void draw(Graphics2D g2) {
         this.g2 = g2;
-        g2.setFont(monospaced_40_Plain);
+        g2.setFont(monospaced_60_Plain);
         g2.setColor(Color.white);
 
         //Title state, when start the game
@@ -117,8 +120,26 @@ public class UserInterface {
         //Monkey image
         x = gp.screenWidth/2 - (gp.tileSize*2)/2;
         y += gp.tileSize*2 + 75;
-        g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
-
+        String level = "LEVEL: ";
+        g2.drawString(level, x - 300, y + 75);
+        g2.setFont(monospaced_40_Plain);
+        switch (commandLevel) {
+            case 0 -> {
+                g2.setColor(Color.green);
+                g2.drawString("Baby", x - 60, y + 75);
+            }
+            case 1 -> {
+                g2.setColor(Color.blue);
+                g2.drawString("Soldier", x - 60, y + 75);
+            }
+            case 2 -> {
+                g2.setColor(Color.red);
+                g2.drawString("Commander", x - 60 , y + 75);
+            }
+        }
+        g2.drawImage(gp.player.down1, x + 200, y, gp.tileSize*2, gp.tileSize*2, null);
+        g2.setFont(monospaced_60_Plain);
+        g2.setColor(Color.orange);
         // Menu
         gp.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
 
