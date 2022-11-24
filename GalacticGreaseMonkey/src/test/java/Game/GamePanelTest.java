@@ -4,6 +4,8 @@ import Entity.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.event.KeyEvent;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GamePanelTest {
@@ -18,6 +20,22 @@ class GamePanelTest {
 
         keyHandler = new KeyHandler(gp);
         player = new Player(gp, keyHandler);
+    }
+
+    @Test
+    void gameOverTest() {
+        player.score = -1;
+        player.update();
+        assertEquals(gp.loseState, gp.currentGameState);
+    }
+
+    @Test
+    void pauseStateTest(){
+        KeyEvent pauseKey = new KeyEvent(gp, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_P,'P');
+        gp.getKeyListeners()[0].keyPressed(pauseKey);
+
+        keyHandler.keyPressed(pauseKey);
+        assertEquals(gp.pausedState, gp.currentGameState);
     }
 
     @Test
