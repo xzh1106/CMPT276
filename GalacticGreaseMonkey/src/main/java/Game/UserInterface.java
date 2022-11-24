@@ -117,7 +117,7 @@ public class UserInterface {
         g2.setColor(Color.ORANGE);
         g2.drawString(topScore, x1, y1);
 
-        //Monkey image
+        // Game level
         x = gp.screenWidth/2 - (gp.tileSize*2)/2;
         y += gp.tileSize*2 + 75;
         String level = "LEVEL: ";
@@ -137,10 +137,15 @@ public class UserInterface {
                 g2.drawString("Commander", x - 60 , y + 75);
             }
         }
+
+        //Monkey image
         g2.drawImage(gp.player.down1, x + 200, y, gp.tileSize*2, gp.tileSize*2, null);
         g2.setFont(monospaced_60_Plain);
         g2.setColor(Color.orange);
+
+
         // Menu
+
         gp.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
 
         String menu1 = "New Game";
@@ -148,7 +153,8 @@ public class UserInterface {
         y += gp.tileSize * 4;
         g2.drawString(menu1, x, y);
         if (commandNumTitleScreen == 0) {
-            g2.drawString(">", x - gp.tileSize, y);
+            g2.drawImage(gp.openedDoor[0].down1, x + gp.tileSize * 6 + 20, y - 40, gp.tileSize, gp.tileSize, null);
+            g2.drawString("> ", x - gp.tileSize, y);
         }
 
         String menu2 = "Exit";
@@ -156,7 +162,8 @@ public class UserInterface {
         y += gp.tileSize * 2;
         g2.drawString(menu2, x, y);
         if (commandNumTitleScreen == 1) {
-            g2.drawString(">", x - gp.tileSize, y);
+            g2.drawImage(gp.blackhole[0].down1, x + gp.tileSize * 3 + 20, y - 40, gp.tileSize, gp.tileSize, null);
+            g2.drawString("> ", x - gp.tileSize, y);
         }
 
     }
