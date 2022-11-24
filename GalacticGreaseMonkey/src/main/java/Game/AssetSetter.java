@@ -27,16 +27,32 @@ public class AssetSetter {
      * and Set location for object on map.
      */
     public void setSpaceshipPart() {
+//        gp.spaceshipPart[0] = new OBJ_SpaceshipPart(gp); // Make a key object and save into obj array
+//        gp.spaceshipPart[0].worldX = 7 * gp.tileSize; // Set location for obj on map
+//        gp.spaceshipPart[0].worldY = 10 * gp.tileSize;
+//
+//        gp.spaceshipPart[1] = new OBJ_SpaceshipPart(gp); // Make a key object and save into obj array
+//        gp.spaceshipPart[1].worldX = 18 * gp.tileSize; // Set location for obj on map
+//        gp.spaceshipPart[1].worldY = gp.tileSize;
+        int numShipPart = 2;
 
-        gp.spaceshipPart[0] = new OBJ_SpaceshipPart(gp); // Make a key object and save into obj array
-        gp.spaceshipPart[0].worldX = 7 * gp.tileSize; // Set location for obj on map
-        gp.spaceshipPart[0].worldY = 10 * gp.tileSize;
+        for (int i = 0; i < numShipPart; i++) {
+            gp.spaceshipPart[i] = new OBJ_SpaceshipPart(gp);
+            boolean validLocation = false;
+            int randomX = 0;
+            int randomY = 0;
 
-        gp.spaceshipPart[1] = new OBJ_SpaceshipPart(gp); // Make a key object and save into obj array
-        gp.spaceshipPart[1].worldX = 18 * gp.tileSize; // Set location for obj on map
-        gp.spaceshipPart[1].worldY = gp.tileSize;
-
-
+            while (!validLocation) {
+                randomX = ThreadLocalRandom.current().nextInt(3, 30);
+                randomY = ThreadLocalRandom.current().nextInt(3, 15);
+                AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<>(randomX, randomY);
+                if (!gp.listOfRockCoords.contains(newCoords)) {
+                    validLocation = true;
+                }
+            }
+            gp.spaceshipPart[i].worldX = randomX * gp.tileSize;
+            gp.spaceshipPart[i].worldY = randomY * gp.tileSize;
+        }
     }
 
     /**
@@ -98,20 +114,25 @@ public class AssetSetter {
      * This method is for making ClosedDoor object and save into obj array,
      * and Set location for object on map.
      */
-    public void setClosedDoor() {
+    public void setDoor() {
         gp.closedDoor[0] = new OBJ_ClosedDoor(gp);
-        gp.closedDoor[0].worldX = 30 * gp.tileSize;
-        gp.closedDoor[0].worldY = 10 * gp.tileSize;
-    }
-
-    /**
-     * This method is for making OpenedDoor object and save into obj array,
-     * and Set location for object on map.
-     */
-    public void setOpenDoor() {
         gp.openedDoor[0] = new OBJ_OpenedDoor(gp);
-        gp.openedDoor[0].worldX = 30 * gp.tileSize;
-        gp.openedDoor[0].worldY = 10 * gp.tileSize;
+        boolean validLocation = false;
+        int randomX = 0;
+        int randomY = 0;
+
+        while (!validLocation) {
+            randomX = ThreadLocalRandom.current().nextInt(3, 30);
+            randomY = ThreadLocalRandom.current().nextInt(3, 15);
+            AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<>(randomX, randomY);
+            if (!gp.listOfRockCoords.contains(newCoords)) {
+                validLocation = true;
+            }
+        }
+        gp.openedDoor[0].worldX = randomX * gp.tileSize;
+        gp.openedDoor[0].worldY = randomY * gp.tileSize;
+        gp.closedDoor[0].worldX = randomX * gp.tileSize;
+        gp.closedDoor[0].worldY = randomY * gp.tileSize;
     }
 
     /**

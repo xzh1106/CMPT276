@@ -96,8 +96,8 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setAlien();
         aSetter.setBlackhole();
         aSetter.setDiamond();
-        aSetter.setOpenDoor(); // Open door is behind close door
-        aSetter.setClosedDoor();
+        aSetter.setDoor(); // Open door is behind close door
+        aSetter.setDoor();
 
 
         //starting position and direction
