@@ -34,7 +34,7 @@ public class AssetSetter {
 //        gp.spaceshipPart[1] = new OBJ_SpaceshipPart(gp); // Make a key object and save into obj array
 //        gp.spaceshipPart[1].worldX = 18 * gp.tileSize; // Set location for obj on map
 //        gp.spaceshipPart[1].worldY = gp.tileSize;
-        int numShipPart = 2;
+        int numShipPart = gp.userInterface.commandLevel * 1 + 2;
 
         for (int i = 0; i < numShipPart; i++) {
             gp.spaceshipPart[i] = new OBJ_SpaceshipPart(gp);
@@ -43,8 +43,8 @@ public class AssetSetter {
             int randomY = 0;
 
             while (!validLocation) {
-                randomX = ThreadLocalRandom.current().nextInt(3, 30);
-                randomY = ThreadLocalRandom.current().nextInt(3, 15);
+                randomX = ThreadLocalRandom.current().nextInt(1, 30);
+                randomY = ThreadLocalRandom.current().nextInt(1, 14);
                 AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<>(randomX, randomY);
                 if (!gp.listOfRockCoords.contains(newCoords)) {
                     validLocation = true;
@@ -90,6 +90,13 @@ public class AssetSetter {
 //        gp.blackhole[2].worldY = 9 * gp.tileSize;
 
         int numBlackholes = ThreadLocalRandom.current().nextInt(2,7);
+        if (gp.userInterface.commandLevel == 0) {
+            numBlackholes = 3;
+        } else if (gp.userInterface.commandLevel == 1) {
+            numBlackholes = 5;
+        } else {
+            numBlackholes = 7;
+        }
 
         for (int i = 0; i < numBlackholes; i++) {
             gp.blackhole[i] = new OBJ_Blackhole(gp);

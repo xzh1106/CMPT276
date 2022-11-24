@@ -183,7 +183,7 @@ public class Player extends Entity{
             score += 300;
             partsCollected++;
             gp.spaceshipPart[index] = null;
-            if (partsCollected == 2) {
+            if (partsCollected == gp.userInterface.commandLevel * 1 + 2) {
                 gp.closedDoor[0] = null;
             }
         }
@@ -224,7 +224,7 @@ public class Player extends Entity{
      */
     public void collideOpenedDoor(int index) {
         if (index != 999) {
-            if (partsCollected == 2) {
+            if (partsCollected == gp.userInterface.commandLevel * 1 + 2) {
                 gp.currentGameState = gp.winState;
 
                 int currentTopScore = -1;
