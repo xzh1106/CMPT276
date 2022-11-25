@@ -42,7 +42,6 @@ public class UserInterface {
 
         //Title state, when start the game
         if(gp.currentGameState == gp.titleState) {
-            gp.setupGame();
             showTitleScreen();
         }
 
