@@ -226,6 +226,7 @@ public class Player extends Entity{
         if (index != 999) {
             if (partsCollected == gp.userInterface.commandLevel * 1 + 2) {
                 gp.currentGameState = gp.winState;
+                gp.playSE(8);
 
                 int currentTopScore = -1;
 
@@ -249,7 +250,6 @@ public class Player extends Entity{
                     e.printStackTrace();
                 }
             }
-            gp.playSE(8);
         }
     }
 
