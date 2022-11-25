@@ -153,7 +153,7 @@ public class UserInterface {
         y += gp.tileSize * 4;
         g2.drawString(menu1, x, y);
         if (commandNumTitleScreen == 0) {
-            g2.drawImage(gp.openedDoor[0].down1, x + gp.tileSize * 6 + 20, y - 40, gp.tileSize, gp.tileSize, null);
+//            g2.drawImage(gp.openedDoor[0].down1, x + gp.tileSize * 6 + 20, y - 40, gp.tileSize, gp.tileSize, null);
             g2.drawString("> ", x - gp.tileSize, y);
         }
 
@@ -162,7 +162,7 @@ public class UserInterface {
         y += gp.tileSize * 2;
         g2.drawString(menu2, x, y);
         if (commandNumTitleScreen == 1) {
-            g2.drawImage(gp.blackhole[0].down1, x + gp.tileSize * 3 + 20, y - 40, gp.tileSize, gp.tileSize, null);
+//            g2.drawImage(gp.blackhole[0].down1, x + gp.tileSize * 3 + 20, y - 40, gp.tileSize, gp.tileSize, null);
             g2.drawString("> ", x - gp.tileSize, y);
         }
 
