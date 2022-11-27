@@ -72,10 +72,21 @@ public class UserInterface {
 
         int currentTopScore = 0;
 
+        String fileToDisplay = "topScore.txt";
+        if (gp.userInterface.commandLevel == 0) {
+            fileToDisplay = "topScore.txt";
+        }
+        else if (gp.userInterface.commandLevel == 1) {
+            fileToDisplay = "topScoreMed.txt";
+        }
+        else if (gp.userInterface.commandLevel == 2) {
+            fileToDisplay = "topScoreHard.txt";
+        }
+
         try{
-            File file = new File("topScore.txt");
+            File file = new File(fileToDisplay);
             if(file.createNewFile()){
-                PrintWriter writer = new PrintWriter("topScore.txt", StandardCharsets.UTF_8);
+                PrintWriter writer = new PrintWriter(fileToDisplay, StandardCharsets.UTF_8);
                 writer.println(0);
                 writer.close();
             }
@@ -85,7 +96,7 @@ public class UserInterface {
         }
 
         try {
-            BufferedReader buffer = new BufferedReader(new FileReader("topScore.txt"));
+            BufferedReader buffer = new BufferedReader(new FileReader(fileToDisplay));
             String temp = buffer.readLine();
             currentTopScore = Integer.parseInt(temp);
         } catch (IOException e) {
