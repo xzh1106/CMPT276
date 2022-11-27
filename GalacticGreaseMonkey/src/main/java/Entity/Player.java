@@ -230,7 +230,18 @@ public class Player extends Entity{
 
                 int currentTopScore = -1;
 
-                try (BufferedReader buffer = new BufferedReader(new FileReader("topScore.txt"))) {
+                String fileToBeWrittenTo = "topScore.txt";
+                if (gp.userInterface.commandLevel == 0) {
+                    fileToBeWrittenTo = "topScore.txt";
+                }
+                else if (gp.userInterface.commandLevel == 1) {
+                    fileToBeWrittenTo = "topScoreMed.txt";
+                }
+                else if (gp.userInterface.commandLevel == 2) {
+                    fileToBeWrittenTo = "topScoreHard.txt";
+                }
+
+                try (BufferedReader buffer = new BufferedReader(new FileReader(fileToBeWrittenTo))) {
                     String temp = buffer.readLine();
                     currentTopScore = Integer.parseInt(temp);
                 } catch (IOException e) {
@@ -242,7 +253,7 @@ public class Player extends Entity{
                 }
 
                 try {
-                    PrintWriter writer = new PrintWriter("topScore.txt", StandardCharsets.UTF_8);
+                    PrintWriter writer = new PrintWriter(fileToBeWrittenTo, StandardCharsets.UTF_8);
                     writer.println(currentTopScore);
                     writer.close();
                 }
