@@ -57,8 +57,8 @@ public class Entity {
         collisionDetected = false;
         gp.collisionChecker.checkTile(this);
 
-        boolean playerCollision = gp.collisionChecker.checkPlayer(this);
         if(type == 2){
+            boolean playerCollision = gp.collisionChecker.checkPlayer(this);
             if(!playerCollision){
                 collisionDetected = false;
             }
