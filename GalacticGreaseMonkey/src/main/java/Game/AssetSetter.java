@@ -188,4 +188,28 @@ public class AssetSetter {
         gp.alien[index].direction = "left";
     }
 
+    /**
+     * This method is for making new Alien object and save into obj array,
+     * Set location for object on map.
+     * @param index array position.
+     */
+    public void newAlien3(int index) {
+        gp.alien[index] = new Alien(gp); // Make a key object and save into obj array
+        gp.alien[index].worldX = gp.tileSize; // Set location for obj on map
+        gp.alien[index].worldY = 14 * gp.tileSize;
+        gp.alien[index].direction = "left";
+    }
+
+    /**
+     * This method is for making new Alien object and save into obj array,
+     * Set location for object on map.
+     * @param index array position.
+     */
+    public void newAlien4(int index) {
+        gp.alien[index] = new Alien(gp); // Make a key object and save into obj array
+        gp.alien[index].worldX = 30 * gp.tileSize; // Set location for obj on map
+        gp.alien[index].worldY = gp.tileSize;
+        gp.alien[index].direction = "left";
+    }
+
 }

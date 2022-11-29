@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GameObject[] spaceshipPart = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<OBJ_Diamond> diamond = new ArrayList<>();
-    public Alien[] alien = new Alien[5];
+    public Alien[] alien = new Alien[10];
     public GameObject[] blackhole = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<Entity> projectileList = new ArrayList<>();
     public GameObject[] closedDoor = new GameObject[1];
@@ -192,16 +192,14 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
-            if(alienSpawnTime > 120){
+            if(alienSpawnTime > 600){
                 boolean canSpawn = false;
                 int i = 0;
 
                 while(i < alien.length && !canSpawn) {
                     if (alien[i] == null){
-                        if (alienSpawnNum == 1){
-                            alienSpawnNum = 2;
-                        }
-                        else if (alienSpawnNum == 2){
+                        alienSpawnNum++;
+                        if (alienSpawnNum > 4){
                             alienSpawnNum = 1;
                         }
                         canSpawn = true;
@@ -213,8 +211,14 @@ public class GamePanel extends JPanel implements Runnable {
                     if(alienSpawnNum == 1){
                         aSetter.newAlien(i);
                     }
-                    else {
+                    else if(alienSpawnNum == 2) {
                         aSetter.newAlien2(i);
+                    }
+                    else if(alienSpawnNum == 3){
+                        aSetter.newAlien3(i);
+                    }
+                    else {
+                        aSetter.newAlien4(i);
                     }
                     alienSpawnTime = 0;
                 }
@@ -254,6 +258,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
             if (player.score < 0){
                 currentGameState = loseState;
+                Arrays.fill(alien, null);
             }
         }
     }

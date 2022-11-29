@@ -2,7 +2,6 @@ package Entity;
 
 import Game.GamePanel;
 
-import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -63,6 +62,12 @@ public class Alien extends Entity {
      */
     public void update() {
         super.update();
+        if(invincible){
+            speed = 1;
+        }
+        else{
+            speed = 2;
+        }
 
         boolean collidedPlayer = gp.collisionChecker.checkPlayer(this);
         if (collidedPlayer) {
