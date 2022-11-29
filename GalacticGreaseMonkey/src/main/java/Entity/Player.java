@@ -142,10 +142,6 @@ public class Player extends Entity{
                 }
                 spriteCounter = 0;
             }
-
-            if (score < 0){ // Game over if score is less than 0
-                gp.currentGameState = gp.loseState;
-            }
         }
 
         if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 90) {
