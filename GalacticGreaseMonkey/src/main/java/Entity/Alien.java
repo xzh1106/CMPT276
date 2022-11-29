@@ -81,13 +81,7 @@ public class Alien extends Entity {
             onPath = true;
         }
 
-        if (invincible) { // Invincibility for alien
-            invincibleCounter++;
-            if (invincibleCounter > 40) { // Removes invincibility after one second
-                invincible = false;
-                invincibleCounter = 0;
-            }
-        }
+        checkInvincibility(this);
     }
 
     /**
@@ -126,26 +120,6 @@ public class Alien extends Entity {
 
                 actionLockCounter = 0;
             }
-        }
-    }
-
-    /**
-     * This method is for setting damage reaction.
-     */
-    public void damageReaction() {
-        actionLockCounter = 0;
-        direction = gp.player.direction;
-        if (Objects.equals(direction, "up")){
-            worldY -= 5;
-        }
-        else if (Objects.equals(direction, "down")){
-            worldY += 5;
-        }
-        else if (Objects.equals(direction, "left")){
-            worldX -= 5;
-        }
-        else if (Objects.equals(direction, "right")){
-            worldX += 5;
         }
     }
 }

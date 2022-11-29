@@ -158,13 +158,7 @@ public class Player extends Entity{
         projectileCounter++;
 
         // Cooldown for player getting hit
-        if (invincible){
-            invincibleCounter++;
-            if(invincibleCounter > 60) { // Removes invincibility after one second
-                invincible = false;
-                invincibleCounter = 0;
-            }
-        }
+        checkInvincibility(this);
     }
 
     /**
@@ -270,7 +264,6 @@ public class Player extends Entity{
                 gp.playSE(5);
                 gp.alien[i].score -= 1;
                 gp.alien[i].invincible = true;
-                gp.alien[i].damageReaction();
 
                 if(gp.alien[i].score < 0) {
                     gp.alien[i].dying = true;
