@@ -192,7 +192,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
-            if(alienSpawnTime > 600){
+            if(alienSpawnTime > 600/userInterface.commandLevel){
                 boolean canSpawn = false;
                 int i = 0;
 
