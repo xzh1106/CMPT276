@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GameObject[] spaceshipPart = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<OBJ_Diamond> diamond = new ArrayList<>();
-    public Alien[] alien = new Alien[10];
+    public Alien[] alien = new Alien[8];
     public GameObject[] blackhole = new GameObject[10]; // 10 slots for object allocation
     public ArrayList<Entity> projectileList = new ArrayList<>();
     public GameObject[] closedDoor = new GameObject[1];
