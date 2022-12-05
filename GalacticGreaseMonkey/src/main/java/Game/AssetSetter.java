@@ -10,6 +10,17 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Jason
  * @author Ryan
  */
+
+class Coordinates {
+    public int xVal;
+    public int yVal;
+
+    public Coordinates(int xVal, int yVal) {
+        this.xVal = xVal;
+        this.yVal = yVal;
+    }
+}
+
 public class AssetSetter {
 
     GamePanel gp;
@@ -22,29 +33,29 @@ public class AssetSetter {
         this.gp = gp;
     }
 
+    private Coordinates getRandomCoords(int origin, int bound) {
+        int randomIdx = ThreadLocalRandom.current().nextInt(origin, bound);
+        int randomX = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[0]);
+        int randomY = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[1]);
+        Coordinates randomCoords = new Coordinates(randomX, randomY);
+
+        return randomCoords;
+    }
+
     /**
      * This method is for making a key object and save into obj array,
      * and Set location for object on map.
      */
     public void setSpaceshipPart() {
-//        gp.spaceshipPart[0] = new OBJ_SpaceshipPart(gp); // Make a key object and save into obj array
-//        gp.spaceshipPart[0].worldX = 7 * gp.tileSize; // Set location for obj on map
-//        gp.spaceshipPart[0].worldY = 10 * gp.tileSize;
-//
-//        gp.spaceshipPart[1] = new OBJ_SpaceshipPart(gp); // Make a key object and save into obj array
-//        gp.spaceshipPart[1].worldX = 18 * gp.tileSize; // Set location for obj on map
-//        gp.spaceshipPart[1].worldY = gp.tileSize;
+
         int numShipPart = gp.userInterface.commandLevel * 1 + 2;
 
         for (int i = 0; i < numShipPart; i++) {
             gp.spaceshipPart[i] = new OBJ_SpaceshipPart(gp);
 
-            int randomIdx = ThreadLocalRandom.current().nextInt(0, 258);
-            int randomX = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[0]);
-            int randomY = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[1]);
-
-            gp.spaceshipPart[i].worldX = randomX * gp.tileSize;
-            gp.spaceshipPart[i].worldY = randomY * gp.tileSize;
+            Coordinates randomCoords = getRandomCoords(0, 258);
+            gp.spaceshipPart[i].worldX = randomCoords.xVal * gp.tileSize;
+            gp.spaceshipPart[i].worldY = randomCoords.yVal * gp.tileSize;
         }
     }
 
@@ -82,12 +93,9 @@ public class AssetSetter {
         for (int i = 0; i < numBlackholes; i++) {
             gp.blackhole[i] = new OBJ_Blackhole(gp);
 
-            int randomIdx = ThreadLocalRandom.current().nextInt(0, 258);
-            int randomX = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[0]);
-            int randomY = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[1]);
-
-            gp.blackhole[i].worldX = randomX * gp.tileSize;
-            gp.blackhole[i].worldY = randomY * gp.tileSize;
+            Coordinates randomCoords = getRandomCoords(0, 258);
+            gp.blackhole[i].worldX = randomCoords.xVal * gp.tileSize;
+            gp.blackhole[i].worldY = randomCoords.yVal * gp.tileSize;
         }
     }
 
@@ -99,14 +107,11 @@ public class AssetSetter {
         gp.closedDoor[0] = new OBJ_ClosedDoor(gp);
         gp.openedDoor[0] = new OBJ_OpenedDoor(gp);
 
-        int randomIdx = ThreadLocalRandom.current().nextInt(0, 258);
-        int randomX = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[0]);
-        int randomY = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[1]);
-
-        gp.openedDoor[0].worldX = randomX * gp.tileSize;
-        gp.openedDoor[0].worldY = randomY * gp.tileSize;
-        gp.closedDoor[0].worldX = randomX * gp.tileSize;
-        gp.closedDoor[0].worldY = randomY * gp.tileSize;
+        Coordinates randomCoords = getRandomCoords(0, 258);
+        gp.openedDoor[0].worldX = randomCoords.xVal * gp.tileSize;
+        gp.openedDoor[0].worldY = randomCoords.yVal * gp.tileSize;
+        gp.closedDoor[0].worldX = randomCoords.xVal * gp.tileSize;
+        gp.closedDoor[0].worldY = randomCoords.yVal * gp.tileSize;
     }
 
     /**
@@ -178,5 +183,7 @@ public class AssetSetter {
         gp.alien[index].worldY = gp.tileSize;
         gp.alien[index].direction = "left";
     }
+
+
 
 }
