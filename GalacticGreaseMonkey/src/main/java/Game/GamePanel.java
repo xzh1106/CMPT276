@@ -61,7 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GameObject[] closedDoor = new GameObject[1];
     public GameObject[] openedDoor = new GameObject[1];   //Open Door after obtain 2 keys
 
-    List<AbstractMap.SimpleEntry<Integer, Integer>> listOfRockCoords = new ArrayList<>();
+    List<AbstractMap.SimpleEntry<Integer, Integer>> listOfValidCoords = new ArrayList<>();
     public int diamondSpawnTime = 0;
     public int alienSpawnTime = 0;
     int alienSpawnNum = 1;
@@ -92,6 +92,20 @@ public class GamePanel extends JPanel implements Runnable {
      * This method is for setting game object.
      */
     public void setupGame() {
+        //starting position and direction
+        player.playerReset();
+        diamond.clear();
+
+        //find all tiles that are valid
+        for (int i=0; i<maxScreenCol; i++) {
+            for (int j=0; j<maxScreenRow; j++) {
+                if (tileManager.mapTileNum[i][j] != 1 && tileManager.mapTileNum[i][j] != 2) {
+                    AbstractMap.SimpleEntry<Integer, Integer> rockCoords = new AbstractMap.SimpleEntry<>(i, j);
+                    listOfValidCoords.add(rockCoords);
+                }
+            }
+        }
+
         aSetter.setSpaceshipPart();
         aSetter.setAlien();
         aSetter.setBlackhole();
@@ -99,21 +113,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setDoor(); // Open door is behind close door
         aSetter.setDoor();
 
-
-        //starting position and direction
-        player.playerReset();
-
         currentGameState = titleState;
-
-        //find all tiles that are walls or rocks
-        for (int i=0; i<maxScreenCol; i++) {
-            for (int j=0; j<maxScreenRow; j++) {
-                if (tileManager.mapTileNum[i][j] == 1 || tileManager.mapTileNum[i][j] == 2) {
-                    AbstractMap.SimpleEntry<Integer, Integer> rockCoords = new AbstractMap.SimpleEntry<>(i, j);
-                    listOfRockCoords.add(rockCoords);
-                }
-            }
-        }
     }
 
     /**
@@ -237,17 +237,9 @@ public class GamePanel extends JPanel implements Runnable {
             //Spawn diamonds every 100 frames
             diamondSpawnTime++;
             if (diamondSpawnTime == 100) {
-                boolean spawnLocationValid = false;
-                int randomWorldX = 0;
-                int randomWorldY = 0;
-                while (!spawnLocationValid) {
-                    randomWorldX = ThreadLocalRandom.current().nextInt(0, 32 + 1);
-                    randomWorldY = ThreadLocalRandom.current().nextInt(0, 16 + 1);
-                    AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<>(randomWorldX, randomWorldY);
-                    if( !listOfRockCoords.contains(newCoords)) {
-                        spawnLocationValid = true;
-                    }
-                }
+                int randomIdx = ThreadLocalRandom.current().nextInt(0, 516);
+                int randomWorldX = Integer.parseInt(listOfValidCoords.toArray()[randomIdx].toString().split("=")[0]);
+                int randomWorldY = Integer.parseInt(listOfValidCoords.toArray()[randomIdx].toString().split("=")[1]);
 
                 OBJ_Diamond newDiamond = new OBJ_Diamond(this);
                 newDiamond.worldX = randomWorldX * tileSize;

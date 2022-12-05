@@ -38,18 +38,11 @@ public class AssetSetter {
 
         for (int i = 0; i < numShipPart; i++) {
             gp.spaceshipPart[i] = new OBJ_SpaceshipPart(gp);
-            boolean validLocation = false;
-            int randomX = 0;
-            int randomY = 0;
 
-            while (!validLocation) {
-                randomX = ThreadLocalRandom.current().nextInt(1, 30);
-                randomY = ThreadLocalRandom.current().nextInt(1, 14);
-                AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<>(randomX, randomY);
-                if (!gp.listOfRockCoords.contains(newCoords)) {
-                    validLocation = true;
-                }
-            }
+            int randomIdx = ThreadLocalRandom.current().nextInt(0, 258);
+            int randomX = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[0]);
+            int randomY = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[1]);
+
             gp.spaceshipPart[i].worldX = randomX * gp.tileSize;
             gp.spaceshipPart[i].worldY = randomY * gp.tileSize;
         }
@@ -77,18 +70,6 @@ public class AssetSetter {
      */
     public void setBlackhole() {
 
-//        gp.blackhole[0] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
-//        gp.blackhole[0].worldX = 20 * gp.tileSize; // Set location for obj on map
-//        gp.blackhole[0].worldY = 5 * gp.tileSize;
-//
-//        gp.blackhole[1] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
-//        gp.blackhole[1].worldX = 8 * gp.tileSize; // Set location for obj on map
-//        gp.blackhole[1].worldY = 7 * gp.tileSize;
-//
-//        gp.blackhole[2] = new OBJ_Blackhole(gp); // Make a key object and save into obj array
-//        gp.blackhole[2].worldX = 27 * gp.tileSize; // Set location for obj on map
-//        gp.blackhole[2].worldY = 9 * gp.tileSize;
-
         int numBlackholes = ThreadLocalRandom.current().nextInt(2,7);
         if (gp.userInterface.commandLevel == 0) {
             numBlackholes = 3;
@@ -100,18 +81,11 @@ public class AssetSetter {
 
         for (int i = 0; i < numBlackholes; i++) {
             gp.blackhole[i] = new OBJ_Blackhole(gp);
-            boolean validLocation = false;
-            int randomX = 0;
-            int randomY = 0;
 
-            while (!validLocation) {
-                randomX = ThreadLocalRandom.current().nextInt(3, 30);
-                randomY = ThreadLocalRandom.current().nextInt(3, 15);
-                AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<>(randomX, randomY);
-                if (!gp.listOfRockCoords.contains(newCoords)) {
-                    validLocation = true;
-                }
-            }
+            int randomIdx = ThreadLocalRandom.current().nextInt(0, 258);
+            int randomX = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[0]);
+            int randomY = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[1]);
+
             gp.blackhole[i].worldX = randomX * gp.tileSize;
             gp.blackhole[i].worldY = randomY * gp.tileSize;
         }
@@ -124,18 +98,11 @@ public class AssetSetter {
     public void setDoor() {
         gp.closedDoor[0] = new OBJ_ClosedDoor(gp);
         gp.openedDoor[0] = new OBJ_OpenedDoor(gp);
-        boolean validLocation = false;
-        int randomX = 0;
-        int randomY = 0;
 
-        while (!validLocation) {
-            randomX = ThreadLocalRandom.current().nextInt(3, 30);
-            randomY = ThreadLocalRandom.current().nextInt(3, 15);
-            AbstractMap.SimpleEntry<Integer, Integer> newCoords = new AbstractMap.SimpleEntry<>(randomX, randomY);
-            if (!gp.listOfRockCoords.contains(newCoords)) {
-                validLocation = true;
-            }
-        }
+        int randomIdx = ThreadLocalRandom.current().nextInt(0, 258);
+        int randomX = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[0]);
+        int randomY = Integer.parseInt(gp.listOfValidCoords.toArray()[randomIdx].toString().split("=")[1]);
+
         gp.openedDoor[0].worldX = randomX * gp.tileSize;
         gp.openedDoor[0].worldY = randomY * gp.tileSize;
         gp.closedDoor[0].worldX = randomX * gp.tileSize;
