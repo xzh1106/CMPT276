@@ -182,13 +182,11 @@ public class UserInterface {
      * This method is for setting pause in game.
      */
     public void showPauseScreen() {
-        String message = "PAUSED";
 
-        //determine where message should go
-        int x = XCentreText(message);
-        int y = gp.screenHeight/2 - 100;
-
-        //draw message
+        // Draw pause message
+        String message = "PAUSED";          // Message content
+        int x = XCentreText(message);       // Message position X
+        int y = gp.screenHeight/2 - 100;    // Message position Y
         drawMainMessage(message, Color.gray, Color.white, x, y);
 
         String option1 = "Resume";
@@ -225,29 +223,17 @@ public class UserInterface {
      * This method is for Show player defeat in game.
      */
     public void showLostScreen() {
-        String message = "GAME OVER";
-        String tryAgainMessage = "Press Enter to Play Again...";
-        //find centre of the message
 
-        //determine where message should go
-        int x = XCentreText(message);
-        int y = gp.screenHeight/2;
-
-        int x1 = XCentreText(tryAgainMessage);
-        int y1 = gp.screenHeight/2 + 75;
-
-        //draw message
-//        g2.setColor(Color.black);
-//        g2.drawString(message, x+5, y+5);
-//        g2.setColor(Color.red);
-//        g2.drawString(message, x, y);
+        //draw Losing message
+        String message = "GAME OVER";   // msg content
+        int x = XCentreText(message);   // msg position x
+        int y = gp.screenHeight/2;      // msg position y
         drawMainMessage(message, Color.BLACK, Color.RED, x, y);
 
         //tryAgain message
-//        g2.setColor(Color.black);
-//        g2.drawString(tryAgainMessage, x1+5, y1+5);
-//        g2.setColor(Color.orange);
-//        g2.drawString(tryAgainMessage, x1, y1);
+        message = "Press Enter to Play Again...";
+        x = XCentreText(message);
+        y = gp.screenHeight/2 + 75;
         drawMainMessage(message, Color.BLACK, Color.ORANGE, x, y);
     }
 
@@ -255,28 +241,21 @@ public class UserInterface {
      * This method is for show player victory  in game.
      */
     public void showWinScreen() {
-        String message = "VICTORY";
-        String continueMessage = "Press Enter to Continute";
-        //Find centre of the message
 
-        //Where message should go
-        int x = XCentreText(message);
-        int y = gp.screenHeight/2;
+        //draw Winning message
+        String message = "VICTORY";     // msg content
+        int x = XCentreText(message);   // msg position x
+        int y = gp.screenHeight/2;      // msg position y
+        drawMainMessage(message, Color.ORANGE, Color.RED, x, y);
 
-        int x1 = XCentreText(continueMessage);
-        int y1 = gp.screenHeight/2 + 75;
 
-        //draw message
-        g2.setColor(Color.red);
-        g2.drawString(message, x+5, y+5);
-        g2.setColor(Color.orange);
-        g2.drawString(message, x, y);
+        //Continue message
+        message = "Press Enter to Continue";
+        x = XCentreText(message);
+        y = gp.screenHeight/2 + 75;
+        drawMainMessage(message, Color.BLACK, Color.ORANGE, x, y);
 
-        //continute message
-        g2.setColor(Color.black);
-        g2.drawString(continueMessage, x1+5, y1+5);
-        g2.setColor(Color.orange);
-        g2.drawString(continueMessage, x1, y1);
+
     }
 
     private int XCentreText(String text) {
@@ -288,9 +267,5 @@ public class UserInterface {
         g2.drawString(message, x + 5, y + 5);
         g2.setColor(color2);
         g2.drawString(message, x, y);
-    }
-
-    private void drawMenuOption(String message, Color color, int x, int y) {
-
     }
 }
