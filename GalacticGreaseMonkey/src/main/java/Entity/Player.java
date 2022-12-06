@@ -138,7 +138,6 @@ public class Player extends Entity{
             /*
                 Sprite counter is incremented iterations of this method.
                 Once it reaches 10, the players sprite is changed to a another mimicking movement
-                ,
              */
             spriteCounter++;
             if (spriteCounter > 10) {
@@ -187,10 +186,16 @@ public class Player extends Entity{
 
         // If index is 999, character haven't collided with any object
         if (index != 999) {
+            /*
+                If the player collides with a spaceship parts (i.e. gear), then add 300 points to their score,
+                increment the variable that keeps count of the number of parts collected (partsCollected)
+             */
             gp.playSE(4);
             score += 300;
             partsCollected++;
             gp.spaceshipPart[index] = null;
+
+            //If the player has collected all parts present on the map, show an opened door
             if (partsCollected == gp.userInterface.commandLevel * 1 + 2) {
                 gp.closedDoor[0] = null;
             }
@@ -204,6 +209,9 @@ public class Player extends Entity{
     public void pickUpDiamond(int index) {
 
         // If index is 999, character haven't collided with any object
+        /*
+            If players collides with diamond, add 500 points from it and remove the diamond from the map
+         */
         if (index != 999) {
             gp.playSE(1);
             score += 500;
@@ -216,7 +224,13 @@ public class Player extends Entity{
      * @param index If index is 999, character haven't collided with any object.
      */
     public void collideBlackhole(int index) {
+        /*
+            checking to see if a collision between player and a blackhole has occured
+        */
         if (index != 999) {
+            /*
+                If collision has occured, make player temporarily invincible and remove the blackhole from the map
+             */
             if (!invincible){
                 invincible = true;
             }
@@ -302,9 +316,12 @@ public class Player extends Entity{
         */
         if (i != 999) {
             /*
-                checking to see if the player is temporarily invincible (which only happens when the player has been recently damaged
+                checking to see if alien is temporarily invincible (which only happens when the alien has been recently damaged)
              */
             if(!gp.alien[i].invincible) {
+                /*
+                    if alien is in vulnerable state, tell it to remove half its life and make it temporarily invincible
+                 */
                 gp.playSE(5);
                 gp.alien[i].score -= 1;
                 gp.alien[i].invincible = true;
