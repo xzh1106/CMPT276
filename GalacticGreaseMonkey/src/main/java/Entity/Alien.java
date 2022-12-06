@@ -73,7 +73,6 @@ public class Alien extends Entity {
         if (collidedPlayer) {
             if (!gp.player.invincible) {
                 gp.player.score = -1;
-                gp.stopMusic();
                 gp.playSE(2);
             }
         }
