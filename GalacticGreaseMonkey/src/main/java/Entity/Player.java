@@ -39,9 +39,9 @@ public class Player extends Entity{
         hitBox = new Rectangle(8,12, 26, 26);
         this.gp = gp;
         this.keyH = keyH;
-        worldX = 48;
+        worldX = 48;    //player starting position
         worldY = 48;
-        solidAreaDefaultX = hitBox.x;
+        solidAreaDefaultX = hitBox.x;   //player hitboxes
         solidAreaDefaultY = hitBox.y;
 
         attackArea.width = 36;
@@ -85,6 +85,9 @@ public class Player extends Entity{
     public void update() {
         // Handle WASD movement
 
+        /*
+            checking to see if player has made a move
+         */
         if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed) {
             if(keyH.upPressed) {
                 direction = "up";
@@ -132,18 +135,33 @@ public class Player extends Entity{
                 }
             }
 
+            /*
+                Sprite counter is incremented iterations of this method.
+                Once it reaches 10, the players sprite is changed to a another mimicking movement
+                ,
+             */
             spriteCounter++;
             if (spriteCounter > 10) {
+                /*
+                    Only 2 sprites for each directions for player
+                    , which is why it only switches between 1 & 2 as inputs
+                 */
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 }
                 else if (spriteNum == 2) {
                     spriteNum = 1;
                 }
+
+                // reseting sprite counter so it can continiously switch sprites after reaching 10
                 spriteCounter = 0;
             }
         }
 
+        /*
+            The if block states that you can only use projectiles when there is not an active projectile on the map
+            , the cooldown of 90 updates has been met, and the player has actually pressed the space button
+         */
         if(gp.keyH.spacePressed && !projectile.alive && projectileCounter > 90) {
             projectileCounter = 0;
             // Set default coordinates, direction, and user
@@ -213,6 +231,10 @@ public class Player extends Entity{
      * @param index If index is 999, character haven't collided with any object.
      */
     public void collideOpenedDoor(int index) {
+
+        /*
+            No collision detected between player and another object
+         */
         if (index != 999) {
             if (partsCollected == gp.userInterface.commandLevel * 1 + 2) {
                 gp.currentGameState = gp.winState;
@@ -220,6 +242,9 @@ public class Player extends Entity{
 
                 int currentTopScore = -1;
 
+                /*
+                    Based on the "command" level, chose the correct topScore file to write to
+                 */
                 String fileToBeWrittenTo = "topScore.txt";
                 if (gp.userInterface.commandLevel == 0) {
                     fileToBeWrittenTo = "topScore.txt";
@@ -231,6 +256,11 @@ public class Player extends Entity{
                     fileToBeWrittenTo = "topScoreHard.txt";
                 }
 
+                /*
+                    Retrieve the current top score
+                    Since there are many, you have to specify the "command" level
+                    to target the correct file
+                 */
                 try (BufferedReader buffer = new BufferedReader(new FileReader(fileToBeWrittenTo))) {
                     String temp = buffer.readLine();
                     currentTopScore = Integer.parseInt(temp);
@@ -238,10 +268,18 @@ public class Player extends Entity{
                     e.printStackTrace();
                 }
 
+                /*
+                    If the players score is greater than the current top score for that difficulty
+                    , overwrite the current top score with the players score
+                 */
                 if (score > currentTopScore) {
                     currentTopScore = score;
                 }
 
+
+                /*
+                    Write the new topScore to the corresponding topScore file (based on command level)
+                 */
                 try {
                     PrintWriter writer = new PrintWriter(fileToBeWrittenTo, StandardCharsets.UTF_8);
                     writer.println(currentTopScore);
@@ -259,7 +297,13 @@ public class Player extends Entity{
      * @param i If index is 999, character haven't collided with any object.
      */
     public void damageAlien(int i) {
+        /*
+            If i is 999, no collisiion has occured
+        */
         if (i != 999) {
+            /*
+                checking to see if the player is temporarily invincible (which only happens when the player has been recently damaged
+             */
             if(!gp.alien[i].invincible) {
                 gp.playSE(5);
                 gp.alien[i].score -= 1;
@@ -273,6 +317,10 @@ public class Player extends Entity{
     }
 
     public void playerReset() {
+        /*
+            Reset player attributes and behaviour
+            This is called whenever the gameloop terminates or needs to restart
+         */
         worldX = 48;
         worldY = 48;
         direction = "down";
