@@ -30,7 +30,7 @@ public class GameObject {
     /**
      * Object location on map
      */
-    public int worldX, worldY;
+    public int objectX, objectY;
 
     /**
      * Actual hit box for object
@@ -40,8 +40,8 @@ public class GameObject {
     /**
      * Default hit box for object X and Y
      */
-    public int solidAreaDefaultX = 0;
-    public int solidAreaDefaultY = 0;
+    public int hitBoxDefaultX = 0;
+    public int hitBoxDefaultY = 0;
 
     public int timeSinceCreated = 0;
 
@@ -49,7 +49,7 @@ public class GameObject {
      * Default image for all object.
      * Since object are not moving, just need 1 image to represent
      */
-    public BufferedImage down1;
+    public BufferedImage objectImage;
 
     /**
      * This method is constructor of GameObject class.
@@ -83,8 +83,8 @@ public class GameObject {
      */
     public void draw(Graphics2D g2) {
 
-        BufferedImage image = down1;
+        BufferedImage image = objectImage;
 
-        g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, objectX, objectY, gp.tileSize, gp.tileSize, null);
     }
 }

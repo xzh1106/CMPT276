@@ -242,8 +242,8 @@ public class GamePanel extends JPanel implements Runnable {
                 int randomWorldY = Integer.parseInt(listOfValidCoords.toArray()[randomIdx].toString().split("=")[1]);
 
                 OBJ_Diamond newDiamond = new OBJ_Diamond(this);
-                newDiamond.worldX = randomWorldX * tileSize;
-                newDiamond.worldY = randomWorldY * tileSize;
+                newDiamond.objectX = randomWorldX * tileSize;
+                newDiamond.objectY = randomWorldY * tileSize;
 
                 diamond.add(newDiamond);
                 diamondSpawnTime = 0;

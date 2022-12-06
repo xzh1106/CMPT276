@@ -2,7 +2,6 @@ package Game;
 import Objects.*;
 import Entity.*;
 
-import java.util.AbstractMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -54,8 +53,8 @@ public class AssetSetter {
             gp.spaceshipPart[i] = new OBJ_SpaceshipPart(gp);
 
             Coordinates randomCoords = getRandomCoords(0, 258);
-            gp.spaceshipPart[i].worldX = randomCoords.xVal * gp.tileSize;
-            gp.spaceshipPart[i].worldY = randomCoords.yVal * gp.tileSize;
+            gp.spaceshipPart[i].objectX = randomCoords.xVal * gp.tileSize;
+            gp.spaceshipPart[i].objectY = randomCoords.yVal * gp.tileSize;
         }
     }
 
@@ -66,12 +65,12 @@ public class AssetSetter {
     public void setDiamond() {
 
         gp.diamond.add(new OBJ_Diamond(gp));
-        gp.diamond.get(gp.diamond.size()-1).worldX = 20 * gp.tileSize;
-        gp.diamond.get(gp.diamond.size()-1).worldY = 4 * gp.tileSize;
+        gp.diamond.get(gp.diamond.size()-1).objectX = 20 * gp.tileSize;
+        gp.diamond.get(gp.diamond.size()-1).objectY = 4 * gp.tileSize;
 
         gp.diamond.add(new OBJ_Diamond(gp));
-        gp.diamond.get(gp.diamond.size()-1).worldX = 7 * gp.tileSize;
-        gp.diamond.get(gp.diamond.size()-1).worldY = 5 * gp.tileSize;
+        gp.diamond.get(gp.diamond.size()-1).objectX = 7 * gp.tileSize;
+        gp.diamond.get(gp.diamond.size()-1).objectY = 5 * gp.tileSize;
 
     }
 
@@ -94,8 +93,8 @@ public class AssetSetter {
             gp.blackhole[i] = new OBJ_Blackhole(gp);
 
             Coordinates randomCoords = getRandomCoords(0, 258);
-            gp.blackhole[i].worldX = randomCoords.xVal * gp.tileSize;
-            gp.blackhole[i].worldY = randomCoords.yVal * gp.tileSize;
+            gp.blackhole[i].objectX = randomCoords.xVal * gp.tileSize;
+            gp.blackhole[i].objectY = randomCoords.yVal * gp.tileSize;
         }
     }
 
@@ -108,10 +107,10 @@ public class AssetSetter {
         gp.openedDoor[0] = new OBJ_OpenedDoor(gp);
 
         Coordinates randomCoords = getRandomCoords(0, 258);
-        gp.openedDoor[0].worldX = randomCoords.xVal * gp.tileSize;
-        gp.openedDoor[0].worldY = randomCoords.yVal * gp.tileSize;
-        gp.closedDoor[0].worldX = randomCoords.xVal * gp.tileSize;
-        gp.closedDoor[0].worldY = randomCoords.yVal * gp.tileSize;
+        gp.openedDoor[0].objectX = randomCoords.xVal * gp.tileSize;
+        gp.openedDoor[0].objectY = randomCoords.yVal * gp.tileSize;
+        gp.closedDoor[0].objectX = randomCoords.xVal * gp.tileSize;
+        gp.closedDoor[0].objectY = randomCoords.yVal * gp.tileSize;
     }
 
     /**
