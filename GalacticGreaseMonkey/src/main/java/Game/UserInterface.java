@@ -68,7 +68,6 @@ public class UserInterface {
 //        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
         g2.setColor(new Color(36,28,51));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        String message = "Galactic Grease Monkey";
 
         int currentTopScore = 0;
 
@@ -103,34 +102,26 @@ public class UserInterface {
             e.printStackTrace();
         }
 
-        String topScore = "Top Score: " + currentTopScore;
+//        String topScore = "Top Score: " + currentTopScore;
 //        int messageCentre = XCentreText(message);
 
         //determine where message should go
 //        int x = gp.screenWidth/2 - messageCentre/2;
-        //for Title
+        // Draw Title
+        String message = "Galactic Grease Monkey";
         int x = XCentreText(message);
         int y = gp.screenHeight/2 - 200;
+        drawMainMessage(message, Color.YELLOW, Color.ORANGE, x, y);
 
-        //for top score
-        int x1 = XCentreText(topScore);
-        int y1 = gp.screenHeight/2 - 125;
-
-        //Title message
-        g2.setColor(Color.YELLOW);
-        g2.drawString(message, x+3, y+3);
-        g2.setColor(Color.ORANGE);
-        g2.drawString(message, x, y);
-
-        //top score message
-        g2.setColor(Color.YELLOW);
-        g2.drawString(topScore, x1+3, y1+3);
-        g2.setColor(Color.ORANGE);
-        g2.drawString(topScore, x1, y1);
+        //Draw Top Score
+        message = "Top Score: " + currentTopScore;
+        x = XCentreText(message);
+        y = gp.screenHeight/2 - 100 ;
+        drawMainMessage(message, Color.YELLOW, Color.ORANGE, x, y);
 
         // Game level
         x = gp.screenWidth/2 - (gp.tileSize*2)/2;
-        y += gp.tileSize*2 + 75;
+        y += gp.tileSize*2 + 50;
         String level = "LEVEL: ";
         g2.drawString(level, x - 300, y + 75);
         g2.setFont(monospaced_40_Plain);
@@ -264,7 +255,7 @@ public class UserInterface {
 
     private void drawMainMessage(String message, Color color1, Color color2, int x, int y) {
         g2.setColor(color1);
-        g2.drawString(message, x + 5, y + 5);
+        g2.drawString(message, x + 4, y + 4);
         g2.setColor(color2);
         g2.drawString(message, x, y);
     }
