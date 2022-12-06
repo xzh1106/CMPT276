@@ -237,16 +237,18 @@ public class UserInterface {
         int y1 = gp.screenHeight/2 + 75;
 
         //draw message
-        g2.setColor(Color.black);
-        g2.drawString(message, x+5, y+5);
-        g2.setColor(Color.red);
-        g2.drawString(message, x, y);
+//        g2.setColor(Color.black);
+//        g2.drawString(message, x+5, y+5);
+//        g2.setColor(Color.red);
+//        g2.drawString(message, x, y);
+        drawMainMessage(message, Color.BLACK, Color.RED, x, y);
 
         //tryAgain message
-        g2.setColor(Color.black);
-        g2.drawString(tryAgainMessage, x1+5, y1+5);
-        g2.setColor(Color.orange);
-        g2.drawString(tryAgainMessage, x1, y1);
+//        g2.setColor(Color.black);
+//        g2.drawString(tryAgainMessage, x1+5, y1+5);
+//        g2.setColor(Color.orange);
+//        g2.drawString(tryAgainMessage, x1, y1);
+        drawMainMessage(message, Color.BLACK, Color.ORANGE, x, y);
     }
 
     /**
@@ -286,5 +288,9 @@ public class UserInterface {
         g2.drawString(message, x + 5, y + 5);
         g2.setColor(color2);
         g2.drawString(message, x, y);
+    }
+
+    private void drawMenuOption(String message, Color color, int x, int y) {
+
     }
 }
