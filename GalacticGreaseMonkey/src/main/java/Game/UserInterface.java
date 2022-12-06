@@ -176,7 +176,6 @@ public class UserInterface {
 //            g2.drawImage(gp.blackhole[0].down1, x + gp.tileSize * 3 + 20, y - 40, gp.tileSize, gp.tileSize, null);
             g2.drawString("> ", x - gp.tileSize, y);
         }
-
     }
 
     /**
@@ -190,10 +189,7 @@ public class UserInterface {
         int y = gp.screenHeight/2 - 100;
 
         //draw message
-        g2.setColor(Color.gray);
-        g2.drawString(message, x+5, y+5);
-        g2.setColor(Color.white);
-        g2.drawString(message, x, y);
+        drawMainMessage(message, Color.gray, Color.white, x, y);
 
         String option1 = "Resume";
         String option2 = "Restart";
@@ -283,5 +279,12 @@ public class UserInterface {
 
     private int XCentreText(String text) {
         return gp.screenWidth/2 - (((int)g2.getFontMetrics().getStringBounds(text, g2).getWidth()) / 2);
+    }
+
+    private void drawMainMessage(String message, Color color1, Color color2, int x, int y) {
+        g2.setColor(color1);
+        g2.drawString(message, x + 5, y + 5);
+        g2.setColor(color2);
+        g2.drawString(message, x, y);
     }
 }
