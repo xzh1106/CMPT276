@@ -14,14 +14,41 @@ import java.util.Objects;
  * @author Jason
  */
 public class GameObject {
+
     GamePanel gp;
+
+    /**
+     * Object name
+     */
     public String name;
+
+    /**
+     * Collision status
+     */
     public boolean collision = false;
+
+    /**
+     * Object location on map
+     */
     public int worldX, worldY;
+
+    /**
+     * Actual hit box for object
+     */
     public Rectangle hitBox = new Rectangle(0,0, 48, 48);
+
+    /**
+     * Default hit box for object X and Y
+     */
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
+
     public int timeSinceCreated = 0;
+
+    /**
+     * Default image for all object.
+     * Since object are not moving, just need 1 image to represent
+     */
     public BufferedImage down1;
 
     /**
@@ -32,6 +59,11 @@ public class GameObject {
         this.gp = gp;
     }
 
+    /**
+     * Set up image for object
+     * @param imagePath path to images resource
+     * @return  return object image
+     */
     public BufferedImage setup(String imagePath){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
