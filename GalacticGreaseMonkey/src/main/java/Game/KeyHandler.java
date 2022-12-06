@@ -105,7 +105,6 @@ public class KeyHandler implements KeyListener {
                 switch (gp.userInterface.commandNumPauseScreen) {
                     case 0 -> {
                         gp.currentGameState = gp.playingState;
-
                     }
                     case 1 -> {
                         gp.setupGame();
@@ -121,26 +120,12 @@ public class KeyHandler implements KeyListener {
 
     public void keyReleased(KeyEvent e)
     {
-        int code = e.getKeyCode();
-
-        if(code == KeyEvent.VK_W) {
-            upPressed = false;
-        }
-
-        if(code == KeyEvent.VK_S) {
-            downPressed = false;
-        }
-
-        if(code == KeyEvent.VK_A) {
-            leftPressed = false;
-        }
-
-        if(code == KeyEvent.VK_D) {
-            rightPressed = false;
-        }
-
-        if(code == KeyEvent.VK_SPACE) {
-            spacePressed = false;
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W -> upPressed = false;
+            case KeyEvent.VK_S -> downPressed = false;
+            case KeyEvent.VK_A -> leftPressed = false;
+            case KeyEvent.VK_D -> rightPressed = false;
+            case KeyEvent.VK_SPACE -> spacePressed = false;
         }
     }
 }
