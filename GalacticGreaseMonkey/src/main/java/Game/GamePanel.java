@@ -1,4 +1,4 @@
-package Game;
+ package Game;
 import Objects.OBJ_Diamond;
 
 import AI.Pathfinder;
